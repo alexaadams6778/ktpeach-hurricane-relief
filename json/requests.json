@@ -1,0 +1,53 @@
+[
+  {
+    "requestID": "3b4c5d6e-7f80-4a91-b2c3-d4e5f6071829",
+    "author": "5a2f3d4a-12bc-4e6d-9c01-7d1f2a3b4c5d",
+    "description": "Need transportation to an open shelter for two adults and one child.",
+    "location": {
+      "address": "418 Oak Street",
+      "city": "Tallahassee",
+      "state": "FL",
+      "zipCode": "32301"
+    },
+    "requiresCertification": false,
+    "neededSkills": ["CPR"],
+    "numberOfPeople": 3,
+    "numberOfPets": 1,
+    "status": "OPEN",
+    "urgency": "HIGH",
+    "hurricaneData": {
+      "advisoryID": 24,
+      "windSpeeds": 85,
+      "category": 1
+    },
+    "commentThread": []
+  },
+  {
+    "requestID": "4c5d6e7f-8091-4ab2-c3d4-e5f60718293a",
+    "author": "8c6e1b2d-3f4a-4c5b-9d8e-0f1a2b3c4d5e",
+    "description": "Requesting medical assistance and supplies for an elderly resident.",
+    "location": {
+      "address": "92 Harbor Drive",
+      "city": "Pensacola",
+      "state": "FL",
+      "zipCode": "32501"
+    },
+    "requiresCertification": true,
+    "neededSkills": ["EMT", "MEDICAL"],
+    "numberOfPeople": 1,
+    "numberOfPets": 0,
+    "status": "IN_PROGRESS",
+    "urgency": "CRITICAL",
+    "hurricaneData": {
+      "advisoryID": 24,
+      "windSpeeds": 85,
+      "category": 1
+    },
+    "commentThread": [{
+        "commentID": 1,
+        "author": "8c6e1b2d-3f4a-4c5b-9d8e-0f1a2b3c4d5e",
+        "timestamp": "2026-09-25T14:00:00-04:00",
+        "text": "Resident needs oxygen supplies."
+      }]
+  }
+]
