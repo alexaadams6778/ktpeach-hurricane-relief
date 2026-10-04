@@ -18,6 +18,10 @@ public class RequestList {
         return requestList;
     }
 
+    public ArrayList<HelpRequest> getRequests() {
+        return requests;
+    }
+
     public ArrayList<HelpRequest> getRequests(Location location) {
         return null;
     }

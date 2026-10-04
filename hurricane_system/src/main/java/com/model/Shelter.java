@@ -24,6 +24,17 @@ public class Shelter {
         this.resources = resources;
     }
 
+    public Shelter(String name, Location location, int maxCapacity, int currentOccupancy, boolean allowsPets, boolean isOpen, ArrayList<Resource> resources) {
+        this.shelterID = UUID.randomUUID();
+        this.name = name;
+        this.location = location;
+        this.maxCapacity = maxCapacity;
+        this.currentOccupancy = currentOccupancy;
+        this.allowsPets = allowsPets;
+        this.isOpen = isOpen;
+        this.resources = resources;
+    }
+
     public boolean hasVacancy() {
         return true;
     }

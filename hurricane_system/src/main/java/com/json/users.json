@@ -1,0 +1,50 @@
+[
+  {
+    "userID": "5a2f3d4a-12bc-4e6d-9c01-7d1f2a3b4c5d",
+    "firstName": "Maya",
+    "lastName": "Thompson",
+    "username": "maya.thompson",
+    "password": "securePassword123",
+    "email": "maya.thompson@gmail.com",
+    "phoneNumber": "555-010-1842",
+    "dob": "1994-06-18",
+    "location": {
+      "address": "418 Oak Street",
+      "city": "Tallahassee",
+      "state": "FL",
+      "zipCode": "32301"
+    },
+    "emergencyContacts": [{
+        "firstName": "Daniel",
+        "lastName": "Thompson",
+        "email": "daniel.thompson@gmail.com",
+        "phoneNumber": "555-010-1843",
+        "relationship": "Brother"
+      }],
+    "medicalInfo": ["Peanut allergy"]
+  },
+  {
+    "userID": "8c6e1b2d-3f4a-4c5b-9d8e-0f1a2b3c4d5e",
+    "firstName": "Jordan",
+    "lastName": "Lee",
+    "username": "jordan.lee",
+    "password": "securePassword456",
+    "email": "jordan.lee@gmail.com",
+    "phoneNumber": "555-010-2756",
+    "dob": "1988-11-03",
+    "location": {
+      "address": "92 Harbor Drive",
+      "city": "Pensacola",
+      "state": "FL",
+      "zipCode": "32501"
+    },
+    "emergencyContacts": [{
+        "firstName": "Avery",
+        "lastName": "Lee",
+        "email": "avery.lee@gmail.com",
+        "phoneNumber": "555-010-2757",
+        "relationship": "Spouse"
+      }],
+    "medicalInfo": []
+  }
+]

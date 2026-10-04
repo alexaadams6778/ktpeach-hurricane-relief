@@ -18,6 +18,10 @@ public class UserList {
         return userList;
     }
 
+    public ArrayList<User> getUsers() {
+        return users;
+    }
+
     public User getUser(String username) {
         return null;
     }
