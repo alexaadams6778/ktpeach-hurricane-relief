@@ -1,7 +1,7 @@
 package com.model;
 
 public class Location {
-    
+
     private String address;
     private String city;
     private String state;
@@ -14,12 +14,32 @@ public class Location {
         this.zipCode = zipCode;
     }
 
-    public void updateLocation() {
+    public String getAddress() {
+        return address;
+    }
 
+    public String getCity() {
+        return city;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public String getZipCode() {
+        return zipCode;
+    }
+
+    public void updateLocation() {
+        
     }
 
     public void toggleLocation() {
         
     }
 
+    @Override
+    public String toString() {
+        return address + ", " + city + ", " + state + " " + zipCode;
+    }
 }
