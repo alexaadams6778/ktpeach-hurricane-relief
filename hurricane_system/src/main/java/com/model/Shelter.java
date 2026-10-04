@@ -25,11 +25,17 @@ public class Shelter {
     }
 
     public boolean hasVacancy() {
-        return true;
+        return isOpen && currentOccupancy < maxCapacity;
     }
 
     public ArrayList<Resource> getAvailableResources() {
-        return null;
+        ArrayList<Resource> available = new ArrayList<Resource>();
+        for (Resource resource : resources) {
+            if (resource.getQuantity() > 0) {
+                available.add(resource);
+            }
+        }
+        return available;
     }
 
     public void checkInUser(User user) {
