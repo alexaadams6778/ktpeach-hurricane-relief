@@ -14,7 +14,7 @@ public class DataWriter extends DataConstants {
         JSONArray jsonShelters = new JSONArray();
 
         for (int i = 0; i < shelters.size(); i++) {
-        
+            jsonShelters.add(getShelterJSON(shelters.get(i)));
         }
 
         try (FileWriter file = new FileWriter(SHELTER_FILE_NAME)) {
@@ -27,22 +27,19 @@ public class DataWriter extends DataConstants {
         }
     }
 
-/*
 
     public static JSONObject getShelterJSON(Shelter shelter) {
         JSONObject shelterDetails = new JSONObject();
-        shelterDetails.put(SHELTER_ID, shelter.getID().toString());
+        shelterDetails.put(SHELTER_ID, shelter.getShelterID().toString());
         shelterDetails.put(SHELTER_NAME, shelter.getName());
         shelterDetails.put(SHELTER_LOCATION, shelter.getLocation());
         shelterDetails.put(SHELTER_MAXCAPACITY, shelter.getMaxCapacity());
         shelterDetails.put(SHELTER_CURRENTOCCUPANCY, shelter.getCurrentOccupancy());
-        shelterDetails.put(SHELTER_ALLOWSPETS, shelter.allowsPets());
+        shelterDetails.put(SHELTER_ALLOWSPETS, shelter.getAllowsPets());
         shelterDetails.put(SHELTER_ISOPEN, shelter.isOpen());
-        shelterDetails.put(SHELTER_RESOURCES, shelter.getResources());
+        shelterDetails.put(SHELTER_RESOURCES, shelter.getAvailableResources());
 
         return shelterDetails;
     }
-
-*/
 
 }

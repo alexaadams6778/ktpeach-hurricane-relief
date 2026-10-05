@@ -18,6 +18,9 @@ public class ShelterList {
         return shelterList;
     }
 
+    public ArrayList<Shelter> getShelters() {
+        return shelters;
+    }
 
     public ArrayList<Shelter> getShelters(String name) {
          ArrayList<Shelter> result = new ArrayList<Shelter>();
@@ -57,9 +60,8 @@ public class ShelterList {
         return true;
     }
     
-    public boolean save() {
-        //TODO
-        return true;
+    public void save() {
+        DataWriter.saveShelters();
     }
 
     private boolean matchesName(Shelter shelter, String name) {

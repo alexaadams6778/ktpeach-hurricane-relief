@@ -36,7 +36,6 @@ public class Shelter {
 
     }
 
- 4-implement-shelter-resource-systemadmin-and-facade-classes
     public UUID getShelterID() {
         return shelterID;
     }
