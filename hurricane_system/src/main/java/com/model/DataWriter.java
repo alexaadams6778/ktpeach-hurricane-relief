@@ -27,6 +27,8 @@ public class DataWriter extends DataConstants {
         }
     }
 
+/*
+
     public static JSONObject getShelterJSON(Shelter shelter) {
         JSONObject shelterDetails = new JSONObject();
         shelterDetails.put(SHELTER_ID, shelter.getID().toString());
@@ -40,5 +42,7 @@ public class DataWriter extends DataConstants {
 
         return shelterDetails;
     }
+
+*/
 
 }
