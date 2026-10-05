@@ -33,6 +33,22 @@ public class HelpRequest {
                         this.commentThread = new ArrayList<Comment>();
                        }
 
+    public HelpRequest(User author, String description, Location location, boolean requiresCertification, ArrayList<Skill> neededSkills, int numberOfPeople,
+                       int numberOfPets, Status status, Urgency urgency) {
+                        this.requestID = UUID.randomUUID();
+                        this.author = author;
+                        this.description = description;
+                        this.location = location;
+                        this.requiresCertification = requiresCertification;
+                        this.neededSkills = neededSkills;
+                        this.numberOfPeople = numberOfPeople;
+                        this.numberOfPets = numberOfPets;
+                        this.status = status;
+                        this.urgency = urgency;
+                        this.hurricaneData = new HurricaneData(24, 85, 1);
+                        this.commentThread = new ArrayList<Comment>();
+                       }
+
     public void addComment(Comment comment) {
 
     }

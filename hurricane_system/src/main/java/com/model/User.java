@@ -18,22 +18,35 @@ public abstract class User {
     private ArrayList<EmergencyContact> emergencyContacts;
     private ArrayList<String> medicalInfo;
 
-    public User(UUID userID, String firstName, String lastName, String username,
-                String password, String email, String phoneNumber, Date dob,
-                Location location, ArrayList<EmergencyContact> emergencyContacts,
-                ArrayList<String> medicalInfo) {
-        this.userID = userID;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.username = username;
-        this.password = password;
-        this.email = email;
-        this.phoneNumber = phoneNumber;
-        this.dob = dob;
-        this.location = location;
-        this.emergencyContacts = emergencyContacts;
-        this.medicalInfo = medicalInfo;
-    }
+    public User(UUID userID, String firstName, String lastName, String username, String password, String email, String phoneNumber, Date dob, Location location, 
+                ArrayList<EmergencyContact> emergencyContacts, ArrayList<String> medicalInfo) {
+                    this.userID = userID;
+                    this.firstName = firstName;
+                    this.lastName = lastName;
+                    this.username = username;
+                    this.password = password;
+                    this.email = email;
+                    this.phoneNumber = phoneNumber;
+                    this.dob = dob;
+                    this.location = location;
+                    this.emergencyContacts = emergencyContacts;
+                    this.medicalInfo = medicalInfo;
+                }
+
+    public User(String firstName, String lastName, String username, String password, String email, String phoneNumber, Date dob, Location location, 
+                ArrayList<EmergencyContact> emergencyContacts, ArrayList<String> medicalInfo) {
+                    this.userID = UUID.randomUUID();
+                    this.firstName = firstName;
+                    this.lastName = lastName;
+                    this.username = username;
+                    this.password = password;
+                    this.email = email;
+                    this.phoneNumber = phoneNumber;
+                    this.dob = dob;
+                    this.location = location;
+                    this.emergencyContacts = emergencyContacts;
+                    this.medicalInfo = medicalInfo;
+                }
 
     public UUID getUserID() {
         return userID;

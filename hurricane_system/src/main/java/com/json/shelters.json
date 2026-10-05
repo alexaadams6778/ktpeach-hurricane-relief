@@ -1,0 +1,48 @@
+[
+  {
+    "shelterID": "1f2e3d4c-5b6a-4987-8c9d-0e1f2a3b4c5d",
+    "name": "Leon County Community Center",
+    "location": {
+      "address": "1200 Civic Center Road",
+      "city": "Tallahassee",
+      "state": "FL",
+      "zipCode": "32301"
+    },
+    "maxCapacity": 250,
+    "currentOccupancy": 84,
+    "allowsPets": true,
+    "isOpen": true,
+    "resources": [{ 
+        "name": "Bottled Water", 
+        "quantity": 500, 
+        "unit": "bottles" 
+    }, { 
+        "name": "Cots", 
+        "quantity": 166, 
+        "unit": "beds" 
+    }]
+  },
+  {
+    "shelterID": "6e5d4c3b-2a1f-4987-8c9d-0e1f2a3b4c5d",
+    "name": "Bayfront High School Shelter",
+    "location": {
+      "address": "701 Gulf Avenue",
+      "city": "Pensacola",
+      "state": "FL",
+      "zipCode": "32502"
+    },
+    "maxCapacity": 400,
+    "currentOccupancy": 215,
+    "allowsPets": false,
+    "isOpen": true,
+    "resources": [{ 
+        "name": "Meals", 
+        "quantity": 600, 
+        "unit": "servings" 
+    }, { 
+        "name": "First Aid Kits", 
+        "quantity": 35, 
+        "unit": "kits" 
+    }]
+    }
+]

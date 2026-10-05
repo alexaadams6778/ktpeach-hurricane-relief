@@ -23,7 +23,20 @@ public class Shelter {
         this.isOpen = isOpen;
         this.resources = resources;
     }
+  
+  public Shelter(String name, Location location, int maxCapacity, int currentOccupancy, boolean allowsPets, boolean isOpen, ArrayList<Resource> resources) {
+        this.shelterID = UUID.randomUUID();
+        this.name = name;
+        this.location = location;
+        this.maxCapacity = maxCapacity;
+        this.currentOccupancy = currentOccupancy;
+        this.allowsPets = allowsPets;
+        this.isOpen = isOpen;
+        this.resources = resources;
 
+    }
+
+ 4-implement-shelter-resource-systemadmin-and-facade-classes
     public UUID getShelterID() {
         return shelterID;
     }
@@ -71,6 +84,8 @@ public class Shelter {
     public boolean isOpen() {
         return isOpen;
     }
+
+    
 
     public boolean hasVacancy() {
         return isOpen && currentOccupancy < maxCapacity;

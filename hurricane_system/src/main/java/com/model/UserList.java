@@ -21,6 +21,10 @@ public class UserList {
         return userList;
     }
 
+    public ArrayList<User> getUsers() {
+        return users;
+    }
+
     public User getUser(String username) {
         for (User user : users) {
             if (user.getUsername().equals(username)) {

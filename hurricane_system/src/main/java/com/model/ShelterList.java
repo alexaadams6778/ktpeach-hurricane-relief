@@ -17,15 +17,19 @@ public class ShelterList {
         return shelterList;
     }
 
-    public ArrayList<Shelter> getRequests(String name) {
+    public ArrayList<Shelter> getShelters() {
+        return shelters;
+    }
+
+    public ArrayList<Shelter> getShelters(String name) {
         return null;
     }
 
-    public ArrayList<Shelter> getRequests(String name, Location location) {
+    public ArrayList<Shelter> getShelters(String name, Location location) {
         return null;
     }
 
-    public ArrayList<Shelter> getRequests(String name, Location location, boolean allowsPets) {
+    public ArrayList<Shelter> getShelters(String name, Location location, boolean allowsPets) {
         return null;
     }
 
