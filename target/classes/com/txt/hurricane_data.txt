@@ -1,3 +1,2 @@
-advisoryID 24
 windSpeeds 85
 category 1

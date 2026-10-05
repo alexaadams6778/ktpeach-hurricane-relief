@@ -29,7 +29,7 @@ public class HelpRequest {
                         this.numberOfPets = numberOfPets;
                         this.status = status;
                         this.urgency = urgency;
-                        this.hurricaneData = new HurricaneData(24, 85, 1);
+                        this.hurricaneData = new HurricaneData(85, 1);
                         this.commentThread = new ArrayList<Comment>();
                        }
 
@@ -45,7 +45,7 @@ public class HelpRequest {
                         this.numberOfPets = numberOfPets;
                         this.status = status;
                         this.urgency = urgency;
-                        this.hurricaneData = new HurricaneData(24, 85, 1);
+                        this.hurricaneData = new HurricaneData(85, 1);
                         this.commentThread = new ArrayList<Comment>();
                        }
 

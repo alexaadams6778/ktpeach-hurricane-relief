@@ -52,6 +52,8 @@ public class UserList {
             return false;
         }
 
+        // format so it's not only victim
+
         User newUser = new Victim(
                 UUID.randomUUID(),
                 firstName,
