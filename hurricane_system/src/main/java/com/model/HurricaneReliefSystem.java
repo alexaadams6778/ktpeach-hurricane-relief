@@ -13,13 +13,16 @@ public class HurricaneReliefSystem {
     private Shelter currentShelter;
     private HurricaneData currentData;
 
+    
     private HurricaneReliefSystem() {
-
+        userList = userList.getInstance();
+        requestList = requestList.getInstance();
+        shelterList = shelterList.getInstance();
     }
 
     public static HurricaneReliefSystem getInstance() {
         if (hurricaneReliefSystem == null) {
-            return new HurricaneReliefSystem();
+            hurricaneReliefSystem = new HurricaneReliefSystem();
         }
         return hurricaneReliefSystem;
     }
@@ -48,20 +51,28 @@ public class HurricaneReliefSystem {
         return null;
     }
 
-    public ArrayList<Shelter> findRequest(String name, Location location, boolean allowsPets) {
+    public ArrayList<Shelter> findShelter(String name, Location location, boolean allowsPets) {
         return null;
     }
 
     public User createAccount(String firstName, String lastName, String username, String password, String email, String phoneNumber, Date dob, Location location) {
+        if(userList.addUser(firstName, lastName, username, password, email, phoneNumber, dob, location)){
+            currentUser = userList.getUser(username, password);
+            return currentUser;
+        }
         return null;
     }
 
     public User login(String username, String password) {
-        return null;
+        User user = userList.getUser(username, password);
+        if(user != null){
+            currentUser = user;
+        }
+        return user;
     }
 
     public void logout() {
-
+        currentUser = null;
     }
 
     public boolean addRequest(User author, String description, Location location, boolean requiresCertification, ArrayList<Skill> neededSkills, int numberOfPeople,
@@ -81,4 +92,10 @@ public class HurricaneReliefSystem {
         return true;
     }
 
+    public static void main(String[] args) {
+        HurricaneReliefSystem system = HurricaneReliefSystem.getInstance();
+        system.createAccount("John", "Doe", "johndoe", "password123", "john.doe@example.com", "123-456-7890", new Date(), new Location("123 Main St", "City", "State", "Zip"));
+        System.out.println(system.login("johndoe", "password123"));
+        System.out.println(system.login("test", "wrongpassword")); // Output: John
+    }
 }
