@@ -1,10 +1,11 @@
 package com.model;
-import java.util.UUID;
-import java.util.Date;
+
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.UUID;
 
 public abstract class User {
-    
+
     private UUID userID;
     private String firstName;
     private String lastName;
@@ -46,29 +47,73 @@ public abstract class User {
                     this.emergencyContacts = emergencyContacts;
                     this.medicalInfo = medicalInfo;
                 }
-    
+
+    public UUID getUserID() {
+        return userID;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public Date getDob() {
+        return dob;
+    }
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public ArrayList<EmergencyContact> getEmergencyContacts() {
+        return emergencyContacts;
+    }
+
+    public ArrayList<String> getMedicalInfo() {
+        return medicalInfo;
+    }
+
     public boolean verifyAccount() {
         return true;
     }
 
     public void updateProfile() {
-
+        
     }
 
     public void changeUsername(String username) {
-    
+        this.username = username;
     }
 
     public void changePassword(String password) {
-
+        this.password = password;
     }
 
     public void requestAccountDeletion() {
-
+        
     }
 
     public boolean exists(String username, String password) {
-        return true;
+        return this.username.equals(username) && this.password.equals(password);
     }
 
+    @Override
+    public String toString() {
+        return firstName + " " + lastName + " (" + username + ")";
+    }
 }
