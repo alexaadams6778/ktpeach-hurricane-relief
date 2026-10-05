@@ -14,19 +14,38 @@ public class SystemAdmin extends User {
                        }
 
     public void approveVolunteer(Volunteer volunteer) {
-        
+        //todo
     }
 
     public void removeRequest(HelpRequest request) {
-
+        //todo
+    }
+    
+    //If shelter id matches an already existing shelter, update the shelter's information. Otherwise, add the new shelter to the list of shelters managed by this admin.
+    public void updateShelterInfo(Shelter updatedShelter) {
+        if(updatedShelter == null){
+            return;
+        }
+        for (Shelter existing : sheltersManaged) {
+            if(existing.getShelterID().equals(updatedShelter.getShelterID())) {
+                existing.setName(updatedShelter.getName());
+                existing.setLocation(updatedShelter.getLocation());
+                existing.setMaxCapacity(updatedShelter.getMaxCapacity());
+                existing.setCurrentOccupancy(updatedShelter.getCurrentOccupancy());
+                existing.setAllowsPets(updatedShelter.getAllowsPets());
+                if(existing.isOpen() != updatedShelter.isOpen()) {
+                    existing.updateOperationalStatus();
+                }
+            }
+        }
     }
 
-    public void updateShelterInfo(Shelter shelter) {
-
+    public void removeManagedShelter(Shelter shelter) {
+        sheltersManaged.remove(shelter);
     }
 
     public void updateHurricaneData(HurricaneData hurricaneData) {
-        
+        //todo
     }
 
 }

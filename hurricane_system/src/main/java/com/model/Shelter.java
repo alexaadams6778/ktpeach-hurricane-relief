@@ -24,6 +24,54 @@ public class Shelter {
         this.resources = resources;
     }
 
+    public UUID getShelterID() {
+        return shelterID;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public int getMaxCapacity() {
+        return maxCapacity;
+    }
+
+    public int getCurrentOccupancy() {
+        return currentOccupancy;
+    }
+
+    public boolean getAllowsPets() {
+        return allowsPets;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
+
+    public void setMaxCapacity(int maxCapacity) {
+        this.maxCapacity = maxCapacity;
+    }
+
+    public void setCurrentOccupancy(int currentOccupancy) {
+        this.currentOccupancy = currentOccupancy;
+    }
+
+    public void setAllowsPets(boolean allowsPets) {
+        this.allowsPets = allowsPets;
+    }
+
+    public boolean isOpen() {
+        return isOpen;
+    }
+
     public boolean hasVacancy() {
         return isOpen && currentOccupancy < maxCapacity;
     }
@@ -39,11 +87,14 @@ public class Shelter {
     }
 
     public void checkInUser(User user) {
+        if(user != null && hasVacancy()) {
+            currentOccupancy++;
+        }
 
     }
 
     public void updateOperationalStatus() {
-        
+        isOpen = !isOpen;
     }
 
 }
