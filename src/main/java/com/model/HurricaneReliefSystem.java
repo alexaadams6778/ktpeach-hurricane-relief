@@ -15,9 +15,9 @@ public class HurricaneReliefSystem {
 
     
     private HurricaneReliefSystem() {
-        userList = userList.getInstance();
-        requestList = requestList.getInstance();
-        shelterList = shelterList.getInstance();
+        userList = UserList.getInstance();
+        requestList = RequestList.getInstance();
+        shelterList = ShelterList.getInstance();
     }
 
     public static HurricaneReliefSystem getInstance() {
