@@ -72,8 +72,7 @@ public class UserList {
         return true;
     }
 
-    public boolean save() {
-        // DataWriter will save users to JSON
-        return true;
+    public void save() {
+        DataWriter.saveUsers();
     }
 }

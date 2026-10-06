@@ -16,7 +16,6 @@
     "status": "OPEN",
     "urgency": "HIGH",
     "hurricaneData": {
-      "advisoryID": 24,
       "windSpeeds": 85,
       "category": 1
     },
@@ -39,7 +38,6 @@
     "status": "IN_PROGRESS",
     "urgency": "CRITICAL",
     "hurricaneData": {
-      "advisoryID": 24,
       "windSpeeds": 85,
       "category": 1
     },
