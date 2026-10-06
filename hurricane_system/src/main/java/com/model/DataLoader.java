@@ -18,6 +18,7 @@ public class DataLoader extends DataConstants{
     }
 
     public ArrayList<Shelter> loadShelters() {
+
         ArrayList<Shelter> ret = new ArrayList<>();
 
         try {
@@ -42,10 +43,10 @@ public class DataLoader extends DataConstants{
 
                 // Parse the nested Location object
                 JSONObject locationJSON = (JSONObject) shelterJSON.get(SHELTER_LOCATION);
-                String address = (String) locationJSON.get("address");
-                String city = (String) locationJSON.get("city");
-                String state = (String) locationJSON.get("state");
-                String zipCode = (String) locationJSON.get("zipCode");
+                String address = (String) locationJSON.get(LOCATION_ADDRESS);
+                String city = (String) locationJSON.get(LOCATION_CITY);
+                String state = (String) locationJSON.get(LOCATION_STATE);
+                String zipCode = (String) locationJSON.get(LOCATION_ZIPCODE);
                 Location location = new Location(address, city, state, zipCode);
 
                 // Parse the nested Resources array
@@ -54,9 +55,9 @@ public class DataLoader extends DataConstants{
                 
                 for (Object resItem : resourcesJSON) {
                     JSONObject resourceObj = (JSONObject) resItem;
-                    String resName = (String) resourceObj.get("name");
-                    int resQuantity = ((Long) resourceObj.get("quantity")).intValue();
-                    String resUnit = (String) resourceObj.get("unit");
+                    String resName = (String) resourceObj.get(RESOURCE_NAME);
+                    int resQuantity = ((Long) resourceObj.get(RESOURCE_QUANTITY)).intValue();
+                    String resUnit = (String) resourceObj.get(RESOURCE_UNIT);
                     
                     resources.add(new Resource(resName, resQuantity, resUnit));
                 }
@@ -71,6 +72,7 @@ public class DataLoader extends DataConstants{
             e.printStackTrace();
         }
 
+        System.out.println(ret);
         return ret;
     }
 
