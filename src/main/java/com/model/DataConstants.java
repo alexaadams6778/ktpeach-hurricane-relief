@@ -14,6 +14,10 @@ public abstract class DataConstants {
     protected static final String USER_PHONENUMBER = "phoneNumber";
     protected static final String USER_DOB = "dob";
     protected static final String USER_LOCATION = "location";
+    protected static final String USER_ADDRESS = "address";
+    protected static final String USER_CITY = "city";
+    protected static final String USER_STATE = "state";
+    protected static final String USER_ZIPCODE = "zipCode";
     protected static final String USER_EMERGENCYCONTACTS = "emergencyContacts";
     protected static final String USER_MEDICALINFO = "medicalInfo";
 

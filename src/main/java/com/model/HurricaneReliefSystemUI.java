@@ -1,6 +1,6 @@
-    package com.model;
-    import java.text.SimpleDateFormat;
-    import java.util.Date;
+package main.java.com.model;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
     public class HurricaneReliefSystemUI {
         private HurricaneReliefSystem hurricaneReliefSystem;
