@@ -11,13 +11,13 @@ import org.json.simple.parser.JSONParser;
 public class DataLoader extends DataConstants{
 
 
-    public ArrayList<User> loadUsers() {
+    public static ArrayList<User> loadUsers() {
         // TODO implement method and replace return
         ArrayList<User> ret = new ArrayList<>();
         return ret;
     }
 
-    public ArrayList<Shelter> loadShelters() {
+    public static ArrayList<Shelter> loadShelters() {
 
         ArrayList<Shelter> ret = new ArrayList<>();
 
@@ -76,7 +76,7 @@ public class DataLoader extends DataConstants{
         return ret;
     }
 
-    public ArrayList<HelpRequest> loadRequests() {
+    public static ArrayList<HelpRequest> loadRequests() {
         // TODO implement method and replace return
         ArrayList<HelpRequest> ret = new ArrayList<>();
         return ret;

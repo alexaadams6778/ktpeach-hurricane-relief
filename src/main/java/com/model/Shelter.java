@@ -111,4 +111,10 @@ public class Shelter {
         isOpen = !isOpen;
     }
 
+    public String toString() {
+        return "Name: " + getName() + "\nLocation: " + getLocation() + "Max Capacity: " + getMaxCapacity() +
+        "Current Occupancy: " + getCurrentOccupancy() + "Allows Pets: " + getAllowsPets() + "Open: " + isOpen();
+
+    }
+
 }

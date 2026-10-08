@@ -1,6 +1,9 @@
-package main.java.com.model;
+package com.model;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import com.model.DataLoader;
+import com.model.HurricaneReliefSystem;
 
     public class HurricaneReliefSystemUI {
         private HurricaneReliefSystem hurricaneReliefSystem;
@@ -10,21 +13,20 @@ import java.util.Date;
         }
 
         public void run() {
-            scenario2();
-            
+            scenario3();
         }
 
         public void scenario1() {
-        System.out.println("Please Login");
+            System.out.println("Please Login");
 
 
 
-        User user = hurricaneReliefSystem.login("maya.thompson", "securePassword123");
-        if (user == null) {
-            System.out.println("Sorry we could not find your account. Please try again.");
-            return;
-        }
-        System.out.println("Welcome back, " + user.getFirstName() + " " + user.getLastName());
+            User user = hurricaneReliefSystem.login("maya.thompson", "securePassword123");
+            if (hurricaneReliefSystem.getCurrentUser() == null) {
+                System.out.println("Sorry we could not find your account. Please try again.");
+                return;
+            }
+            System.out.println("Welcome back, " + user.getFirstName() + " " + user.getLastName());
         
 
     }
@@ -45,7 +47,7 @@ import java.util.Date;
             Location location = new Location("92 Harbor Drive", "Pensacola", "FL", "32501");
         
             User user = hurricaneReliefSystem.createAccount("Jordan", "Lee", "jordan.lee", "securePassword456", "jordan.lee@gmail.com", "555-010-2756", dob, location);
-            if (user == null) {
+            if (hurricaneReliefSystem.getCurrentUser() == null) {
                 System.out.println("Sorry, we could not create your account. Please try again.");
                 return;
             }
@@ -57,6 +59,13 @@ import java.util.Date;
             } else {
                 System.out.println("Logout failed. Please try again.");
             }
+        }
+
+        // testing shelters with data stuff
+
+        public void scenario3() {
+            System.out.println("Shelters from JSON File:");
+            System.out.print(DataLoader.loadShelters());
         }
 
 

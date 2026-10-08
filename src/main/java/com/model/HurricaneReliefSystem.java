@@ -55,6 +55,18 @@ public class HurricaneReliefSystem {
         return null;
     }
 
+    public User getCurrentUser() {
+        return currentUser;
+    }
+
+    public Shelter getCurrentShelter() {
+        return currentShelter;
+    }
+
+    public HelpRequest getCurrentRequest() {
+        return currentRequest;
+    }
+
     public User createAccount(String firstName, String lastName, String username, String password, String email, String phoneNumber, Date dob, Location location) {
         if(userList.addUser(firstName, lastName, username, password, email, phoneNumber, dob, location)){
             currentUser = userList.getUser(username, password);

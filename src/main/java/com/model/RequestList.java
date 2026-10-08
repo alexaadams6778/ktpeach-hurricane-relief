@@ -13,7 +13,7 @@ public class RequestList {
 
     public static RequestList getInstance() {
         if (requestList == null) {
-            return new RequestList();
+            requestList = new RequestList();
         }
         return requestList;
     }
