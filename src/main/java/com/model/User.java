@@ -52,6 +52,10 @@ public abstract class User {
         return userID;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
     public String getFirstName() {
         return firstName;
     }
