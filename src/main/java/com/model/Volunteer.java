@@ -60,6 +60,7 @@ public class Volunteer extends User {
     public void acceptRequest(HelpRequest request) {
         if (request != null && !assignedRequests.contains(request)) {
             assignedRequests.add(request);
+            request.setStatus(Status.CLAIMED);
             isAvailable = false;
         }
     }

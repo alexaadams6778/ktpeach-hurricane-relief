@@ -1,8 +1,9 @@
 package com.model;
+
 import java.util.ArrayList;
 
 public class Comment {
-    
+
     private User author;
     private String timestamp;
     private String text;
@@ -15,4 +16,30 @@ public class Comment {
         this.replies = new ArrayList<String>();
     }
 
+    public User getAuthor() {
+        return author;
+    }
+
+    public String getTimestamp() {
+        return timestamp;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public ArrayList<String> getReplies() {
+        return replies;
+    }
+
+    public void addReply(String reply) {
+        if (reply != null && !reply.isBlank()) {
+            replies.add(reply);
+        }
+    }
+
+    @Override
+    public String toString() {
+        return author.getUsername() + ": " + text;
+    }
 }

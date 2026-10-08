@@ -48,6 +48,7 @@ public class Victim extends User {
 
     public void cancelRequest(HelpRequest request) {
         activeRequests.remove(request);
+        request.setStatus(Status.CANCELLED);
     }
 
     public void submitRequestForOther(User user, HelpRequest request) {
