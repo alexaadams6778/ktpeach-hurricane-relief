@@ -81,4 +81,9 @@ public class DataLoader extends DataConstants{
         ArrayList<HelpRequest> ret = new ArrayList<>();
         return ret;
     }
+    public static void main(String[] args) {
+        System.out.println("Hello, World!");
+    }
 }
+
+
