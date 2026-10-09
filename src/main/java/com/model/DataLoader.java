@@ -72,7 +72,6 @@ public class DataLoader extends DataConstants{
             e.printStackTrace();
         }
 
-        System.out.println(ret);
         return ret;
     }
 

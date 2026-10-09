@@ -7,8 +7,7 @@ public class ShelterList {
     private ArrayList<Shelter> shelters;
 
     private ShelterList() {
-        shelters = new ArrayList<Shelter>();
-        //TODO: load shelters
+        shelters = DataLoader.loadShelters();
     }
 
     public static ShelterList getInstance() {

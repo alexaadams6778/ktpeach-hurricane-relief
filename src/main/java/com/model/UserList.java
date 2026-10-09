@@ -1,5 +1,6 @@
 package com.model;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.UUID;
@@ -10,6 +11,7 @@ public class UserList {
     private ArrayList<User> users;
 
     private UserList() {
+        //Waiting on DataLoader loadUsers()
         users = new ArrayList<User>();
     }
 

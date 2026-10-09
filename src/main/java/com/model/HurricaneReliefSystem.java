@@ -80,7 +80,7 @@ public class HurricaneReliefSystem {
         if(user != null){
             currentUser = user;
         }
-        return user;
+        return currentUser;
     }
 
     public void logout() {

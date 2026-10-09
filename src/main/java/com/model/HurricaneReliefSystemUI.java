@@ -1,6 +1,7 @@
 package com.model;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.ArrayList;
 
 import com.model.DataLoader;
 import com.model.HurricaneReliefSystem;
@@ -13,14 +14,13 @@ import com.model.HurricaneReliefSystem;
         }
 
         public void run() {
-            scenario3();
+            loginScenario();
+            signUpScenario();
+            displaySheltersScenario();
         }
 
-        public void scenario1() {
+        public void loginScenario() {
             System.out.println("Please Login");
-
-
-
             User user = hurricaneReliefSystem.login("maya.thompson", "securePassword123");
             if (hurricaneReliefSystem.getCurrentUser() == null) {
                 System.out.println("Sorry we could not find your account. Please try again.");
@@ -34,7 +34,7 @@ import com.model.HurricaneReliefSystem;
 
 
 
-        public void scenario2() {
+        public void signUpScenario() {
             System.out.println("Please Sign Up");
             Date dob;
             try{
@@ -63,9 +63,13 @@ import com.model.HurricaneReliefSystem;
 
         // testing shelters with data stuff
 
-        public void scenario3() {
+        public void displaySheltersScenario() {
             System.out.println("Shelters from JSON File:");
-            System.out.print(DataLoader.loadShelters());
+            ArrayList<Shelter> shelters = new ArrayList<>(ShelterList.getInstance().getShelters());
+            for (Shelter shelter : shelters) {
+                System.out.print(shelter);
+                System.out.print("\n\n" + "----------------------------------------------" + "\n");
+            }
         }
 
 

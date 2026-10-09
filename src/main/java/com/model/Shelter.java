@@ -112,8 +112,8 @@ public class Shelter {
     }
 
     public String toString() {
-        return "Name: " + getName() + "\nLocation: " + getLocation() + "Max Capacity: " + getMaxCapacity() +
-        "Current Occupancy: " + getCurrentOccupancy() + "Allows Pets: " + getAllowsPets() + "Open: " + isOpen();
+        return "\nName: " + getName() + "\nLocation: " + getLocation() + "\nMax Capacity: " + getMaxCapacity() +
+        "\nCurrent Occupancy: " + getCurrentOccupancy() + "\nAllows Pets: " + getAllowsPets() + "\nOpen: " + isOpen();
 
     }
 
