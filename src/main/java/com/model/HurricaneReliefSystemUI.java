@@ -15,8 +15,11 @@ import com.model.HurricaneReliefSystem;
 
         public void run() {
             loginScenario();
-            //signUpScenario();
-            //displaySheltersScenario();
+            System.out.println();
+            signUpScenario();
+            System.out.println();
+            displaySheltersScenario();
+            System.out.println();
         }
 
         public void loginScenario() {
@@ -46,9 +49,9 @@ import com.model.HurricaneReliefSystem;
 
             Location location = new Location("92 Harbor Drive", "Pensacola", "FL", "32501");
         
-            User user = hurricaneReliefSystem.createAccount("Jordan", "Lee", "jordan.lee", "securePassword456", "jordan.lee@gmail.com", "555-010-2756", dob, location);
+            User user = hurricaneReliefSystem.createAccount("Victim", "Colby", "Reese", "colby.reese", "jackcheese", "colby.reese@gmail.com", "111-111-1111", dob, location);
             if (user == null) {
-                System.out.println("Sorry, we could not create your account. Please try again.");
+                System.out.println("Sorry, that username already exists. Please try again.");
                 return;
             }
             System.out.println("Welcome, " + user.getFirstName() + " " + user.getLastName());

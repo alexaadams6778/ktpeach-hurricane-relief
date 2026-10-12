@@ -4,7 +4,7 @@ public abstract class DataConstants {
 
     // User
     protected static final String USER_FILE_NAME = "src/main/java/com/json/users.json";
-    protected static final String USER_TYPE = "userType";
+    protected static final String USER_TYPE = "type";
     protected static final String USER_ID = "userID";
     protected static final String USER_FIRSTNAME = "firstName";
     protected static final String USER_LASTNAME = "lastName";

@@ -55,7 +55,7 @@ public class UserList {
         return null;
     }
 
-    public boolean addUser(String firstName, String lastName, String username,
+    public boolean addUser(String type, String firstName, String lastName, String username,
                            String password, String email, String phoneNumber,
                            Date dob, Location location) {
         if (getUser(username) != null) {

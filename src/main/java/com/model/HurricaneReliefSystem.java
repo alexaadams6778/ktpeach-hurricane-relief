@@ -67,8 +67,8 @@ public class HurricaneReliefSystem {
         return currentRequest;
     }
 
-    public User createAccount(String firstName, String lastName, String username, String password, String email, String phoneNumber, Date dob, Location location) {
-        if(userList.addUser(firstName, lastName, username, password, email, phoneNumber, dob, location)){
+    public User createAccount(String type, String firstName, String lastName, String username, String password, String email, String phoneNumber, Date dob, Location location) {
+        if(userList.addUser(type, firstName, lastName, username, password, email, phoneNumber, dob, location)){
             currentUser = userList.getUser(username, password);
             return currentUser;
         }
@@ -82,6 +82,7 @@ public class HurricaneReliefSystem {
     }
 
     public void logout() {
+        UserList.getInstance().save();
         currentUser = null;
     }
 
@@ -100,12 +101,5 @@ public class HurricaneReliefSystem {
 
     public boolean volunteer(User user, HelpRequest request) {
         return true;
-    }
-
-    public static void main(String[] args) {
-        HurricaneReliefSystem system = HurricaneReliefSystem.getInstance();
-        system.createAccount("John", "Doe", "johndoe", "password123", "john.doe@example.com", "123-456-7890", new Date(), new Location("123 Main St", "City", "State", "Zip"));
-        System.out.println(system.login("johndoe", "password123"));
-        System.out.println(system.login("test", "wrongpassword")); // Output: John
     }
 }
