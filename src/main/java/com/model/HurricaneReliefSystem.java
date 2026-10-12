@@ -68,6 +68,7 @@ public class HurricaneReliefSystem {
         return currentRequest;
     }
 
+    // TODO: Break up into 3 seperate methods. 
     public User createAccount(String type, String firstName, String lastName,
             String username, String password, String email, String phoneNumber,
             Date dob, Location location) {

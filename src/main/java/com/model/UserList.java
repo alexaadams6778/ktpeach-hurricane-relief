@@ -1,10 +1,10 @@
 package com.model;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.UUID;
 
+// Potentially create a createaccount method to replace long HurricaneReliefSystem long method. 
+// Simplify HurricaneReliefSystem to then call this new method
 public class UserList {
 
     private static UserList userList;
