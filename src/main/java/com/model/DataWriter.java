@@ -32,7 +32,7 @@ public class DataWriter extends DataConstants {
         JSONObject shelterDetails = new JSONObject();
         shelterDetails.put(SHELTER_ID, shelter.getShelterID().toString());
         shelterDetails.put(SHELTER_NAME, shelter.getName());
-        shelterDetails.put(SHELTER_LOCATION, shelter.getLocation());
+        shelterDetails.put(SHELTER_LOCATION, getLocationJSON(shelter.getLocation()));
         shelterDetails.put(SHELTER_MAXCAPACITY, shelter.getMaxCapacity());
         shelterDetails.put(SHELTER_CURRENTOCCUPANCY, shelter.getCurrentOccupancy());
         shelterDetails.put(SHELTER_ALLOWSPETS, shelter.getAllowsPets());
@@ -137,7 +137,7 @@ public class DataWriter extends DataConstants {
         requestDetails.put(REQUEST_ID, request.getRequestID().toString());
         requestDetails.put(REQUEST_AUTHOR, request.getAuthor());
         requestDetails.put(REQUEST_DESCRIPTION, request.getDescription());
-        requestDetails.put(REQUEST_LOCATION, request.getLocation());
+        requestDetails.put(REQUEST_LOCATION, getLocationJSON(request.getLocation()));
         requestDetails.put(REQUEST_REQUIRESCERTIFICATION, request.requiresCertification());
         requestDetails.put(REQUEST_NEEDEDSKILLS, request.getNeededSkills());
         requestDetails.put(REQUEST_NUMBEROFPEOPLE, request.getNumberOfPeople());

@@ -1,6 +1,7 @@
 package com.model;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.UUID;
 
 public class HurricaneReliefSystem {
     
@@ -67,12 +68,43 @@ public class HurricaneReliefSystem {
         return currentRequest;
     }
 
-    public User createAccount(String type, String firstName, String lastName, String username, String password, String email, String phoneNumber, Date dob, Location location) {
-        if(userList.addUser(type, firstName, lastName, username, password, email, phoneNumber, dob, location)){
-            currentUser = userList.getUser(username, password);
+    public User createAccount(String type, String firstName, String lastName,
+            String username, String password, String email, String phoneNumber,
+            Date dob, Location location) {
+
+        User newUser;
+
+        if (type.equalsIgnoreCase("Victim")) {
+            newUser = new Victim(
+                UUID.randomUUID(), "Victim", firstName, lastName, username,
+                password, email, phoneNumber, dob, location,
+                new ArrayList<EmergencyContact>(),
+                new ArrayList<String>()
+            );
+        } else if (type.equalsIgnoreCase("Volunteer")) {
+            newUser = new Volunteer(
+                UUID.randomUUID(), "Volunteer", firstName, lastName, username,
+                password, email, phoneNumber, dob, location,
+                new ArrayList<EmergencyContact>(),
+                new ArrayList<String>(), false
+            );
+        } else if (type.equalsIgnoreCase("Admin")) {
+            newUser = new SystemAdmin(
+                UUID.randomUUID(), "Admin", firstName, lastName, username,
+                password, email, phoneNumber, dob, location,
+                new ArrayList<EmergencyContact>(),
+                new ArrayList<String>()
+            );
+        } else {
+            return null; // invalid account type
+        }
+
+        if (userList.addUser(newUser)) {
+            currentUser = newUser;
             return currentUser;
         }
-        return null;
+
+        return null; // duplicate username
     }
 
     public User login(String username, String password) {

@@ -20,8 +20,10 @@ import com.model.HurricaneReliefSystem;
             System.out.println();
             displaySheltersScenario();
             System.out.println();
-            adminLoginScenario();
+            adminScenario();
         }
+
+        // logging in
 
         public void loginScenario() {
             System.out.println("Please Login");
@@ -33,6 +35,8 @@ import com.model.HurricaneReliefSystem;
             System.out.println("Welcome back, " + user.getFirstName() + " " + user.getLastName() + ", Account Type: " + user.getType());
         
         }
+
+        // account creation
 
         public void signUpScenario() {
             System.out.println("Please Sign Up");
@@ -72,14 +76,23 @@ import com.model.HurricaneReliefSystem;
             }
         }
 
-        public void adminLoginScenario() {
+        // admin logging in and adding shelter
+
+        public void adminScenario() {
             User user = hurricaneReliefSystem.login("jordan.lee", "securePassword456");
             if (user == null) {
                 System.out.println("Sorry we could not find your account. Please try again.");
                 return;
             }
             System.out.println("Welcome back, " + user.getFirstName() + " " + user.getLastName() + ", Account Type: " + user.getType());
-            
+            SystemAdmin systemAdmin = (SystemAdmin) user;
+            Location temp = new Location("300 Main", "Columbia", "SC", "29201");
+            ArrayList<Resource> resources = new ArrayList<Resource>();
+            resources.add(new Resource("Water", 30, "Bottles"));
+            systemAdmin.addShelter("300 Main", temp, 100, 50, false, true, resources);
+            System.out.println("Shelter was added");
+            ShelterList.getInstance().save();
+            hurricaneReliefSystem.logout();
         }
 
         public static void main(String[] args) {

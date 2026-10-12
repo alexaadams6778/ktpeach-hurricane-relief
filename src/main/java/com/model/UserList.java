@@ -56,24 +56,11 @@ public class UserList {
     }
 
     public boolean addUser(User user) {
-        if (getUser(user.getUsername()) != null) {
+        if (user == null || getUser(user.getUsername()) != null) {
             return false;
         }
 
-        if (user.getType().equals("Victim")) {
-            User newUser = new Victim(UUID.randomUUID(), user.getType(), user.getFirstName(), user.getLastName(), user.getUsername(), user.getPassword(),
-            user.getEmail(), user.getPhoneNumber(), user.getDob(), user.getLocation(), user.getEmergencyContacts(), user.getMedicalInfo());
-            users.add(newUser);
-        } else if (user.getType().equals("Volunteer")) {
-            User newUser = new Volunteer(UUID.randomUUID(), user.getType(), user.getFirstName(), user.getLastName(), user.getUsername(), user.getPassword(),
-            user.getEmail(), user.getPhoneNumber(), user.getDob(), user.getLocation(), user.getEmergencyContacts(), user.getMedicalInfo(), false);
-            users.add(newUser);
-        } else {
-            User newUser = new SystemAdmin(UUID.randomUUID(), user.getType(), user.getFirstName(), user.getLastName(), user.getUsername(), user.getPassword(),
-            user.getEmail(), user.getPhoneNumber(), user.getDob(), user.getLocation(), user.getEmergencyContacts(), user.getMedicalInfo());
-            users.add(newUser);
-        }
-
+        users.add(user);
         return true;
     }
 
