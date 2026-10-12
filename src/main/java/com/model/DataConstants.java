@@ -62,4 +62,13 @@ public abstract class DataConstants {
     protected static final String RESOURCE_NAME = "name";
     protected static final String RESOURCE_QUANTITY = "quantity";
     protected static final String RESOURCE_UNIT = "unit";
+
+    // Hurricane Data
+    protected static final String HURRICANE_WINDSPEEDS = "windSpeeds";
+    protected static final String HURRICANE_CATEGORY = "category";
+
+    // Comment
+    protected static final String COMMENT_ID = "commentID";
+    protected static final String COMMENT_TIMESTAMP = "timestamp";
+    protected static final String COMMENT_TEXT = "text";
 }
