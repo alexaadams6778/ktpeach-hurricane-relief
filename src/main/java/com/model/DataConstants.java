@@ -19,6 +19,12 @@ public abstract class DataConstants {
     protected static final String USER_ZIPCODE = "zipCode";
     protected static final String USER_EMERGENCYCONTACTS = "emergencyContacts";
     protected static final String USER_MEDICALINFO = "medicalInfo";
+    protected static final String USER_TYPE = "type";
+    protected static final String CONTACT_FIRSTNAME = "firstName";
+    protected static final String CONTACT_LASTNAME = "lastName";
+    protected static final String CONTACT_EMAIL = "email";
+    protected static final String CONTACT_PHONENUMBER = "phoneNumber";
+    protected static final String CONTACT_RELATIONSHIP = "relationship";
 
     // Request
     protected static final String REQUEST_FILE_NAME = "src/main/java/com/json/requests.json";
