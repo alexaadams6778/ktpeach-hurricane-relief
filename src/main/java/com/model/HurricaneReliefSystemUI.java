@@ -1,10 +1,7 @@
 package com.model;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.ArrayList;
-
-import com.model.DataLoader;
-import com.model.HurricaneReliefSystem;
+import java.util.Date;
 
     public class HurricaneReliefSystemUI {
         private HurricaneReliefSystem hurricaneReliefSystem;
@@ -89,8 +86,10 @@ import com.model.HurricaneReliefSystem;
             Location temp = new Location("300 Main", "Columbia", "SC", "29201");
             ArrayList<Resource> resources = new ArrayList<Resource>();
             resources.add(new Resource("Water", 30, "Bottles"));
+            // TODO: Make Facade Method for below line
             systemAdmin.addShelter("300 Main", temp, 100, 50, false, true, resources);
             System.out.println("Shelter was added");
+            // TODO: Make Facade Method for below line
             ShelterList.getInstance().save();
             hurricaneReliefSystem.logout();
             displaySheltersScenario();
