@@ -1,6 +1,7 @@
 [
   {
     "userID": "5a2f3d4a-12bc-4e6d-9c01-7d1f2a3b4c5d",
+    "type": "Victim",
     "firstName": "Maya",
     "lastName": "Thompson",
     "username": "maya.thompson",
@@ -25,6 +26,7 @@
   },
   {
     "userID": "8c6e1b2d-3f4a-4c5b-9d8e-0f1a2b3c4d5e",
+    "type": "Victim",
     "firstName": "Jordan",
     "lastName": "Lee",
     "username": "jordan.lee",
