@@ -155,7 +155,6 @@ public class DataLoader extends DataConstants{
 
                 UUID requestID = UUID.fromString((String)reqJSON.get(REQUEST_ID));
                 UUID authorID = UUID.fromString((String)reqJSON.get(REQUEST_AUTHOR));
-                // TODO: Implement getUser() in the UserList.java class
                 User author = UserList.getInstance().getUser(authorID);
 
                 String description = (String)reqJSON.get(REQUEST_DESCRIPTION);
