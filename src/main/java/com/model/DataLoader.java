@@ -48,7 +48,7 @@ public class DataLoader extends DataConstants{
                 ArrayList<EmergencyContact> emergencyContacts = new ArrayList<>();
                 if(contactsJSON != null) {
                     for(Object cItem : contactsJSON) {
-                        JSONObject contactObj = (JSONObject) item;
+                        JSONObject contactObj = (JSONObject) cItem;
                         String cFirst = (String) contactObj.get(CONTACT_FIRSTNAME);
                         String cLast = (String) contactObj.get(CONTACT_LASTNAME);
                         String cEmail = (String) contactObj.get(CONTACT_EMAIL);
