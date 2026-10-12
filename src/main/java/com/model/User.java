@@ -7,6 +7,7 @@ import java.util.UUID;
 public abstract class User {
 
     private UUID userID;
+    private String type;
     private String firstName;
     private String lastName;
     private String username;
@@ -18,9 +19,10 @@ public abstract class User {
     private ArrayList<EmergencyContact> emergencyContacts;
     private ArrayList<String> medicalInfo;
 
-    public User(UUID userID, String firstName, String lastName, String username, String password, String email, String phoneNumber, Date dob, Location location, 
+    public User(UUID userID, String type, String firstName, String lastName, String username, String password, String email, String phoneNumber, Date dob, Location location, 
                 ArrayList<EmergencyContact> emergencyContacts, ArrayList<String> medicalInfo) {
                     this.userID = userID;
+                    this.type = type;
                     this.firstName = firstName;
                     this.lastName = lastName;
                     this.username = username;
@@ -33,9 +35,10 @@ public abstract class User {
                     this.medicalInfo = medicalInfo;
                 }
 
-    public User(String firstName, String lastName, String username, String password, String email, String phoneNumber, Date dob, Location location, 
+    public User(String type, String firstName, String lastName, String username, String password, String email, String phoneNumber, Date dob, Location location, 
                 ArrayList<EmergencyContact> emergencyContacts, ArrayList<String> medicalInfo) {
                     this.userID = UUID.randomUUID();
+                    this.type = type;
                     this.firstName = firstName;
                     this.lastName = lastName;
                     this.username = username;
@@ -50,6 +53,10 @@ public abstract class User {
 
     public UUID getUserID() {
         return userID;
+    }
+
+    public String getType() {
+        return type;
     }
 
     public String getPassword() {

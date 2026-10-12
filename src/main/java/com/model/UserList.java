@@ -66,6 +66,7 @@ public class UserList {
 
         User newUser = new Victim(
                 UUID.randomUUID(),
+                type,
                 firstName,
                 lastName,
                 username,

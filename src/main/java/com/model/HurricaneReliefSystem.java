@@ -77,10 +77,8 @@ public class HurricaneReliefSystem {
 
     public User login(String username, String password) {
         User user = userList.getUser(username, password);
-        if(user != null){
-            currentUser = user;
-        }
-        return currentUser;
+        currentUser = user;
+        return user;
     }
 
     public void logout() {

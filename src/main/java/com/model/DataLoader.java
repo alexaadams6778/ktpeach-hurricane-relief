@@ -68,7 +68,7 @@ public class DataLoader extends DataConstants{
 
                 User user = null;
                 if(type != null && type.equalsIgnoreCase("Victim")) {
-                    user = new Victim(userID, firstName, lastName, username, password, email, phoneNumber, dob, location, emergencyContacts, medicalInfo);
+                    user = new Victim(userID, type, firstName, lastName, username, password, email, phoneNumber, dob, location, emergencyContacts, medicalInfo);
                 }
                 // TODO: Add elif blocks for Volunteer and SystemAdmin once their fields are added to the JSON
 

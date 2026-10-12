@@ -15,14 +15,14 @@ import com.model.HurricaneReliefSystem;
 
         public void run() {
             loginScenario();
-            signUpScenario();
-            displaySheltersScenario();
+            //signUpScenario();
+            //displaySheltersScenario();
         }
 
         public void loginScenario() {
             System.out.println("Please Login");
             User user = hurricaneReliefSystem.login("maya.thompson", "securePassword123");
-            if (hurricaneReliefSystem.getCurrentUser() == null) {
+            if (user == null) {
                 System.out.println("Sorry we could not find your account. Please try again.");
                 return;
             }
@@ -47,14 +47,14 @@ import com.model.HurricaneReliefSystem;
             Location location = new Location("92 Harbor Drive", "Pensacola", "FL", "32501");
         
             User user = hurricaneReliefSystem.createAccount("Jordan", "Lee", "jordan.lee", "securePassword456", "jordan.lee@gmail.com", "555-010-2756", dob, location);
-            if (hurricaneReliefSystem.getCurrentUser() == null) {
+            if (user == null) {
                 System.out.println("Sorry, we could not create your account. Please try again.");
                 return;
             }
             System.out.println("Welcome, " + user.getFirstName() + " " + user.getLastName());
             
             hurricaneReliefSystem.logout();
-            if(user == null){
+            if(hurricaneReliefSystem.getCurrentUser() == null) {
                 System.out.println("You have been logged out.");
             } else {
                 System.out.println("Logout failed. Please try again.");

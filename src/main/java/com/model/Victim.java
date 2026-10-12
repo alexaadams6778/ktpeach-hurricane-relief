@@ -8,11 +8,11 @@ public class Victim extends User {
 
     private ArrayList<HelpRequest> activeRequests;
 
-    public Victim(UUID userID, String firstName, String lastName, String username,
+    public Victim(UUID userID, String type, String firstName, String lastName, String username,
                   String password, String email, String phoneNumber, Date dob,
                   Location location, ArrayList<EmergencyContact> emergencyContacts,
                   ArrayList<String> medicalInfo) {
-        super(userID, firstName, lastName, username, password, email, phoneNumber,
+        super(userID, type, firstName, lastName, username, password, email, phoneNumber,
                 dob, location, emergencyContacts, medicalInfo);
         this.activeRequests = new ArrayList<HelpRequest>();
     }

@@ -14,12 +14,12 @@ public class Volunteer extends User {
     private boolean onCall;
     private boolean hasVehicle;
 
-    public Volunteer(UUID userID, String firstName, String lastName, String username,
+    public Volunteer(UUID userID, String userType, String firstName, String lastName, String username,
                      String password, String email, String phoneNumber, Date dob,
                      Location location,
                      ArrayList<EmergencyContact> emergencyContacts,
                      ArrayList<String> medicalInfo, boolean hasVehicle) {
-        super(userID, firstName, lastName, username, password, email, phoneNumber,
+        super(userID, userType, firstName, lastName, username, password, email, phoneNumber,
                 dob, location, emergencyContacts, medicalInfo);
 
         this.skills = new ArrayList<Skill>();

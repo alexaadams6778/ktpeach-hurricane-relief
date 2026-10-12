@@ -7,9 +7,9 @@ public class SystemAdmin extends User {
     
     private ArrayList<Shelter> sheltersManaged;
 
-    public SystemAdmin(UUID userID, String firstName, String lastName, String username, String password, String email, String phoneNumber, Date dob, Location location,
+    public SystemAdmin(UUID userID, String userType, String firstName, String lastName, String username, String password, String email, String phoneNumber, Date dob, Location location,
                        ArrayList<EmergencyContact> emergencyContacts, ArrayList<String> medicalInfo) {
-                        super(userID, firstName, lastName, username, password, email, phoneNumber, dob, location, emergencyContacts, medicalInfo);
+                        super(userID, userType, firstName, lastName, username, password, email, phoneNumber, dob, location, emergencyContacts, medicalInfo);
                         this.sheltersManaged = new ArrayList<Shelter>();
                        }
 
