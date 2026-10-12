@@ -143,8 +143,73 @@ public class DataLoader extends DataConstants{
     }
 
     public static ArrayList<HelpRequest> loadRequests() {
-        // TODO implement method and replace return
         ArrayList<HelpRequest> ret = new ArrayList<>();
+
+        try {
+            FileReader reader = new FileReader(REQUEST_FILE_NAME);
+            JSONParser parser = new JSONParser();
+            JSONArray requestsJSON = (JSONArray)parser.parse(reader);
+
+            for(Object item : requestsJSON) {
+                JSONObject reqJSON = (JSONObject) item;
+
+                UUID requestID = UUID.fromString((String)reqJSON.get(REQUEST_ID));
+                UUID authorID = UUID.fromString((String)reqJSON.get(REQUEST_AUTHOR));
+                // TODO: Implement getUser() in the UserList.java class
+                User author = UserList.getInstance().getUser(authorID);
+
+                String description = (String)reqJSON.get(REQUEST_DESCRIPTION);
+                boolean requiresCertification = (Boolean)reqJSON.get(REQUEST_REQUIRESCERTIFICATION);
+                int numberOfPeople = ((Long)reqJSON.get(REQUEST_NUMBEROFPEOPLE)).intValue();
+                int numberOfPets = ((Long)reqJSON.get(REQUEST_NUMBEROFPETS)).intValue();
+
+                JSONObject locJSON = (JSONObject)reqJSON.get(REQUEST_LOCATION);
+                String address = (String)locJSON.get(LOCATION_ADDRESS);
+                String city = (String)locJSON.get(LOCATION_CITY);
+                String state = (String)locJSON.get(LOCATION_STATE);
+                String zip = (String)locJSON.get(LOCATION_ZIPCODE);
+                Location location = new Location(address, city, state, zip);
+
+                JSONArray skillsJSON = (JSONArray)reqJSON.get(REQUEST_NEEDEDSKILLS);
+                ArrayList<Skill> neededSkills = new ArrayList<>();
+                if (skillsJSON != null) {
+                    for(Object skillItem : skillsJSON) {
+                        neededSkills.add(Skill.valueOf((String)skillItem));
+                    }
+                }
+                Status status = Status.valueOf((String)reqJSON.get(REQUEST_STATUS));
+                Urgency urgency = Urgency.valueOf((String)reqJSON.get(REQUEST_URGENCY));
+
+                HelpRequest request = new HelpRequest(requestID, author, description, location, requiresCertification, neededSkills, numberOfPeople, numberOfPets, status, urgency);
+
+                JSONObject hurrJSON = (JSONObject)reqJSON.get(REQUEST_HURRICANEDATA);
+                if(hurrJSON != null) {
+                    int windSpeeds = ((Long)hurrJSON.get(HURRICANE_WINDSPEEDS)).intValue();
+                    int category = ((Long)hurrJSON.get(HURRICANE_CATEGORY)).intValue();
+                    request.setHurricaneData(new HurricaneData(windSpeeds, category));
+                }
+
+                JSONArray commentsJSON = (JSONArray)reqJSON.get(REQUEST_COMMENTTHREAD);
+                if(commentsJSON != null) {
+                    for(Object cItem : commentsJSON) {
+                        JSONObject commentObj = (JSONObject)cItem;
+                        
+                        UUID cAuthorID = UUID.fromString((String)commentObj.get(REQUEST_AUTHOR));
+                        User cAuthor = UserList.getInstance().getUser(cAuthorID);
+                        
+                        String timestamp = (String)commentObj.get(COMMENT_TIMESTAMP);
+                        String text = (String)commentObj.get(COMMENT_TEXT);
+
+                        request.addComment(new Comment(cAuthor, timestamp, text));
+                    }
+                }
+
+                ret.add(request);
+            }
+        } catch (Exception e) {
+            System.out.println("Error loading requests: " + e.getMessage());
+            e.printStackTrace();
+        }
         return ret;
     }
 }
