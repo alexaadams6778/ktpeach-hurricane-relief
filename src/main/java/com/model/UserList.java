@@ -11,8 +11,7 @@ public class UserList {
     private ArrayList<User> users;
 
     private UserList() {
-        //Waiting on DataLoader loadUsers()
-        users = new ArrayList<User>();
+        this.users = DataLoader.loadUsers();
     }
 
     public static UserList getInstance() {
@@ -44,6 +43,15 @@ public class UserList {
             }
         }
 
+        return null;
+    }
+
+    public User getUser(UUID userID) {
+        for(User user : users) {
+            if(user.getUserID().equals(userID)) {
+                return user;
+            }
+        }
         return null;
     }
 
