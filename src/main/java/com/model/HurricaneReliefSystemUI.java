@@ -93,6 +93,7 @@ import com.model.HurricaneReliefSystem;
             System.out.println("Shelter was added");
             ShelterList.getInstance().save();
             hurricaneReliefSystem.logout();
+            displaySheltersScenario();
         }
 
         public static void main(String[] args) {
