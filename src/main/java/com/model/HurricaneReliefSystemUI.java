@@ -20,6 +20,7 @@ import com.model.HurricaneReliefSystem;
             System.out.println();
             displaySheltersScenario();
             System.out.println();
+            adminLoginScenario();
         }
 
         public void loginScenario() {
@@ -29,13 +30,9 @@ import com.model.HurricaneReliefSystem;
                 System.out.println("Sorry we could not find your account. Please try again.");
                 return;
             }
-            System.out.println("Welcome back, " + user.getFirstName() + " " + user.getLastName());
+            System.out.println("Welcome back, " + user.getFirstName() + " " + user.getLastName() + ", Account Type: " + user.getType());
         
-
-    }
-
-
-
+        }
 
         public void signUpScenario() {
             System.out.println("Please Sign Up");
@@ -49,12 +46,12 @@ import com.model.HurricaneReliefSystem;
 
             Location location = new Location("92 Harbor Drive", "Pensacola", "FL", "32501");
         
-            User user = hurricaneReliefSystem.createAccount("Victim", "Colby", "Reese", "colby.reese", "jackcheese", "colby.reese@gmail.com", "111-111-1111", dob, location);
+            User user = hurricaneReliefSystem.createAccount("Volunteer", "Colby", "Reese", "colby.reese", "jackcheese", "colby.reese@gmail.com", "111-111-1111", dob, location);
             if (user == null) {
                 System.out.println("Sorry, that username already exists. Please try again.");
                 return;
             }
-            System.out.println("Welcome, " + user.getFirstName() + " " + user.getLastName());
+            System.out.println("Welcome, " + user.getFirstName() + " " + user.getLastName() + ", Account Type: " + user.getType());
             
             hurricaneReliefSystem.logout();
             if(hurricaneReliefSystem.getCurrentUser() == null) {
@@ -75,6 +72,15 @@ import com.model.HurricaneReliefSystem;
             }
         }
 
+        public void adminLoginScenario() {
+            User user = hurricaneReliefSystem.login("jordan.lee", "securePassword456");
+            if (user == null) {
+                System.out.println("Sorry we could not find your account. Please try again.");
+                return;
+            }
+            System.out.println("Welcome back, " + user.getFirstName() + " " + user.getLastName() + ", Account Type: " + user.getType());
+            
+        }
 
         public static void main(String[] args) {
             HurricaneReliefSystemUI ui = new HurricaneReliefSystemUI();

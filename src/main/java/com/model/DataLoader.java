@@ -70,8 +70,12 @@ public class DataLoader extends DataConstants{
                 if(type != null && type.equalsIgnoreCase("Victim")) {
                     user = new Victim(userID, type, firstName, lastName, username, password, email, phoneNumber, dob, location, emergencyContacts, medicalInfo);
                 }
-                // TODO: Add elif blocks for Volunteer and SystemAdmin once their fields are added to the JSON
-
+                if(type != null && type.equalsIgnoreCase("Admin")) {
+                    user = new SystemAdmin(userID, type, firstName, lastName, username, password, email, phoneNumber, dob, location, emergencyContacts, medicalInfo);
+                }
+                if(type != null && type.equalsIgnoreCase("Volunteer")) {
+                    user = new SystemAdmin(userID, type, firstName, lastName, username, password, email, phoneNumber, dob, location, emergencyContacts, medicalInfo);
+                }
                 if (user != null) {
                     ret.add(user);
                 }

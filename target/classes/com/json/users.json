@@ -1,1 +1,52 @@
-[{"firstName":"Maya","lastName":"Thompson","password":"securePassword123","phoneNumber":"555-010-1842","dob":Sat Jun 18 00:00:00 EDT 1994,"location":418 Oak Street, Tallahassee, FL 32301,"emergencyContacts":[Daniel Thompson (Brother): 555-010-1843],"medicalInfo":["Peanut allergy"],"type":"Victim","userID":"5a2f3d4a-12bc-4e6d-9c01-7d1f2a3b4c5d","email":"maya.thompson@gmail.com","username":"maya.thompson"},{"firstName":"Jordan","lastName":"Lee","password":"securePassword456","phoneNumber":"555-010-2756","dob":Thu Nov 03 00:00:00 EST 1988,"location":92 Harbor Drive, Pensacola, FL 32501,"emergencyContacts":[Avery Lee (Spouse): 555-010-2757],"medicalInfo":[],"type":"Victim","userID":"8c6e1b2d-3f4a-4c5b-9d8e-0f1a2b3c4d5e","email":"jordan.lee@gmail.com","username":"jordan.lee"},{"firstName":"Colby","lastName":"Reese","password":"jackcheese","phoneNumber":"111-111-1111","dob":Thu Nov 03 00:00:00 EST 1988,"location":92 Harbor Drive, Pensacola, FL 32501,"emergencyContacts":[],"medicalInfo":[],"type":"Victim","userID":"b15db3f4-bddf-41ea-bade-bff1b3da9967","email":"colby.reese@gmail.com","username":"colby.reese"}]
+[
+  {
+    "userID": "5a2f3d4a-12bc-4e6d-9c01-7d1f2a3b4c5d",
+    "type": "Victim",
+    "firstName": "Maya",
+    "lastName": "Thompson",
+    "username": "maya.thompson",
+    "password": "securePassword123",
+    "email": "maya.thompson@gmail.com",
+    "phoneNumber": "555-010-1842",
+    "dob": "1994-06-18",
+    "location": {
+      "address": "418 Oak Street",
+      "city": "Tallahassee",
+      "state": "FL",
+      "zipCode": "32301"
+    },
+    "emergencyContacts": [{
+        "firstName": "Daniel",
+        "lastName": "Thompson",
+        "email": "daniel.thompson@gmail.com",
+        "phoneNumber": "555-010-1843",
+        "relationship": "Brother"
+      }],
+    "medicalInfo": ["Peanut allergy"]
+  },
+  {
+    "userID": "8c6e1b2d-3f4a-4c5b-9d8e-0f1a2b3c4d5e",
+    "type": "Admin",
+    "firstName": "Jordan",
+    "lastName": "Lee",
+    "username": "jordan.lee",
+    "password": "securePassword456",
+    "email": "jordan.lee@gmail.com",
+    "phoneNumber": "555-010-2756",
+    "dob": "1988-11-03",
+    "location": {
+      "address": "92 Harbor Drive",
+      "city": "Pensacola",
+      "state": "FL",
+      "zipCode": "32501"
+    },
+    "emergencyContacts": [{
+        "firstName": "Avery",
+        "lastName": "Lee",
+        "email": "avery.lee@gmail.com",
+        "phoneNumber": "555-010-2757",
+        "relationship": "Spouse"
+      }],
+    "medicalInfo": []
+  }
+]

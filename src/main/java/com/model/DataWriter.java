@@ -37,9 +37,20 @@ public class DataWriter extends DataConstants {
         shelterDetails.put(SHELTER_CURRENTOCCUPANCY, shelter.getCurrentOccupancy());
         shelterDetails.put(SHELTER_ALLOWSPETS, shelter.getAllowsPets());
         shelterDetails.put(SHELTER_ISOPEN, shelter.isOpen());
-        shelterDetails.put(SHELTER_RESOURCES, shelter.getAvailableResources());
-
+        JSONArray availableResourcesJSON = new JSONArray();
+        for (Resource resource : shelter.getAvailableResources()) {
+            availableResourcesJSON.add(getResourcesJSON(resource));
+        }
+        shelterDetails.put(SHELTER_RESOURCES, availableResourcesJSON);
         return shelterDetails;
+    }
+
+    private static JSONObject getResourcesJSON(Resource resource) {
+        JSONObject resourceJSON = new JSONObject();
+        resourceJSON.put(RESOURCE_NAME, resource.getName());
+        resourceJSON.put(RESOURCE_QUANTITY, resource.getQuantity());
+        resourceJSON.put(RESOURCE_UNIT, resource.getUnit());
+        return resourceJSON;
     }
 
     public static void saveUsers() {
@@ -72,14 +83,35 @@ public class DataWriter extends DataConstants {
         userDetails.put(USER_PASSWORD, user.getPassword());
         userDetails.put(USER_EMAIL, user.getEmail());
         userDetails.put(USER_PHONENUMBER, user.getPhoneNumber());
-        userDetails.put(USER_DOB, user.getDob());
-        userDetails.put(USER_LOCATION, user.getLocation());
-        userDetails.put(USER_EMERGENCYCONTACTS, user.getEmergencyContacts());
+        userDetails.put(USER_DOB, new java.text.SimpleDateFormat("yyyy-MM-dd").format(user.getDob()));
+        userDetails.put(USER_LOCATION, getLocationJSON(user.getLocation()));
+        JSONArray emergencyContactsJSON = new JSONArray();
+        for (EmergencyContact emergencyContact : user.getEmergencyContacts()) {
+            emergencyContactsJSON.add(getEmergencyContactsJSON(emergencyContact));
+        }
+        userDetails.put(USER_EMERGENCYCONTACTS, emergencyContactsJSON);
         userDetails.put(USER_MEDICALINFO, user.getMedicalInfo());
         return userDetails;
     }
 
-    /*
+    private static JSONObject getLocationJSON(Location location) {
+        JSONObject locationJSON = new JSONObject();
+        locationJSON.put(LOCATION_ADDRESS, location.getAddress());
+        locationJSON.put(LOCATION_CITY, location.getCity());
+        locationJSON.put(LOCATION_STATE, location.getState());
+        locationJSON.put(LOCATION_ZIPCODE, location.getZipCode());
+        return locationJSON;
+    }
+
+    private static JSONObject getEmergencyContactsJSON(EmergencyContact emergencyContact) {
+        JSONObject emergencyContactJSON = new JSONObject();
+        emergencyContactJSON.put(CONTACT_FIRSTNAME, emergencyContact.getFirstName());
+        emergencyContactJSON.put(CONTACT_LASTNAME, emergencyContact.getLastName());
+        emergencyContactJSON.put(CONTACT_EMAIL, emergencyContact.getEmail());
+        emergencyContactJSON.put(CONTACT_PHONENUMBER, emergencyContact.getPhoneNumber());
+        emergencyContactJSON.put(CONTACT_RELATIONSHIP, emergencyContact.getRelationship());
+        return emergencyContactJSON;
+    }
 
     public static void saveRequests() {
             RequestList requestList = RequestList.getInstance();
@@ -106,16 +138,14 @@ public class DataWriter extends DataConstants {
         requestDetails.put(REQUEST_AUTHOR, request.getAuthor());
         requestDetails.put(REQUEST_DESCRIPTION, request.getDescription());
         requestDetails.put(REQUEST_LOCATION, request.getLocation());
-        requestDetails.put(REQUEST_REQUIRESCERTIFICATION, request.getRequiresCertification());
+        requestDetails.put(REQUEST_REQUIRESCERTIFICATION, request.requiresCertification());
         requestDetails.put(REQUEST_NEEDEDSKILLS, request.getNeededSkills());
-        requestDetails.put(REQUEST_NUMBEROFPEOPLE, request.getNuumberOfPeople());
+        requestDetails.put(REQUEST_NUMBEROFPEOPLE, request.getNumberOfPeople());
         requestDetails.put(REQUEST_NUMBEROFPETS, request.getNumberOfPets());
         requestDetails.put(REQUEST_STATUS, request.getStatus());
         requestDetails.put(REQUEST_URGENCY, request.getUrgency());
         requestDetails.put(REQUEST_HURRICANEDATA, request.getHurricaneData());
-        requestDetails.put(REQUEST_COMMENTTHREAD, request.get());
+        requestDetails.put(REQUEST_COMMENTTHREAD, request.getCommentThread());
         return requestDetails;
         }
-
-    */
 }

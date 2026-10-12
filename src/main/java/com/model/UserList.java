@@ -55,31 +55,25 @@ public class UserList {
         return null;
     }
 
-    public boolean addUser(String type, String firstName, String lastName, String username,
-                           String password, String email, String phoneNumber,
-                           Date dob, Location location) {
-        if (getUser(username) != null) {
+    public boolean addUser(User user) {
+        if (getUser(user.getUsername()) != null) {
             return false;
         }
 
-        // format so it's not only victim
+        if (user.getType().equals("Victim")) {
+            User newUser = new Victim(UUID.randomUUID(), user.getType(), user.getFirstName(), user.getLastName(), user.getUsername(), user.getPassword(),
+            user.getEmail(), user.getPhoneNumber(), user.getDob(), user.getLocation(), user.getEmergencyContacts(), user.getMedicalInfo());
+            users.add(newUser);
+        } else if (user.getType().equals("Volunteer")) {
+            User newUser = new Volunteer(UUID.randomUUID(), user.getType(), user.getFirstName(), user.getLastName(), user.getUsername(), user.getPassword(),
+            user.getEmail(), user.getPhoneNumber(), user.getDob(), user.getLocation(), user.getEmergencyContacts(), user.getMedicalInfo(), false);
+            users.add(newUser);
+        } else {
+            User newUser = new SystemAdmin(UUID.randomUUID(), user.getType(), user.getFirstName(), user.getLastName(), user.getUsername(), user.getPassword(),
+            user.getEmail(), user.getPhoneNumber(), user.getDob(), user.getLocation(), user.getEmergencyContacts(), user.getMedicalInfo());
+            users.add(newUser);
+        }
 
-        User newUser = new Victim(
-                UUID.randomUUID(),
-                type,
-                firstName,
-                lastName,
-                username,
-                password,
-                email,
-                phoneNumber,
-                dob,
-                location,
-                new ArrayList<EmergencyContact>(),
-                new ArrayList<String>()
-        );
-
-        users.add(newUser);
         return true;
     }
 
