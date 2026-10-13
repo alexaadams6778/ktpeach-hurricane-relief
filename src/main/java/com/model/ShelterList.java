@@ -52,8 +52,10 @@ public class ShelterList {
     }
 
     public boolean addShelter(String name, Location location, int maxCapacity, int currentOccupancy, boolean allowsPets, boolean isOpen, ArrayList<Resource> resources) {
-        if(name == null || location == null){
-            return false;
+        for (Shelter shelter : getShelters()) {
+            if (name.equalsIgnoreCase(shelter.getName())) {
+                return false;
+            }
         }
         shelters.add(new Shelter(name, location, maxCapacity, currentOccupancy, allowsPets, isOpen, resources));
         return true;

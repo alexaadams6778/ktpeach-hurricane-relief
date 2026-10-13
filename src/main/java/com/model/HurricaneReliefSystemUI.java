@@ -48,7 +48,7 @@ import com.model.HurricaneReliefSystem;
                 return;
             }
 
-            Location location = new Location("92 Harbor Drive", "Pensacola", "FL", "32501");
+            Location location = hurricaneReliefSystem.createLocation("92 Harbor Drive", "Pensacola", "FL", "32501");
         
             User user = hurricaneReliefSystem.createAccount("Volunteer", "Colby", "Reese", "colby.reese", "jackcheese", "colby.reese@gmail.com", "111-111-1111", dob, location);
             if (user == null) {
@@ -85,13 +85,15 @@ import com.model.HurricaneReliefSystem;
                 return;
             }
             System.out.println("Welcome back, " + user.getFirstName() + " " + user.getLastName() + ", Account Type: " + user.getType());
-            SystemAdmin systemAdmin = (SystemAdmin) user;
-            Location temp = new Location("300 Main", "Columbia", "SC", "29201");
+            Location temp = hurricaneReliefSystem.createLocation("300 Main", "Columbia", "SC", "29208");
             ArrayList<Resource> resources = new ArrayList<Resource>();
             resources.add(new Resource("Water", 30, "Bottles"));
-            systemAdmin.addShelter("300 Main", temp, 100, 50, false, true, resources);
-            System.out.println("Shelter was added");
-            ShelterList.getInstance().save();
+            if (hurricaneReliefSystem.addShelter("300 Main", temp, 100, 50, false, true, resources)) {
+                System.out.println("Shelter was added");
+            } else {
+                System.out.println("Shelter is already in the system");
+            }
+            hurricaneReliefSystem.saveShelters();
             hurricaneReliefSystem.logout();
             displaySheltersScenario();
         }

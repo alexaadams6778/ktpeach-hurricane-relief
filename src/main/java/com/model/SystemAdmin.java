@@ -21,11 +21,13 @@ public class SystemAdmin extends User {
         //todo
     }
 
-    public void addShelter(String name, Location location, int maxCapacity, int currentOccupancy, boolean allowsPets, boolean isOpen, ArrayList<Resource> resources) {
+    public boolean addShelter(String name, Location location, int maxCapacity, int currentOccupancy, boolean allowsPets, boolean isOpen, ArrayList<Resource> resources) {
         ShelterList shelterList = ShelterList.getInstance();
         if (shelterList.addShelter(name, location, maxCapacity, currentOccupancy, allowsPets, isOpen, resources)) {
             sheltersManaged.add(new Shelter(name, location, maxCapacity, currentOccupancy, allowsPets, isOpen, resources));
+            return true;
         }
+        return false;
     }
     
     //If shelter id matches an already existing shelter, update the shelter's information. Otherwise, add the new shelter to the list of shelters managed by this admin.

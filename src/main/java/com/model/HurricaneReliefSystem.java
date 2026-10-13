@@ -68,48 +68,19 @@ public class HurricaneReliefSystem {
         return currentRequest;
     }
 
-    public User createAccount(String type, String firstName, String lastName,
-            String username, String password, String email, String phoneNumber,
-            Date dob, Location location) {
-
-        User newUser;
-
-        if (type.equalsIgnoreCase("Victim")) {
-            newUser = new Victim(
-                UUID.randomUUID(), "Victim", firstName, lastName, username,
-                password, email, phoneNumber, dob, location,
-                new ArrayList<EmergencyContact>(),
-                new ArrayList<String>()
-            );
-        } else if (type.equalsIgnoreCase("Volunteer")) {
-            newUser = new Volunteer(
-                UUID.randomUUID(), "Volunteer", firstName, lastName, username,
-                password, email, phoneNumber, dob, location,
-                new ArrayList<EmergencyContact>(),
-                new ArrayList<String>(), false
-            );
-        } else if (type.equalsIgnoreCase("Admin")) {
-            newUser = new SystemAdmin(
-                UUID.randomUUID(), "Admin", firstName, lastName, username,
-                password, email, phoneNumber, dob, location,
-                new ArrayList<EmergencyContact>(),
-                new ArrayList<String>()
-            );
-        } else {
-            return null; // invalid account type
-        }
-
-        if (userList.addUser(newUser)) {
-            currentUser = newUser;
-            return currentUser;
-        }
-
-        return null; // duplicate username
+    public Location createLocation(String address, String city, String state, String zipCode) {
+        Location newLocation = new Location(address, city, state, zipCode);
+        return newLocation;
     }
 
     public User login(String username, String password) {
         User user = userList.getUser(username, password);
         currentUser = user;
+        return user;
+    }
+
+    public User createAccount(String type, String firstName, String lastName, String username, String password, String email, String phoneNumber, Date dob, Location location) {
+        User user = UserList.getInstance().createAccount(type, firstName, lastName, username, password, email, phoneNumber, dob, location);
         return user;
     }
 
@@ -123,6 +94,21 @@ public class HurricaneReliefSystem {
                                 return true;
                               }
 
+    public boolean addShelter(String name, Location location, int maxCapacity, int currentOccupancy, boolean allowsPets, boolean isOpen, ArrayList<Resource> resources) {
+        if (!verifyAdmin(currentUser)) {
+            return false;
+        }
+        SystemAdmin admin = (SystemAdmin) currentUser;
+        return admin.addShelter(name, location, maxCapacity, currentOccupancy, allowsPets, isOpen, resources);
+    }
+
+    public boolean verifyAdmin(User user) {
+        if (!user.getType().equalsIgnoreCase("Admin")) {
+            return false;
+        }
+        return true;
+    }
+
     public boolean comment(HelpRequest request, User author, String timestamp, String text) {
         return true;
     }
@@ -134,4 +120,17 @@ public class HurricaneReliefSystem {
     public boolean volunteer(User user, HelpRequest request) {
         return true;
     }
+
+    public void saveUsers() {
+        UserList.getInstance().save();
+    }
+
+    public void saveShelters() {
+        ShelterList.getInstance().save();
+    }
+
+    public void saveRequests() {
+        RequestList.getInstance().save();
+    }
+
 }
