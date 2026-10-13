@@ -99,10 +99,6 @@ public abstract class User {
         return medicalInfo;
     }
 
-    public boolean verifyAccount() {
-        return true;
-    }
-
     public void updateProfile() {
         
     }
