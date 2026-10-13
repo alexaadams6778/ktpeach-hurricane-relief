@@ -91,8 +91,8 @@ import java.util.Date;
                 System.out.println("Shelter is already in the system");
             }
             hurricaneReliefSystem.saveShelters();
-            hurricaneReliefSystem.logout();
             displaySheltersScenario();
+            hurricaneReliefSystem.logout();
         }
 
         public static void main(String[] args) {

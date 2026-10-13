@@ -27,6 +27,45 @@ public class DataWriter extends DataConstants {
         }
     }
 
+    public static void deleteShelters() {
+        ShelterList shelterList = ShelterList.getInstance();
+        ArrayList<Shelter> shelters = shelterList.getShelters();
+        JSONArray jsonShelters = new JSONArray();
+
+        for (int i = 0; i < shelters.size(); i++) {
+            jsonShelters.remove(i);
+        }
+
+        try (FileWriter file = new FileWriter(SHELTER_FILE_NAME)) {
+
+            file.write(jsonShelters.toJSONString());
+            file.flush();
+
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void deleteShelter(Shelter shelter) {
+        ShelterList shelterList = ShelterList.getInstance();
+        ArrayList<Shelter> shelters = shelterList.getShelters();
+        JSONArray jsonShelters = new JSONArray();
+
+        for (int i = 0; i < shelters.size(); i++) {
+            if (shelter.getShelterID().equals(shelters.get(i).getShelterID())) {
+                jsonShelters.remove(i);
+            }
+        }
+
+        try (FileWriter file = new FileWriter(SHELTER_FILE_NAME)) {
+
+            file.write(jsonShelters.toJSONString());
+            file.flush();
+
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     public static JSONObject getShelterJSON(Shelter shelter) {
         JSONObject shelterDetails = new JSONObject();
