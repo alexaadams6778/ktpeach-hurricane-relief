@@ -1,10 +1,7 @@
 package com.model;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.ArrayList;
-
-import com.model.DataLoader;
-import com.model.HurricaneReliefSystem;
+import java.util.Date;
 
     public class HurricaneReliefSystemUI {
         private HurricaneReliefSystem hurricaneReliefSystem;
