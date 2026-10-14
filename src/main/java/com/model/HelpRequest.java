@@ -17,6 +17,7 @@ public class HelpRequest {
     private Urgency urgency;
     private HurricaneData hurricaneData;
     private ArrayList<Comment> commentThread;
+    private String guestPhoneNumber;
 
     public HelpRequest(UUID requestID, User author, String description,
                        Location location, boolean requiresCertification,
@@ -36,6 +37,7 @@ public class HelpRequest {
         this.urgency = urgency;
         this.hurricaneData = new HurricaneData(85, 1);
         this.commentThread = new ArrayList<Comment>();
+        this.guestPhoneNumber = null;
     }
 
     public HelpRequest(User author, String description, Location location,
@@ -95,6 +97,10 @@ public class HelpRequest {
         return commentThread;
     }
 
+    public String getGuestPhoneNumber() {
+        return guestPhoneNumber;
+    }
+
     public void addComment(Comment comment) {
         if (comment != null) {
             commentThread.add(comment);
@@ -125,6 +131,10 @@ public class HelpRequest {
 
     public void setHurricaneData(HurricaneData hurricaneData) {
         this.hurricaneData = hurricaneData;
+    }
+
+    public void setGuestPhoneNumber(String guestPhoneNumber) {
+        this.guestPhoneNumber = guestPhoneNumber;
     }
 
     public boolean isARequest(Location location, boolean requiresCertification,
