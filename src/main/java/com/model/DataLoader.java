@@ -74,7 +74,7 @@ public class DataLoader extends DataConstants{
                     user = new SystemAdmin(userID, type, firstName, lastName, username, password, email, phoneNumber, dob, location, emergencyContacts, medicalInfo);
                 }
                 if(type != null && type.equalsIgnoreCase("Volunteer")) {
-                    user = new SystemAdmin(userID, type, firstName, lastName, username, password, email, phoneNumber, dob, location, emergencyContacts, medicalInfo);
+                    user = new Volunteer(userID, type, firstName, lastName, username, password, email, phoneNumber, dob, location, emergencyContacts, medicalInfo, false);
                 }
                 if (user != null) {
                     ret.add(user);

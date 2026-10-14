@@ -23,8 +23,9 @@ public class SystemAdmin extends User {
 
     public boolean addShelter(String name, Location location, int maxCapacity, int currentOccupancy, boolean allowsPets, boolean isOpen, ArrayList<Resource> resources) {
         ShelterList shelterList = ShelterList.getInstance();
-        if (shelterList.addShelter(name, location, maxCapacity, currentOccupancy, allowsPets, isOpen, resources)) {
-            sheltersManaged.add(new Shelter(name, location, maxCapacity, currentOccupancy, allowsPets, isOpen, resources));
+        Shelter shelter = new Shelter(name, location, maxCapacity, currentOccupancy, allowsPets, isOpen, resources);
+        if (shelterList.addShelter(shelter)) {
+            sheltersManaged.add(shelter);
             return true;
         }
         return false;

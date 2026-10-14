@@ -28,42 +28,13 @@ public class DataWriter extends DataConstants {
     }
 
     public static void deleteShelters() {
-        ShelterList shelterList = ShelterList.getInstance();
-        ArrayList<Shelter> shelters = shelterList.getShelters();
-        JSONArray jsonShelters = new JSONArray();
-
-        for (int i = 0; i < shelters.size(); i++) {
-            jsonShelters.remove(i);
-        }
-
-        try (FileWriter file = new FileWriter(SHELTER_FILE_NAME)) {
-
-            file.write(jsonShelters.toJSONString());
-            file.flush();
-
-        } catch(IOException e) {
-            e.printStackTrace();
-        }
+        ShelterList.getInstance().clearShelters();
+        saveShelters();
     }
 
     public static void deleteShelter(Shelter shelter) {
-        ShelterList shelterList = ShelterList.getInstance();
-        ArrayList<Shelter> shelters = shelterList.getShelters();
-        JSONArray jsonShelters = new JSONArray();
-
-        for (int i = 0; i < shelters.size(); i++) {
-            if (shelter.getShelterID().equals(shelters.get(i).getShelterID())) {
-                jsonShelters.remove(i);
-            }
-        }
-
-        try (FileWriter file = new FileWriter(SHELTER_FILE_NAME)) {
-
-            file.write(jsonShelters.toJSONString());
-            file.flush();
-
-        } catch(IOException e) {
-            e.printStackTrace();
+        if (ShelterList.getInstance().removeShelter(shelter)) {
+            saveShelters();
         }
     }
 
@@ -174,17 +145,41 @@ public class DataWriter extends DataConstants {
     public static JSONObject getRequestJSON(HelpRequest request) {
         JSONObject requestDetails = new JSONObject();
         requestDetails.put(REQUEST_ID, request.getRequestID().toString());
-        requestDetails.put(REQUEST_AUTHOR, request.getAuthor());
+        requestDetails.put(REQUEST_AUTHOR, request.getAuthor().getUserID().toString());
         requestDetails.put(REQUEST_DESCRIPTION, request.getDescription());
         requestDetails.put(REQUEST_LOCATION, getLocationJSON(request.getLocation()));
         requestDetails.put(REQUEST_REQUIRESCERTIFICATION, request.requiresCertification());
-        requestDetails.put(REQUEST_NEEDEDSKILLS, request.getNeededSkills());
+        JSONArray skills = new JSONArray();
+        for (Skill skill : request.getNeededSkills()) {
+            skills.add(skill.name());
+        }
+        requestDetails.put(REQUEST_NEEDEDSKILLS, skills);
         requestDetails.put(REQUEST_NUMBEROFPEOPLE, request.getNumberOfPeople());
         requestDetails.put(REQUEST_NUMBEROFPETS, request.getNumberOfPets());
-        requestDetails.put(REQUEST_STATUS, request.getStatus());
-        requestDetails.put(REQUEST_URGENCY, request.getUrgency());
-        requestDetails.put(REQUEST_HURRICANEDATA, request.getHurricaneData());
-        requestDetails.put(REQUEST_COMMENTTHREAD, request.getCommentThread());
+        requestDetails.put(REQUEST_STATUS, request.getStatus().name());
+        requestDetails.put(REQUEST_URGENCY, request.getUrgency().name());
+        requestDetails.put(REQUEST_HURRICANEDATA, getHurricaneDataJSON(request.getHurricaneData()));
+        requestDetails.put(REQUEST_COMMENTTHREAD, getCommentsJSON(request.getCommentThread()));
         return requestDetails;
+
+    }
+
+    private static JSONObject getHurricaneDataJSON(HurricaneData hurricaneData) {
+        JSONObject hurricaneDataJSON = new JSONObject();
+        hurricaneDataJSON.put(HURRICANE_WINDSPEEDS, hurricaneData.getWindSpeeds());
+        hurricaneDataJSON.put(HURRICANE_CATEGORY, hurricaneData.getCategory());
+        return hurricaneDataJSON;
+    }
+
+    private static JSONArray getCommentsJSON(ArrayList<Comment> comments) {
+        JSONArray commentsJSON = new JSONArray();
+        for (Comment comment : comments) {
+            JSONObject commentJSON = new JSONObject();
+            commentJSON.put(REQUEST_AUTHOR, comment.getAuthor().getUserID().toString());
+            commentJSON.put(COMMENT_TIMESTAMP, comment.getTimestamp());
+            commentJSON.put(COMMENT_TEXT, comment.getText());
+            commentsJSON.add(commentJSON);
         }
+        return commentsJSON;
+    }
 }

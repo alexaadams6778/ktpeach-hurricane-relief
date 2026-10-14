@@ -93,6 +93,7 @@ import java.util.Date;
             hurricaneReliefSystem.saveShelters();
             displaySheltersScenario();
             hurricaneReliefSystem.logout();
+            System.out.println("User logged out");
         }
 
         public static void main(String[] args) {

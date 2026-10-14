@@ -52,13 +52,37 @@ public class ShelterList {
     }
 
     public boolean addShelter(String name, Location location, int maxCapacity, int currentOccupancy, boolean allowsPets, boolean isOpen, ArrayList<Resource> resources) {
-        for (Shelter shelter : getShelters()) {
-            if (name.equalsIgnoreCase(shelter.getName())) {
+        return addShelter(new Shelter(name, location, maxCapacity, currentOccupancy, allowsPets, isOpen, resources));
+    }
+
+    public boolean addShelter(Shelter shelter) {
+        if (shelter == null) {
+            return false;
+        }
+        for (Shelter s : getShelters()) {
+            if (shelter.getName().equalsIgnoreCase(s.getName())) {
                 return false;
             }
         }
-        shelters.add(new Shelter(name, location, maxCapacity, currentOccupancy, allowsPets, isOpen, resources));
+        shelters.add(shelter);
         return true;
+    }
+
+    public boolean removeShelter(Shelter shelter) {
+        if (shelter == null) {
+            return false;
+        }
+        for (Shelter s : shelters) {
+            if (s.getShelterID().equals(shelter.getShelterID())) {
+                shelters.remove(shelter);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void clearShelters() {
+        shelters.clear();
     }
     
     public void save() {
@@ -76,8 +100,6 @@ public class ShelterList {
         if(location == null) {
             return true;
         }
-        Location other = shelter.getLocation();
-        return other.getCity().equalsIgnoreCase(location.getCity()) &&
-               other.getState().equalsIgnoreCase(location.getState());
+        return shelter.getLocation().equals(location);
     }
 }

@@ -10,4 +10,12 @@ public class HurricaneData {
         this.category = category;
     }
 
+    public int getWindSpeeds() {
+        return windSpeeds;
+    }
+
+    public int getCategory() {
+        return category;
+    }
+
 }

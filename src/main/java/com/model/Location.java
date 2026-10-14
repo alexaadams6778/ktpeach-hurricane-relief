@@ -38,6 +38,13 @@ public class Location {
         
     }
 
+    public boolean equals(Location location) {
+        return this.getAddress().equals(location.getAddress()) &&
+        this.getCity().equals(location.getCity()) &&
+        this.getState().equals(location.getState()) &&
+        this.getZipCode().equals(location.getZipCode());
+    }
+
     @Override
     public String toString() {
         return address + ", " + city + ", " + state + " " + zipCode;
