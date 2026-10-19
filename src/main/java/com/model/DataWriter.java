@@ -27,17 +27,6 @@ public class DataWriter extends DataConstants {
         }
     }
 
-    public static void deleteShelters() {
-        ShelterList.getInstance().clearShelters();
-        saveShelters();
-    }
-
-    public static void deleteShelter(Shelter shelter) {
-        if (ShelterList.getInstance().removeShelter(shelter)) {
-            saveShelters();
-        }
-    }
-
     public static JSONObject getShelterJSON(Shelter shelter) {
         JSONObject shelterDetails = new JSONObject();
         shelterDetails.put(SHELTER_ID, shelter.getShelterID().toString());

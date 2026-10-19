@@ -100,10 +100,6 @@ public class HurricaneReliefSystem {
         return admin.addShelter(name, location, maxCapacity, currentOccupancy, allowsPets, isOpen, resources);
     }
 
-    public void removeShelters() {
-        DataWriter.deleteShelters();
-    }
-
     public boolean verifyAdmin(User user) {
         return user instanceof SystemAdmin;
     }
