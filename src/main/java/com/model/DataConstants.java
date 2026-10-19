@@ -1,5 +1,10 @@
 package com.model;
 
+/**
+ * @author KTPeach
+ * DataConstants, file paths and JSON keys used to load and save hurricane relief data
+ */
+
 public abstract class DataConstants {
 
     // User

@@ -75,6 +75,11 @@ public class Comment {
         }
     }
 
+    /**
+     * Returns the author and the contents of the comment
+     * @return the formatted information as a String
+     */
+
     @Override
     public String toString() {
         return author.getUsername() + ": " + text;
