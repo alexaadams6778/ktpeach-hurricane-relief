@@ -88,6 +88,14 @@ public class RequestList {
         return true;
     }
 
+    public boolean removeRequest(HelpRequest request) {
+        if (request == null) {
+            return false;
+        }
+
+        return requests.remove(request);
+    }
+
     public void save() {
         DataWriter.saveRequests();
     }

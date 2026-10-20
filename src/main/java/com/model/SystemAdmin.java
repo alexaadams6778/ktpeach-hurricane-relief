@@ -18,7 +18,11 @@ public class SystemAdmin extends User {
     }
 
     public void removeRequest(HelpRequest request) {
-        //todo
+        RequestList requestList = RequestList.getInstance();
+
+        if (requestList.removeRequest(request)) {
+            requestList.save();
+        }
     }
 
     public boolean addShelter(String name, Location location, int maxCapacity, int currentOccupancy, boolean allowsPets, boolean isOpen, ArrayList<Resource> resources) {
