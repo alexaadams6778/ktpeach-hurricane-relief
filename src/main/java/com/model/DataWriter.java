@@ -6,8 +6,17 @@ import java.util.ArrayList;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+/**
+ * @author KTPeach
+ * DataWriter, converts users, shelters, and requests to JSON and saves them to files.
+ */
+
 public class DataWriter extends DataConstants {
     
+    /**
+     * Saves the current shelters to their JSON file
+     */
+
     public static void saveShelters() {
         ShelterList shelterList = ShelterList.getInstance();
         ArrayList<Shelter> shelters = shelterList.getShelters();
@@ -27,6 +36,11 @@ public class DataWriter extends DataConstants {
         }
     }
 
+    /**
+     * Converts the shelter to a JSONObject
+     * @param shelter the shelter as a Shelter object
+     * @return a JSONObject containing the shelter data
+     */
 
     public static JSONObject getShelterJSON(Shelter shelter) {
         JSONObject shelterDetails = new JSONObject();
@@ -45,6 +59,12 @@ public class DataWriter extends DataConstants {
         return shelterDetails;
     }
 
+    /**
+     * Converts the resource to a JSONObject
+     * @param resource the resource as a Resource object
+     * @return a JSONObject containing the resource data
+     */
+
     private static JSONObject getResourcesJSON(Resource resource) {
         JSONObject resourceJSON = new JSONObject();
         resourceJSON.put(RESOURCE_NAME, resource.getName());
@@ -52,6 +72,10 @@ public class DataWriter extends DataConstants {
         resourceJSON.put(RESOURCE_UNIT, resource.getUnit());
         return resourceJSON;
     }
+
+    /**
+     * Saves the current users to their JSON file
+     */
 
     public static void saveUsers() {
             UserList userList = UserList.getInstance();
@@ -72,6 +96,12 @@ public class DataWriter extends DataConstants {
             }
         }
 
+
+    /**
+     * Converts the user to a JSONObject
+     * @param user the user as a User object
+     * @return a JSONObject containing the user data
+     */
 
     public static JSONObject getUserJSON(User user) {
         JSONObject userDetails = new JSONObject();
@@ -94,6 +124,12 @@ public class DataWriter extends DataConstants {
         return userDetails;
     }
 
+    /**
+     * Converts the location to a JSONObject
+     * @param location the location as a Location object
+     * @return a JSONObject containing the location data
+     */
+
     private static JSONObject getLocationJSON(Location location) {
         JSONObject locationJSON = new JSONObject();
         locationJSON.put(LOCATION_ADDRESS, location.getAddress());
@@ -102,6 +138,12 @@ public class DataWriter extends DataConstants {
         locationJSON.put(LOCATION_ZIPCODE, location.getZipCode());
         return locationJSON;
     }
+
+    /**
+     * Converts the emergency contact to a JSONObject
+     * @param emergencyContact the emergency contact as an EmergencyContact object
+     * @return a JSONObject containing the emergency contact data
+     */
 
     private static JSONObject getEmergencyContactsJSON(EmergencyContact emergencyContact) {
         JSONObject emergencyContactJSON = new JSONObject();
@@ -112,6 +154,10 @@ public class DataWriter extends DataConstants {
         emergencyContactJSON.put(CONTACT_RELATIONSHIP, emergencyContact.getRelationship());
         return emergencyContactJSON;
     }
+
+    /**
+     * Saves the current requests to their JSON file
+     */
 
     public static void saveRequests() {
             RequestList requestList = RequestList.getInstance();
@@ -132,20 +178,62 @@ public class DataWriter extends DataConstants {
             }
         }
 
+    /**
+     * Converts the help request to a JSONObject
+     * @param request the help request as a HelpRequest object
+     * @return a JSONObject containing the help request data
+     */
+
     public static JSONObject getRequestJSON(HelpRequest request) {
         JSONObject requestDetails = new JSONObject();
         requestDetails.put(REQUEST_ID, request.getRequestID().toString());
-        requestDetails.put(REQUEST_AUTHOR, request.getAuthor());
+        requestDetails.put(REQUEST_AUTHOR, request.getAuthor().getUserID().toString());
         requestDetails.put(REQUEST_DESCRIPTION, request.getDescription());
         requestDetails.put(REQUEST_LOCATION, getLocationJSON(request.getLocation()));
         requestDetails.put(REQUEST_REQUIRESCERTIFICATION, request.requiresCertification());
-        requestDetails.put(REQUEST_NEEDEDSKILLS, request.getNeededSkills());
+        JSONArray skills = new JSONArray();
+        for (Skill skill : request.getNeededSkills()) {
+            skills.add(skill.name());
+        }
+        requestDetails.put(REQUEST_NEEDEDSKILLS, skills);
         requestDetails.put(REQUEST_NUMBEROFPEOPLE, request.getNumberOfPeople());
         requestDetails.put(REQUEST_NUMBEROFPETS, request.getNumberOfPets());
-        requestDetails.put(REQUEST_STATUS, request.getStatus());
-        requestDetails.put(REQUEST_URGENCY, request.getUrgency());
-        requestDetails.put(REQUEST_HURRICANEDATA, request.getHurricaneData());
-        requestDetails.put(REQUEST_COMMENTTHREAD, request.getCommentThread());
+        requestDetails.put(REQUEST_STATUS, request.getStatus().name());
+        requestDetails.put(REQUEST_URGENCY, request.getUrgency().name());
+        requestDetails.put(REQUEST_HURRICANEDATA, getHurricaneDataJSON(request.getHurricaneData()));
+        requestDetails.put(REQUEST_COMMENTTHREAD, getCommentsJSON(request.getCommentThread()));
         return requestDetails;
+
+    }
+
+    /**
+     * Converts the hurricane data to a JSONObject
+     * @param hurricaneData the hurricane information as a HurricaneData object
+     * @return a JSONObject containing the hurricane data
+     */
+
+    private static JSONObject getHurricaneDataJSON(HurricaneData hurricaneData) {
+        JSONObject hurricaneDataJSON = new JSONObject();
+        hurricaneDataJSON.put(HURRICANE_WINDSPEEDS, hurricaneData.getWindSpeeds());
+        hurricaneDataJSON.put(HURRICANE_CATEGORY, hurricaneData.getCategory());
+        return hurricaneDataJSON;
+    }
+
+    /**
+     * Converts the comment thread to a JSONObject
+     * @param comments the comments as an ArrayList of Comment objects
+     * @return a JSONArray of comments
+     */
+
+    private static JSONArray getCommentsJSON(ArrayList<Comment> comments) {
+        JSONArray commentsJSON = new JSONArray();
+        for (Comment comment : comments) {
+            JSONObject commentJSON = new JSONObject();
+            commentJSON.put(REQUEST_AUTHOR, comment.getAuthor().getUserID().toString());
+            commentJSON.put(COMMENT_TIMESTAMP, comment.getTimestamp());
+            commentJSON.put(COMMENT_TEXT, comment.getText());
+            commentsJSON.add(commentJSON);
         }
+        return commentsJSON;
+    }
 }

@@ -8,7 +8,7 @@ public class RequestList {
     private ArrayList<HelpRequest> requests;
 
     private RequestList() {
-        requests = new ArrayList<HelpRequest>();
+        requests = DataLoader.loadRequests();
     }
 
     public static RequestList getInstance() {
@@ -23,24 +23,48 @@ public class RequestList {
     }
 
     public ArrayList<HelpRequest> getRequests(Location location) {
-        return null;
+        ArrayList<HelpRequest> matches = new ArrayList<HelpRequest>();
+        for (HelpRequest request : requests) {
+            if (location == null || request.getLocation().equals(location)) {
+                matches.add(request);
+            }
+        }
+        return matches;
     }
 
     public ArrayList<HelpRequest> getRequests(Location location, boolean requiresCertification) {
-        return null;
+        ArrayList<HelpRequest> matches = new ArrayList<HelpRequest>();
+        for (HelpRequest request : getRequests(location)) {
+            if (request.requiresCertification() == requiresCertification) {
+                matches.add(request);
+            }
+        }
+        return matches;
     }
 
     public ArrayList<HelpRequest> getRequests(Location location, boolean requiresCertification, Skill skill) {
-        return null;
+        ArrayList<HelpRequest> matches = new ArrayList<HelpRequest>();
+        for (HelpRequest request : getRequests(location, requiresCertification)) {
+            if (skill == null || request.getNeededSkills().contains(skill)) {
+                matches.add(request);
+            }
+        }
+        return matches;
     }
 
     public boolean addRequest(User author, String description, Location location, boolean requiresCertification, ArrayList<Skill> neededSkills, int numberOfPeople,
                               int numberOfPets, Status status, Urgency urgency) {
-                                return true;
-                              }
-    
-    public boolean save() {
+        if (author == null || description == null || description.equals("") || location == null
+                || numberOfPeople < 0 || numberOfPets < 0 || status == null || urgency == null) {
+            return false;
+        }
+        requests.add(new HelpRequest(author, description, location, requiresCertification,
+                neededSkills, numberOfPeople, numberOfPets, status, urgency));
         return true;
+    }
+    
+    public void save() {
+        DataWriter.saveRequests();
     }
 
     public boolean addRequest(HelpRequest request) {

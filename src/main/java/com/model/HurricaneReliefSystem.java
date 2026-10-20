@@ -1,7 +1,6 @@
 package com.model;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.UUID;
 
 public class HurricaneReliefSystem {
     
@@ -12,9 +11,7 @@ public class HurricaneReliefSystem {
     private User currentUser;
     private HelpRequest currentRequest;
     private Shelter currentShelter;
-    private HurricaneData currentData;
 
-    
     private HurricaneReliefSystem() {
         userList = UserList.getInstance();
         requestList = RequestList.getInstance();
@@ -29,31 +26,31 @@ public class HurricaneReliefSystem {
     }
 
     public ArrayList<HelpRequest> findRequest() {
-        return null;
+        return requestList.getRequests();
     }
 
     public ArrayList<HelpRequest> findRequest(Location location) {
-        return null;
+        return requestList.getRequests(location);
     }
 
     public ArrayList<HelpRequest> findRequest(Location location, boolean requiresCertification) {
-        return null;
+        return requestList.getRequests(location, requiresCertification);
     }
 
     public ArrayList<HelpRequest> findRequest(Location location, boolean requiresCertification, Skill skill) {
-        return null;
+        return requestList.getRequests(location, requiresCertification, skill);
     }
 
     public ArrayList<Shelter> findShelter(String name) {
-        return null;
+        return shelterList.getShelters(name);
     }
 
     public ArrayList<Shelter> findShelter(String name, Location location) {
-        return null;
+        return shelterList.getShelters(name, location);
     }
 
     public ArrayList<Shelter> findShelter(String name, Location location, boolean allowsPets) {
-        return null;
+        return shelterList.getShelters(name, location, allowsPets);
     }
 
     public User getCurrentUser() {
@@ -91,8 +88,9 @@ public class HurricaneReliefSystem {
 
     public boolean addRequest(User author, String description, Location location, boolean requiresCertification, ArrayList<Skill> neededSkills, int numberOfPeople,
                               int numberOfPets, Status status, Urgency urgency) {
-                                return true;
-                              }
+        return requestList.addRequest(author, description, location, requiresCertification,
+                neededSkills, numberOfPeople, numberOfPets, status, urgency);
+    }
 
     public boolean addShelter(String name, Location location, int maxCapacity, int currentOccupancy, boolean allowsPets, boolean isOpen, ArrayList<Resource> resources) {
         if (!verifyAdmin(currentUser)) {
@@ -103,13 +101,14 @@ public class HurricaneReliefSystem {
     }
 
     public boolean verifyAdmin(User user) {
-        if (!user.getType().equalsIgnoreCase("Admin")) {
-            return false;
-        }
-        return true;
+        return user instanceof SystemAdmin;
     }
 
     public boolean comment(HelpRequest request, User author, String timestamp, String text) {
+        if (request == null || author == null || timestamp == null || text == null || text.equals("")) {
+            return false;
+        }
+        request.addComment(new Comment(author, timestamp, text));
         return true;
     }
 
@@ -118,6 +117,10 @@ public class HurricaneReliefSystem {
     }
 
     public boolean volunteer(User user, HelpRequest request) {
+        if (!(user.getType().equalsIgnoreCase("Volunteer")) || request == null || request.getStatus() != Status.OPEN) {
+            return false;
+        }
+        ((Volunteer) user).acceptRequest(request);
         return true;
     }
 

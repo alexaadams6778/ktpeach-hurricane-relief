@@ -10,7 +10,18 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
+/**
+ * @author KTPeach
+ * DataLoader, loads users, shelters, and help requests from JSON files.
+ */
+
 public class DataLoader extends DataConstants{
+
+    /**
+     * Loads recognized user types and their profiles from the users JSON file
+     * @return an ArrayList of users
+     */
+
     public static ArrayList<User> loadUsers() {
         ArrayList<User> ret = new ArrayList<>();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -74,7 +85,7 @@ public class DataLoader extends DataConstants{
                     user = new SystemAdmin(userID, type, firstName, lastName, username, password, email, phoneNumber, dob, location, emergencyContacts, medicalInfo);
                 }
                 if(type != null && type.equalsIgnoreCase("Volunteer")) {
-                    user = new SystemAdmin(userID, type, firstName, lastName, username, password, email, phoneNumber, dob, location, emergencyContacts, medicalInfo);
+                    user = new Volunteer(userID, type, firstName, lastName, username, password, email, phoneNumber, dob, location, emergencyContacts, medicalInfo, false);
                 }
                 if (user != null) {
                     ret.add(user);
@@ -87,6 +98,11 @@ public class DataLoader extends DataConstants{
 
         return ret;
     }
+
+    /**
+     * Loads shelters, locations, and resources from the shelters JSON file
+     * @return an ArrayList of shelters
+     */
 
     public static ArrayList<Shelter> loadShelters() {
 
@@ -146,6 +162,11 @@ public class DataLoader extends DataConstants{
         return ret;
     }
 
+    /**
+     * Loads requests and comments from JSON
+     * @return an ArrayList of requests
+     */
+    
     public static ArrayList<HelpRequest> loadRequests() {
         ArrayList<HelpRequest> ret = new ArrayList<>();
 
