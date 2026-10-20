@@ -20,6 +20,7 @@ public class HelpRequest {
     private Urgency urgency;
     private HurricaneData hurricaneData;
     private ArrayList<Comment> commentThread;
+    private String guestPhoneNumber;
 
     /**
      * Creates a HelpRequest object when given a UUID (already existing user)
@@ -52,6 +53,7 @@ public class HelpRequest {
         this.urgency = urgency;
         this.hurricaneData = new HurricaneData(85, 1);
         this.commentThread = new ArrayList<Comment>();
+        this.guestPhoneNumber = null;
     }
 
     /**
@@ -183,6 +185,9 @@ public class HelpRequest {
         return commentThread;
     }
 
+    public String getGuestPhoneNumber() {
+        return guestPhoneNumber;
+    }
     /**
      * Adds a comment to the request if the comment is not null
      * @param comment the comment as a Comment object
@@ -209,6 +214,25 @@ public class HelpRequest {
         }
     }
 
+    public void setDescription(String description) {
+        if (description != null) {
+            this.description = description;
+        }
+    }
+
+    public void setLocation(Location location) {
+        if (location != null) {
+            this.location = location;
+        }
+    }
+
+    public void setNumberOfPeople(int numberOfPeople) {
+        this.numberOfPeople = numberOfPeople;
+    }
+
+    public void setNumberOfPets(int numberOfPets) {
+        this.numberOfPets = numberOfPets;
+    }
     /**
      * Sets the request status if the given status isn't null
      * @param status the status of the request as a Status enum
@@ -240,6 +264,15 @@ public class HelpRequest {
         this.hurricaneData = hurricaneData;
     }
 
+    public void setGuestPhoneNumber(String guestPhoneNumber) {
+        this.guestPhoneNumber = guestPhoneNumber;
+    }
+
+    public boolean isARequest(Location location, boolean requiresCertification,
+                              Skill skill) {
+        boolean sameLocation = this.location == null
+                ? location == null
+                : this.location.equals(location);
     /**
      * Checks the location, certification requirement, and optional skill of a request
      * @param location the location to match

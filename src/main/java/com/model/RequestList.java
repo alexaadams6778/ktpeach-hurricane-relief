@@ -67,4 +67,12 @@ public class RequestList {
         DataWriter.saveRequests();
     }
 
+    public boolean addRequest(HelpRequest request) {
+    if (request == null || requests.contains(request)) {
+        return false;
+    }
+    requests.add(request);
+    return true;
+}
+
 }
