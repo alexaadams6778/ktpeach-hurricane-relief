@@ -12,11 +12,13 @@ public class HurricaneReliefSystem {
     private User currentUser;
     private HelpRequest currentRequest;
     private Shelter currentShelter;
+    private HurricaneData hurricaneData;
 
     private HurricaneReliefSystem() {
         userList = UserList.getInstance();
         requestList = RequestList.getInstance();
         shelterList = ShelterList.getInstance();
+        hurricaneData = new HurricaneData(0, 0);
     }
 
     public static HurricaneReliefSystem getInstance() {
@@ -171,7 +173,13 @@ public class HurricaneReliefSystem {
     }
 
     public HurricaneData viewHurricaneData() {
-        return null;
+        return hurricaneData;
+    }
+
+    public void updateHurricaneData(HurricaneData hurricaneData) {
+        if (hurricaneData != null) {
+            this.hurricaneData = hurricaneData;
+        }
     }
 
     public boolean volunteer(User user, HelpRequest request) {

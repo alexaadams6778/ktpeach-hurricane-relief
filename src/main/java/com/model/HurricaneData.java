@@ -39,4 +39,9 @@ public class HurricaneData {
         return category;
     }
 
+    public void updateData(int windSpeeds, int category) {
+        this.windSpeeds = windSpeeds;
+        this.category = category;
+    }
+
 }
