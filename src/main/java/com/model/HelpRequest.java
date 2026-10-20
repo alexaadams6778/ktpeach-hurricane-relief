@@ -268,11 +268,6 @@ public class HelpRequest {
         this.guestPhoneNumber = guestPhoneNumber;
     }
 
-    public boolean isARequest(Location location, boolean requiresCertification,
-                              Skill skill) {
-        boolean sameLocation = this.location == null
-                ? location == null
-                : this.location.equals(location);
     /**
      * Checks the location, certification requirement, and optional skill of a request
      * @param location the location to match
