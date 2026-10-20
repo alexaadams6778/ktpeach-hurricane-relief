@@ -55,7 +55,9 @@ public class SystemAdmin extends User {
     }
 
     public void updateHurricaneData(HurricaneData hurricaneData) {
-        //todo
+        if (hurricaneData != null) {
+            HurricaneReliefSystem.getInstance().updateHurricaneData(hurricaneData);
+        }
     }
 
 }
