@@ -5,16 +5,16 @@
       "type": "java",
       "name": "Run UI",
       "request": "launch",
-      "mainClass": "com.movement/com.model.UI",
-      "projectName": "src/main",
+      "mainClass": "com.relief/com.model.UI",
+      "cwd": "${workspaceFolder}",
       "envFile": "${workspaceFolder}/.env"
     },
     {
       "type": "java",
       "name": "Run Map App",
       "request": "launch",
-      "mainClass": "com.movement/com.movement.App",
-      "projectName": "src/main",
+      "mainClass": "com.relief/com.movement.App",
+      "cwd": "${workspaceFolder}",
       "envFile": "${workspaceFolder}/.env"
     }
   ]
