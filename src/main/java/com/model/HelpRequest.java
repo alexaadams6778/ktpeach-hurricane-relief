@@ -117,6 +117,26 @@ public class HelpRequest {
         }
     }
 
+    public void setDescription(String description) {
+        if (description != null) {
+            this.description = description;
+        }
+    }
+
+    public void setLocation(Location location) {
+        if (location != null) {
+            this.location = location;
+        }
+    }
+
+    public void setNumberOfPeople(int numberOfPeople) {
+        this.numberOfPeople = numberOfPeople;
+    }
+
+    public void setNumberOfPets(int numberOfPets) {
+        this.numberOfPets = numberOfPets;
+    }
+
     public void setStatus(Status status) {
         if (status != null) {
             this.status = status;
