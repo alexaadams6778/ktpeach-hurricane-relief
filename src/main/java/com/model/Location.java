@@ -6,38 +6,68 @@ public class Location {
     private String city;
     private String state;
     private String zipCode;
-
+/**
+     * Creates a Location object
+     * @param address the street address as a String
+     * @param city the city as a String
+     * @param state the state as a String
+     * @param zipCode the zip code as a String
+     */
     public Location(String address, String city, String state, String zipCode) {
         this.address = address;
         this.city = city;
         this.state = state;
         this.zipCode = zipCode;
     }
-
+/**
+     * Returns the address
+     * @return the address as a String
+     */
     public String getAddress() {
         return address;
     }
-
+/**
+     * Returns the city
+     * @return the city as a String
+     */
     public String getCity() {
         return city;
     }
-
+/**
+     * Returns the state
+     * @return the state as a String
+     */
     public String getState() {
         return state;
     }
-
+/**
+     * Returns the zip code
+     * @return the zip code as a String
+     */
     public String getZipCode() {
         return zipCode;
     }
-
+/**
+     * Updates the location with new address, city, state, and zip code
+     * @param address the new street address as a String
+     * @param city the new city as a String
+     * @param state the new state as a String
+     * @param zipCode the new zip code as a String
+     */
     public void updateLocation() {
         
     }
-
+/**
+     * Toggles the location's availability status
+     */
     public void toggleLocation() {
         
     }
-
+/**
+     * Compares this location with another location for equality
+     * @param location the other location to compare with
+     * @return true if the locations are equal, false otherwise
+     */
     public boolean equals(Location location) {
         return this.getAddress().equals(location.getAddress()) &&
         this.getCity().equals(location.getCity()) &&

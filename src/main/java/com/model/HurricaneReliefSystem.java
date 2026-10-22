@@ -3,6 +3,7 @@ package com.model;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Comparator;
 
 public class HurricaneReliefSystem {
 
@@ -132,7 +133,8 @@ public class HurricaneReliefSystem {
                 || !requestList.getRequests().contains(request)
                 || !request.getAuthor().getUserID().equals(user.getUserID())
                 || request.getStatus() == Status.CANCELLED
-                || request.getStatus() == Status.RESOLVED) {
+                || request.getStatus() == Status.RESOLVED 
+                || request.getStatus() == Status.COMPLETE) {
             return false;
         }
 
@@ -204,6 +206,118 @@ public class HurricaneReliefSystem {
         return matches;
     }
     
+    /**
+     * Returns all open requests ranked for a volunteer. Requests with matching
+    * skills and a nearby location appear first.
+    * @param volunteer the volunteer viewing available requests
+    * @return the ranked list of open help requests
+    */
+    public ArrayList<HelpRequest> getRecommendedRequests(Volunteer volunteer) {
+        ArrayList<HelpRequest> openRequests = new ArrayList<HelpRequest>();
+
+        if (volunteer == null) {
+            return openRequests;
+        }
+
+        for (HelpRequest request : requestList.getRequests()) {
+            if (request.getStatus() == Status.OPEN) {
+                openRequests.add(request);
+            }
+        }
+
+        openRequests.sort((firstRequest, secondRequest) ->
+            Integer.compare(
+                    getRecommendationScore(volunteer, secondRequest),
+                    getRecommendationScore(volunteer, firstRequest)));
+
+        return openRequests;
+    }
+
+    /**
+     * Creates an explanation describing why a request is recommended to a
+     * volunteer.
+     * @param volunteer the volunteer viewing the request
+     * @param request the request being evaluated
+     * @return a recommendation explanation for the request
+     */
+    public String getRecommendationExplanation(Volunteer volunteer,
+                                            HelpRequest request) {
+        if (volunteer == null || request == null) {
+            return "No recommendation is available.";
+        }
+
+        boolean skillMatch = volunteer.getSkills()
+                .containsAll(request.getNeededSkills());
+        boolean nearby = isNearby(volunteer.getLocation(), request.getLocation());
+
+        if (skillMatch && nearby) {
+            return "Recommended: matches your specialty skills and is located "
+                    + "nearby in " + request.getLocation().getCity() + ".";
+        }
+
+        if (skillMatch) {
+            return "Recommended: matches your specialty skills.";
+        }
+
+        if (nearby) {
+            return "Recommended: located nearby in "
+                    + request.getLocation().getCity() + ".";
+        }
+
+        return "Open request: does not currently match your specialty "
+                + "or nearby location.";
+    }
+
+    /**
+     * Formats a request with its recommendation explanation for display.
+     * @param volunteer the volunteer viewing the request
+     * @param request the request being displayed
+     * @return formatted request information and its recommendation explanation
+     */
+    public String formatRecommendedRequest(Volunteer volunteer,
+                                        HelpRequest request) {
+        return request.toString() + System.lineSeparator()
+                + getRecommendationExplanation(volunteer, request);
+    }
+
+    /**
+     * Calculates a score used to rank an open request for a volunteer.
+     * @param volunteer the volunteer being matched
+     * @param request the request being ranked
+     * @return the request recommendation score
+     */
+    private int getRecommendationScore(Volunteer volunteer,
+                                    HelpRequest request) {
+        int score = 0;
+
+        if (volunteer.getSkills().containsAll(request.getNeededSkills())) {
+            score += 10;
+        }
+
+        if (isNearby(volunteer.getLocation(), request.getLocation())) {
+            score += 5;
+        }
+
+        return score;
+    }
+
+    /**
+     * Determines whether two locations are in the same city and state.
+     * @param firstLocation the first location to compare
+     * @param secondLocation the second location to compare
+     * @return true when both locations are in the same city and state
+     */
+    private boolean isNearby(Location firstLocation, Location secondLocation) {
+        if (firstLocation == null || secondLocation == null) {
+            return false;
+        }
+
+        return firstLocation.getCity().equalsIgnoreCase(
+                secondLocation.getCity())
+                && firstLocation.getState().equalsIgnoreCase(
+                secondLocation.getState());
+    }
+
     public boolean volunteer(User user, HelpRequest request) {
         if (!(user instanceof Volunteer)) {
             return false;
@@ -229,8 +343,8 @@ public class HurricaneReliefSystem {
         Volunteer volunteer = (Volunteer) user;
 
         if (!volunteer.getAssignedRequests().contains(request)
-                || (request.getStatus() != Status.CLAIMED
-                && request.getStatus() != Status.IN_PROGRESS)) {
+                || (request.getStatus() != Status.ASSIGNED
+                && request.getStatus() != Status.CLAIMED)) {
             return false;
         }
 
@@ -244,6 +358,33 @@ public class HurricaneReliefSystem {
         if(shelter == null) return false;
         
         return shelter.checkInFamily(memberNames, pet);
+    public boolean completeRequest(User user, HelpRequest request) {
+        if (!(user instanceof ShelterManager)
+                && !(user instanceof SystemAdmin)) {
+            System.out.println(
+                    "Only a shelter manager can mark a relief request as complete.");
+            return false;
+        }
+
+        if (request == null
+                || !requestList.getRequests().contains(request)
+                || (request.getStatus() != Status.ASSIGNED
+                && request.getStatus() != Status.CLAIMED
+                && request.getStatus() != Status.IN_PROGRESS)) {
+            return false;
+        }
+
+        request.setStatus(Status.COMPLETE);
+
+        User assignedVolunteer = request.getAssignedVolunteer();
+
+        if (assignedVolunteer instanceof Volunteer) {
+            ((Volunteer) assignedVolunteer).releaseRequest(request);
+        }
+
+        currentRequest = request;
+        requestList.save();
+        return true;
     }
 
     public void saveUsers() {

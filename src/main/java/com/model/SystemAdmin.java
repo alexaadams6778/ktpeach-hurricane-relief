@@ -14,14 +14,21 @@ public class SystemAdmin extends User {
                        }
 
     public void approveVolunteer(Volunteer volunteer) {
-        //todo
+        if (volunteer != null) {
+            volunteer.setApproved(true);
+        }
     }
 
     public void removeRequest(HelpRequest request) {
+<<<<<<< HEAD
+        if (request != null) {
+            RequestList.getInstance().removeRequest(request);
+=======
         RequestList requestList = RequestList.getInstance();
 
         if (requestList.removeRequest(request)) {
             requestList.save();
+>>>>>>> a8ca23a551f807ee420766ca83e82cf3e6f3677d
         }
     }
 
@@ -59,8 +66,18 @@ public class SystemAdmin extends User {
     }
 
     public void updateHurricaneData(HurricaneData hurricaneData) {
+<<<<<<< HEAD
+        if (hurricaneData == null) {
+            return;
+        }
+        for(HelpRequest request : RequestList.getInstance().getRequests()) {
+            if(request.getStatus()!= Status.RESOLVED && request.getStatus() != Status.CANCELLED) {
+                request.setHurricaneData(hurricaneData);
+            }
+=======
         if (hurricaneData != null) {
             HurricaneReliefSystem.getInstance().updateHurricaneData(hurricaneData);
+>>>>>>> a8ca23a551f807ee420766ca83e82cf3e6f3677d
         }
     }
 
