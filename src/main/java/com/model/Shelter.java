@@ -99,11 +99,8 @@ public class Shelter {
         this.allowsPets = allowsPets;
         this.isOpen = isOpen;
         this.resources = resources;
-        if (occupants != null)
-            this.occupants = occupants;
-        if (pets != null) 
-            this.pets = pets;
-        this.hasMedicalStaff = hasMedicalStaff;
+        this.occupants = (occupants != null) ? occupants : new ArrayList<>();
+        this.pets = (pets != null) ? pets : new ArrayList<>();
     }
 
     /**
@@ -303,9 +300,13 @@ public class Shelter {
         }
         currentOccupancy += memberNames.size();
 
-        if(petNameAndType != null || !petNameAndType.equals("")) {
-            pets.add(petNameAndType);
+        boolean hasPet = petNameAndType != null && !petNameAndType.trim().isEmpty();
+
+        if(hasPet && !getAllowsPets()) {
+            return false;
         }
+        if(hasPet)
+            pets.add(petNameAndType);
 
         return true;
     }
