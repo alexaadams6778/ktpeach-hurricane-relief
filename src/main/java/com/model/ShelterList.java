@@ -51,6 +51,23 @@ public class ShelterList {
         return result;
     }
 
+    /**
+     * Returns shelters that meet required criteria
+     * @param allowsPets
+     * @param requiresMedical
+     * @param minAvailableSpaces
+     * @return ArrayList of shelters that meet given criteria
+     */
+    public ArrayList<Shelter> getShelters(boolean allowsPets, boolean requiresMedical, int minAvailableSpaces) {
+        ArrayList<Shelter> result = new ArrayList<>();
+        for(Shelter shelter : getShelters()) {
+            if(allowPetsMatch(shelter, allowsPets) && hasMedicalStaffMatch(shelter, requiresMedical) && hasSpace(shelter, minAvailableSpaces)) {
+                result.add(shelter);
+            }
+        }
+        return result;
+    }
+
     public boolean addShelter(String name, Location location, int maxCapacity, int currentOccupancy, boolean allowsPets, boolean isOpen, ArrayList<Resource> resources) {
         return addShelter(new Shelter(name, location, maxCapacity, currentOccupancy, allowsPets, isOpen, resources));
     }
@@ -101,5 +118,37 @@ public class ShelterList {
             return true;
         }
         return shelter.getLocation().equals(location);
+    }
+
+    // if(allowPetsMatch(shelter, allowsPets) && hasMedicalStaffMatch(shelter, requiresMedical) && hasSpace(shelter, minAvailableSpaces))
+    /**
+     * Checks if shelter meets criteria with pets
+     * @param shelter
+     * @param allowsPets
+     * @return true if both parameters match and false if they dont
+     */
+    private boolean allowPetsMatch(Shelter shelter, boolean allowsPets) {
+        return shelter.getAllowsPets() == allowsPets;
+    }
+
+    /**
+     * Checks if shelter meets criteria with Medical Staff
+     * @param shelter
+     * @param requiresMedical
+     * @return true if it does and false if not
+     */
+    // TODO: Ask about edge cases
+    private boolean hasMedicalStaffMatch(Shelter shelter, boolean requiresMedical) {
+        return shelter.hasMedicalStaff() == requiresMedical;
+    }
+
+    /**
+     * Checks if shelter has enough space
+     * @param shelter
+     * @param minAvailableSpaces
+     * @return true if it does and false if not
+     */
+    private boolean hasSpace(Shelter shelter, int minAvailableSpaces) {
+        return shelter.getAvailableSpaces() >= minAvailableSpaces;
     }
 }
