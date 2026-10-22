@@ -240,8 +240,10 @@ public class HurricaneReliefSystem {
         return true;
     }
 
-    public void checkInFamily(Shelter shelter, List<String> memberNames, String pet) {
-        shelter.checkInFamily(memberNames, pet);
+    public boolean checkInFamily(Shelter shelter, List<String> memberNames, String pet) {
+        if(shelter == null) return false;
+        
+        return shelter.checkInFamily(memberNames, pet);
     }
 
     public void saveUsers() {
