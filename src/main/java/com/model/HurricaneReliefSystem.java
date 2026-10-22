@@ -169,6 +169,7 @@ public class HurricaneReliefSystem {
         }
 
         request.addComment(new Comment(author, timestamp, text));
+        requestList.save();
         return true;
     }
 
