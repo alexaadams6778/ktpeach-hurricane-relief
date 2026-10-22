@@ -54,25 +54,32 @@ public class RequestList {
 
     public boolean addRequest(User author, String description, Location location, boolean requiresCertification, ArrayList<Skill> neededSkills, int numberOfPeople,
                               int numberOfPets, Status status, Urgency urgency) {
+<<<<<<< Updated upstream
         if (author == null || description == null || description.equals("") || location == null
                 || numberOfPeople < 0 || numberOfPets < 0 || status == null || urgency == null) {
             return false;
         }
         requests.add(new HelpRequest(author, description, location, requiresCertification,
                 neededSkills, numberOfPeople, numberOfPets, status, urgency));
+=======
+                                return true;
+                              }
+
+    public boolean addRequest(HelpRequest request) {
+        if (request == null || requests.contains(request)) {
+            return false;
+        }
+        requests.add(request);
+        return true;
+    }
+    
+    public boolean save() {
+>>>>>>> Stashed changes
         return true;
     }
     
     public void save() {
         DataWriter.saveRequests();
     }
-
-    public boolean addRequest(HelpRequest request) {
-    if (request == null || requests.contains(request)) {
-        return false;
-    }
-    requests.add(request);
-    return true;
-}
 
 }
