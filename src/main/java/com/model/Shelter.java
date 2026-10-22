@@ -1,5 +1,6 @@
 package com.model;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 /**
  * @author KTPeach
@@ -15,6 +16,9 @@ public class Shelter {
     private boolean allowsPets;
     private boolean isOpen;
     private ArrayList<Resource> resources;
+    private ArrayList<String> occupants;
+    private ArrayList<String> pets;
+    private boolean hasMedicalStaff;
 /**
      * Creates a Shelter object with the specified parameters.
      * @param shelterID the unique identifier for the shelter
@@ -35,6 +39,9 @@ public class Shelter {
         this.allowsPets = allowsPets;
         this.isOpen = isOpen;
         this.resources = resources;
+        this.occupants = new ArrayList<String>();
+        this.pets = new ArrayList<String>();
+        this.hasMedicalStaff = false;
     }
   
     /**
@@ -47,7 +54,7 @@ public class Shelter {
      * @param isOpen whether the shelter is open
      * @param resources the list of resources available at the shelter
      */
-  public Shelter(String name, Location location, int maxCapacity, int currentOccupancy, boolean allowsPets, boolean isOpen, ArrayList<Resource> resources) {
+    public Shelter(String name, Location location, int maxCapacity, int currentOccupancy, boolean allowsPets, boolean isOpen, ArrayList<Resource> resources) {
         this.shelterID = UUID.randomUUID();
         this.name = name;
         this.location = location;
@@ -56,9 +63,47 @@ public class Shelter {
         this.allowsPets = allowsPets;
         this.isOpen = isOpen;
         this.resources = resources;
-
+        this.occupants = new ArrayList<String>();
+        this.pets = new ArrayList<String>();
+        this.hasMedicalStaff = false;
     }
-/**
+
+    public Shelter(UUID shelterID, String name, Location location, int maxCapacity, 
+               int currentOccupancy, boolean allowsPets, boolean isOpen, 
+               ArrayList<Resource> resources, ArrayList<String> occupants, 
+               ArrayList<String> pets, boolean hasMedicalStaff) {
+        this.shelterID = shelterID;
+        this.name = name;
+        this.location = location;
+        this.maxCapacity = maxCapacity;
+        this.currentOccupancy = currentOccupancy;
+        this.allowsPets = allowsPets;
+        this.isOpen = isOpen;
+        this.resources = resources;
+        if (occupants != null)
+            this.occupants = occupants;
+        if (pets != null) 
+            this.pets = pets;
+        this.hasMedicalStaff = hasMedicalStaff;
+    }
+
+    public Shelter(String name, Location location, int maxCapacity, 
+               int currentOccupancy, boolean allowsPets, boolean isOpen, 
+               ArrayList<Resource> resources, ArrayList<String> occupants, 
+               ArrayList<String> pets, boolean hasMedicalStaff) {
+        this.shelterID = UUID.randomUUID();
+        this.name = name;
+        this.location = location;
+        this.maxCapacity = maxCapacity;
+        this.currentOccupancy = currentOccupancy;
+        this.allowsPets = allowsPets;
+        this.isOpen = isOpen;
+        this.resources = resources;
+        this.occupants = (occupants != null) ? occupants : new ArrayList<>();
+        this.pets = (pets != null) ? pets : new ArrayList<>();
+    }
+
+    /**
      * Returns the unique identifier of the shelter.
      * @return the shelterID as a UUID
      */
@@ -100,6 +145,23 @@ public class Shelter {
     public boolean getAllowsPets() {
         return allowsPets;
     }
+
+    /**
+     * Returns all occupants of shelter
+     * @return the ArrayList of occupants in shelter
+     */
+    public ArrayList<String> getOccupants() {
+        return occupants;
+    }
+
+    /**
+     * Returns all pets in shelter
+     * @return the ArrayList of pets in shelter
+     */
+    public ArrayList<String> getPets() {
+        return pets;
+    }
+
 /**
      * Returns the list of resources available at the shelter.
      * @return the resources as an ArrayList of Resource objects
@@ -136,12 +198,45 @@ public class Shelter {
     public void setAllowsPets(boolean allowsPets) {
         this.allowsPets = allowsPets;
     }
+
+    /**
+     * Sets occupants ArrayList to inputed ArrayList
+     * @param occupants
+     */
+    public void setOccupants(ArrayList<String> occupants) {
+        this.occupants = occupants;
+    }
+
+    /**
+     * Sets pets ArrayList to inputed ArrayList
+     * @param pets
+     */
+    public void setPets(ArrayList<String> pets) {
+        this.pets = pets;
+    }
+
+    /**
+     * Sets hasMedicalStaff boolean value to inputed value
+     * @param hasMedicalStaff
+     */
+    public void setHasMedicalStaff(boolean hasMedicalStaff) {
+        this.hasMedicalStaff = hasMedicalStaff;
+    }
+
 /**
      * Returns the list of resources available at the shelter.
      * @return the resources as an ArrayList of Resource objects
      */
     public boolean isOpen() {
         return isOpen;
+    }
+
+    /**
+     * Determines if the shelter has medical staff
+     * @return Returns true if shelter has medical staff, otherwise returns false
+     */
+    public boolean hasMedicalStaff() {
+        return hasMedicalStaff;
     }
 
     
@@ -165,6 +260,15 @@ public class Shelter {
         }
         return available;
     }
+
+    /**
+     * Returns the number of available spaces left in the shelter
+     * @return int value representing spaces left in shelter
+     */
+    public int getAvailableSpaces() {
+        return Math.max(0, maxCapacity - currentOccupancy);
+    }
+
 /**
      * Returns the list of resources available at the shelter.
      * @return the resources as an ArrayList of Resource objects
@@ -172,9 +276,41 @@ public class Shelter {
     public void checkInUser(User user) {
         if(user != null && hasVacancy()) {
             currentOccupancy++;
+            String occupantToAdd = user.getFirstName() + " " + user.getLastName();
+            occupants.add(occupantToAdd);
         }
 
     }
+
+    /**
+     * Checks in a family into shelter if criteria is met
+     * @param memberNames
+     * @param petNameAndType
+     * @return true if succesfully check in and false if not
+     */
+    public boolean checkInFamily(List<String> memberNames, String petNameAndType) {
+        if(memberNames.size() > getAvailableSpaces())
+            return false;
+        if(petNameAndType != null && getAllowsPets() == false) {
+            return false;
+        }
+
+        for(String name : memberNames) {
+            occupants.add(name);
+        }
+        currentOccupancy += memberNames.size();
+
+        boolean hasPet = petNameAndType != null && !petNameAndType.trim().isEmpty();
+
+        if(hasPet && !getAllowsPets()) {
+            return false;
+        }
+        if(hasPet)
+            pets.add(petNameAndType);
+
+        return true;
+    }
+
 /**
      * Returns the list of resources available at the shelter.
      * @return the resources as an ArrayList of Resource objects
@@ -187,9 +323,17 @@ public class Shelter {
      * @return the resources as an ArrayList of Resource objects
      */
     public String toString() {
-        return "\nName: " + getName() + "\nLocation: " + getLocation() + "\nMax Capacity: " + getMaxCapacity() +
-        "\nCurrent Occupancy: " + getCurrentOccupancy() + "\nAllows Pets: " + getAllowsPets() + "\nOpen: " + isOpen();
+        String medicalStaffYN = (hasMedicalStaff) ? "Yes" : "No";
 
+        return "\nName: " + getName() + 
+        "\nLocation: " + getLocation() + 
+        "\nMax Capacity: " + getMaxCapacity() +
+        "\nCurrent Occupancy: " + getCurrentOccupancy() + 
+        "\nAllows Pets: " + getAllowsPets() + 
+        "\nOpen: " + isOpen() +
+        "\nAvailable Spaces: " + getAvailableSpaces() +
+        "\nMedical Staff: " + medicalStaffYN +
+        "\nPets List: " + getPets() +
+        "\nOccupants List: " + getOccupants();
     }
-
 }
