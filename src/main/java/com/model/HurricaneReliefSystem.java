@@ -358,6 +358,8 @@ public class HurricaneReliefSystem {
         if(shelter == null) return false;
         
         return shelter.checkInFamily(memberNames, pet);
+    }
+    
     public boolean completeRequest(User user, HelpRequest request) {
         if (!(user instanceof ShelterManager)
                 && !(user instanceof SystemAdmin)) {
