@@ -98,8 +98,17 @@ public class Volunteer extends User {
     }
 
     public void updateRequestStatus(HelpRequest request) {
-        if (request != null) {
+        if (request == null || !assignedRequests.contains(request)) {
+            return;
+        }
+
+        if (request.getStatus() == Status.CLAIMED
+                || request.getStatus() == Status.IN_PROGRESS) {
             request.updateStatus();
+        }
+
+        if (request.getStatus() == Status.RESOLVED) {
+            releaseRequest(request);
         }
     }
 }

@@ -215,6 +215,25 @@ public class HurricaneReliefSystem {
         return true;
     }
 
+    public boolean updateRequestStatus(User user, HelpRequest request) {
+        if (!(user instanceof Volunteer) || request == null) {
+            return false;
+        }
+
+        Volunteer volunteer = (Volunteer) user;
+
+        if (!volunteer.getAssignedRequests().contains(request)
+                || (request.getStatus() != Status.CLAIMED
+                && request.getStatus() != Status.IN_PROGRESS)) {
+            return false;
+        }
+
+        volunteer.updateRequestStatus(request);
+        currentRequest = request;
+        requestList.save();
+        return true;
+    }
+
     public void saveUsers() {
         userList.save();
     }
