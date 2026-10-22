@@ -3,6 +3,7 @@ package com.model;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
@@ -56,6 +57,21 @@ public class DataWriter extends DataConstants {
             availableResourcesJSON.add(getResourcesJSON(resource));
         }
         shelterDetails.put(SHELTER_RESOURCES, availableResourcesJSON);
+
+        JSONArray occupantsJSON = new JSONArray();
+        if (shelter.getOccupants() != null) {
+            occupantsJSON.addAll(shelter.getOccupants());
+        }
+        shelterDetails.put(SHELTER_OCCUPANTS, occupantsJSON);
+
+        JSONArray petsJSON = new JSONArray();
+        if (shelter.getPets() != null) {
+            petsJSON.addAll(shelter.getPets());
+        }
+        shelterDetails.put(SHELTER_PETS, petsJSON);
+
+        shelterDetails.put(SHELTER_HASMEDICALSTAFF, shelter.hasMedicalStaff());
+
         return shelterDetails;
     }
 
@@ -121,6 +137,17 @@ public class DataWriter extends DataConstants {
         }
         userDetails.put(USER_EMERGENCYCONTACTS, emergencyContactsJSON);
         userDetails.put(USER_MEDICALINFO, user.getMedicalInfo());
+
+        if(user instanceof ShelterManager) {
+            ShelterManager manager = (ShelterManager) user;
+            Shelter assigned = manager.getAssignedShelter();
+            userDetails.put(USER_ASSIGNEDSHELTER, assigned != null ? assigned.getShelterID().toString() : null);
+        } else if(user instanceof Volunteer) {
+            Volunteer volunteer = (Volunteer) user;
+            userDetails.put(USER_HASVEHICLE, volunteer.hasVehicle());
+            userDetails.put(USER_VEHICLEDESCRIPTION, volunteer.getVehicleDescription());
+        }
+
         return userDetails;
     }
 
@@ -202,6 +229,10 @@ public class DataWriter extends DataConstants {
         requestDetails.put(REQUEST_URGENCY, request.getUrgency().name());
         requestDetails.put(REQUEST_HURRICANEDATA, getHurricaneDataJSON(request.getHurricaneData()));
         requestDetails.put(REQUEST_COMMENTTHREAD, getCommentsJSON(request.getCommentThread()));
+
+        User assignedVolunteer = request.getAssignedVolunteer();
+        requestDetails.put(REQUEST_ASSIGNEDVOLUNTEER, assignedVolunteer != null ? assignedVolunteer.getUserID().toString() : null);
+
         return requestDetails;
 
     }
