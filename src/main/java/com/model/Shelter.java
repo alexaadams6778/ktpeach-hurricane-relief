@@ -15,6 +15,9 @@ public class Shelter {
     private boolean allowsPets;
     private boolean isOpen;
     private ArrayList<Resource> resources;
+    private ArrayList<String> occupants;
+    private ArrayList<String> pets;
+    private boolean hasMedicalStaff;
 /**
      * Creates a Shelter object with the specified parameters.
      * @param shelterID the unique identifier for the shelter
@@ -35,6 +38,9 @@ public class Shelter {
         this.allowsPets = allowsPets;
         this.isOpen = isOpen;
         this.resources = resources;
+        this.occupants = new ArrayList<String>();
+        this.pets = new ArrayList<String>();
+        this.hasMedicalStaff = false;
     }
   
     /**
@@ -47,7 +53,7 @@ public class Shelter {
      * @param isOpen whether the shelter is open
      * @param resources the list of resources available at the shelter
      */
-  public Shelter(String name, Location location, int maxCapacity, int currentOccupancy, boolean allowsPets, boolean isOpen, ArrayList<Resource> resources) {
+    public Shelter(String name, Location location, int maxCapacity, int currentOccupancy, boolean allowsPets, boolean isOpen, ArrayList<Resource> resources) {
         this.shelterID = UUID.randomUUID();
         this.name = name;
         this.location = location;
@@ -56,9 +62,50 @@ public class Shelter {
         this.allowsPets = allowsPets;
         this.isOpen = isOpen;
         this.resources = resources;
-
+        this.occupants = new ArrayList<String>();
+        this.pets = new ArrayList<String>();
+        this.hasMedicalStaff = false;
     }
-/**
+
+    public Shelter(UUID shelterID, String name, Location location, int maxCapacity, 
+               int currentOccupancy, boolean allowsPets, boolean isOpen, 
+               ArrayList<Resource> resources, ArrayList<String> occupants, 
+               ArrayList<String> pets, boolean hasMedicalStaff) {
+        this.shelterID = shelterID;
+        this.name = name;
+        this.location = location;
+        this.maxCapacity = maxCapacity;
+        this.currentOccupancy = currentOccupancy;
+        this.allowsPets = allowsPets;
+        this.isOpen = isOpen;
+        this.resources = resources;
+        if (occupants != null)
+            this.occupants = occupants;
+        if (pets != null) 
+            this.pets = pets;
+        this.hasMedicalStaff = hasMedicalStaff;
+    }
+
+    public Shelter(String name, Location location, int maxCapacity, 
+               int currentOccupancy, boolean allowsPets, boolean isOpen, 
+               ArrayList<Resource> resources, ArrayList<String> occupants, 
+               ArrayList<String> pets, boolean hasMedicalStaff) {
+        this.shelterID = UUID.randomUUID();
+        this.name = name;
+        this.location = location;
+        this.maxCapacity = maxCapacity;
+        this.currentOccupancy = currentOccupancy;
+        this.allowsPets = allowsPets;
+        this.isOpen = isOpen;
+        this.resources = resources;
+        if (occupants != null)
+            this.occupants = occupants;
+        if (pets != null) 
+            this.pets = pets;
+        this.hasMedicalStaff = hasMedicalStaff;
+    }
+
+    /**
      * Returns the unique identifier of the shelter.
      * @return the shelterID as a UUID
      */
