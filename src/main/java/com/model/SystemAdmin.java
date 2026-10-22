@@ -20,16 +20,10 @@ public class SystemAdmin extends User {
     }
 
     public void removeRequest(HelpRequest request) {
-<<<<<<< HEAD
-        if (request != null) {
-            RequestList.getInstance().removeRequest(request);
-=======
         RequestList requestList = RequestList.getInstance();
 
-        if (requestList.removeRequest(request)) {
+        if(requestList.removeRequest(request))
             requestList.save();
->>>>>>> a8ca23a551f807ee420766ca83e82cf3e6f3677d
-        }
     }
 
     public boolean addShelter(String name, Location location, int maxCapacity, int currentOccupancy, boolean allowsPets, boolean isOpen, ArrayList<Resource> resources) {
