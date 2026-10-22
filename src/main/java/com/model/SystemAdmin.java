@@ -60,18 +60,14 @@ public class SystemAdmin extends User {
     }
 
     public void updateHurricaneData(HurricaneData hurricaneData) {
-<<<<<<< HEAD
-        if (hurricaneData == null) {
-            return;
-        }
-        for(HelpRequest request : RequestList.getInstance().getRequests()) {
-            if(request.getStatus()!= Status.RESOLVED && request.getStatus() != Status.CANCELLED) {
-                request.setHurricaneData(hurricaneData);
-            }
-=======
-        if (hurricaneData != null) {
+        if(hurricaneData != null) {
             HurricaneReliefSystem.getInstance().updateHurricaneData(hurricaneData);
->>>>>>> a8ca23a551f807ee420766ca83e82cf3e6f3677d
+            for(HelpRequest request : RequestList.getInstance().getRequests()) {
+                if(request.getStatus() != Status.RESOLVED && request.getStatus() != Status.CANCELLED) {
+                    request.setHurricaneData(hurricaneData);
+                }
+            }
+            RequestList.getInstance().save();
         }
     }
 
