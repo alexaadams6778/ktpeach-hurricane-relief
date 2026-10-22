@@ -14,6 +14,7 @@ public class Volunteer extends User {
     private boolean onCall;
     private boolean hasVehicle;
     private String vehicleDescription;
+    private boolean approved;
 
     public Volunteer(UUID userID, String userType, String firstName, String lastName, String username,
                      String password, String email, String phoneNumber, Date dob,
@@ -31,6 +32,7 @@ public class Volunteer extends User {
         this.onCall = false;
         this.hasVehicle = hasVehicle;
         this.vehicleDescription = "";
+        this.approved = false;
     }
 
     public ArrayList<Skill> getSkills() {
@@ -57,6 +59,14 @@ public class Volunteer extends User {
         if (vehicleDescription != null) {
             this.vehicleDescription = vehicleDescription;
         }
+    }
+
+    public boolean isApproved() {
+        return approved;
+    }
+
+    public void setApproved(boolean approved) {
+        this.approved = approved;
     }
 
     public boolean hasSkill(Skill skill) {
