@@ -182,13 +182,36 @@ public class HurricaneReliefSystem {
         }
     }
 
+    public ArrayList<HelpRequest> findAvailableRequests(Volunteer volunteer) {
+        ArrayList<HelpRequest> matches = new ArrayList<HelpRequest>();
+
+        if (volunteer == null) {
+            return matches;
+        }
+
+        for (HelpRequest request : requestList.getRequests()) {
+            if (volunteer.canAcceptRequest(request)) {
+                matches.add(request);
+            }
+        }
+
+        return matches;
+    }
+    
     public boolean volunteer(User user, HelpRequest request) {
-        if (!(user instanceof Volunteer) || request == null
-                || request.getStatus() != Status.OPEN) {
+        if (!(user instanceof Volunteer)) {
             return false;
         }
 
-        ((Volunteer) user).acceptRequest(request);
+        Volunteer volunteer = (Volunteer) user;
+
+        if (!volunteer.canAcceptRequest(request)) {
+            return false;
+        }
+
+        volunteer.acceptRequest(request);
+        currentRequest = request;
+        requestList.save();
         return true;
     }
 
