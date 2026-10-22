@@ -147,6 +147,23 @@ public class Shelter {
     public boolean getAllowsPets() {
         return allowsPets;
     }
+
+    /**
+     * Returns all occupants of shelter
+     * @return the ArrayList of occupants in shelter
+     */
+    public ArrayList<String> getOccupants() {
+        return occupants;
+    }
+
+    /**
+     * Returns all pets in shelter
+     * @return the ArrayList of pets in shelter
+     */
+    public ArrayList<String> getPets() {
+        return pets;
+    }
+
 /**
      * Returns the list of resources available at the shelter.
      * @return the resources as an ArrayList of Resource objects
@@ -183,12 +200,45 @@ public class Shelter {
     public void setAllowsPets(boolean allowsPets) {
         this.allowsPets = allowsPets;
     }
+
+    /**
+     * Sets occupants ArrayList to inputed ArrayList
+     * @param occupants
+     */
+    public void setOccupants(ArrayList<String> occupants) {
+        this.occupants = occupants;
+    }
+
+    /**
+     * Sets pets ArrayList to inputed ArrayList
+     * @param pets
+     */
+    public void setPets(ArrayList<String> pets) {
+        this.pets = pets;
+    }
+
+    /**
+     * Sets hasMedicalStaff boolean value to inputed value
+     * @param hasMedicalStaff
+     */
+    public void setHasMedicalStaff(boolean hasMedicalStaff) {
+        this.hasMedicalStaff = hasMedicalStaff;
+    }
+
 /**
      * Returns the list of resources available at the shelter.
      * @return the resources as an ArrayList of Resource objects
      */
     public boolean isOpen() {
         return isOpen;
+    }
+
+    /**
+     * Determines if the shelter has medical staff
+     * @return Returns true if shelter has medical staff, otherwise returns false
+     */
+    public boolean hasMedicalStaff() {
+        return hasMedicalStaff;
     }
 
     
@@ -212,6 +262,15 @@ public class Shelter {
         }
         return available;
     }
+
+    /**
+     * Returns the number of available spaces left in the shelter
+     * @return int value representing spaces left in shelter
+     */
+    public int getAvailableSpaces() {
+        return Math.max(0, maxCapacity - currentOccupancy);
+    }
+
 /**
      * Returns the list of resources available at the shelter.
      * @return the resources as an ArrayList of Resource objects
