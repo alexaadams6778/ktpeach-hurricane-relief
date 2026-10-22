@@ -29,6 +29,11 @@ public abstract class DataConstants {
     protected static final String CONTACT_RELATIONSHIP = "relationship";
     protected static final String CONTACT_LOCATION = "location";
 
+    // ShelterManager & Volunteer
+    protected static final String USER_ASSIGNEDSHELTER = "assignedShelter";
+    protected static final String USER_HASVEHICLE = "hasVehicle";
+    protected static final String USER_VEHICLEDESCRIPTION = "vehicleDescription";
+
     // Request
     protected static final String REQUEST_FILE_NAME = "src/main/java/com/json/requests.json";
     protected static final String REQUEST_ID = "requestID";
@@ -43,6 +48,7 @@ public abstract class DataConstants {
     protected static final String REQUEST_URGENCY = "urgency";
     protected static final String REQUEST_HURRICANEDATA = "hurricaneData";
     protected static final String REQUEST_COMMENTTHREAD = "commentThread";
+    protected static final String REQUEST_ASSIGNEDVOLUNTEER = "assignedVolunteer";
 
     // Shelter
     protected static final String SHELTER_FILE_NAME = "src/main/java/com/json/shelters.json";
@@ -54,6 +60,9 @@ public abstract class DataConstants {
     protected static final String SHELTER_ALLOWSPETS = "allowsPets";
     protected static final String SHELTER_ISOPEN = "isOpen";
     protected static final String SHELTER_RESOURCES = "resources";
+    protected static final String SHELTER_OCCUPANTS = "occupants";
+    protected static final String SHELTER_PETS = "pets";
+    protected static final String SHELTER_HASMEDICALSTAFF = "hasMedicalStaff";
     
     // Location
     protected static final String LOCATION_ADDRESS = "address";

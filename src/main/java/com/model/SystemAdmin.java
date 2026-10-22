@@ -14,15 +14,16 @@ public class SystemAdmin extends User {
                        }
 
     public void approveVolunteer(Volunteer volunteer) {
-        //todo
+        if (volunteer != null) {
+            volunteer.setApproved(true);
+        }
     }
 
     public void removeRequest(HelpRequest request) {
         RequestList requestList = RequestList.getInstance();
 
-        if (requestList.removeRequest(request)) {
+        if(requestList.removeRequest(request))
             requestList.save();
-        }
     }
 
     public boolean addShelter(String name, Location location, int maxCapacity, int currentOccupancy, boolean allowsPets, boolean isOpen, ArrayList<Resource> resources) {
@@ -59,8 +60,14 @@ public class SystemAdmin extends User {
     }
 
     public void updateHurricaneData(HurricaneData hurricaneData) {
-        if (hurricaneData != null) {
+        if(hurricaneData != null) {
             HurricaneReliefSystem.getInstance().updateHurricaneData(hurricaneData);
+            for(HelpRequest request : RequestList.getInstance().getRequests()) {
+                if(request.getStatus() != Status.RESOLVED && request.getStatus() != Status.CANCELLED) {
+                    request.setHurricaneData(hurricaneData);
+                }
+            }
+            RequestList.getInstance().save();
         }
     }
 

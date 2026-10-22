@@ -86,7 +86,33 @@ public class DataLoader extends DataConstants{
                     user = new SystemAdmin(userID, type, firstName, lastName, username, password, email, phoneNumber, dob, location, emergencyContacts, medicalInfo);
                 }
                 if(type != null && type.equalsIgnoreCase("Volunteer")) {
-                    user = new Volunteer(userID, type, firstName, lastName, username, password, email, phoneNumber, dob, location, emergencyContacts, medicalInfo, false);
+                    Boolean hasVehicleObj = (Boolean) userJSON.get(USER_HASVEHICLE);
+                    boolean hasVehicle = (hasVehicleObj != null) ? hasVehicleObj : false;
+                    String vehicleDesc = (String) userJSON.get(USER_VEHICLEDESCRIPTION);
+
+                    Volunteer volunteer = new Volunteer(userID, type, firstName, lastName, username, password, email, phoneNumber, dob, location, emergencyContacts, medicalInfo, hasVehicle);
+                    if (vehicleDesc != null) {
+                        volunteer.setVehicleDescription(vehicleDesc);
+                    }
+                    user = volunteer;
+                }
+                if(type != null && (type.equalsIgnoreCase("ShelterManager") || type.equalsIgnoreCase("sheltermanager"))) {
+                    String shelterIDStr = (String) userJSON.get(USER_ASSIGNEDSHELTER);
+                    Shelter assignedShelter = null;
+                    if (shelterIDStr != null && !shelterIDStr.trim().isEmpty()) {
+                        try {
+                            UUID shelterID = UUID.fromString(shelterIDStr);
+                            for (Shelter s : ShelterList.getInstance().getShelters()) {
+                                if (s.getShelterID().equals(shelterID)) {
+                                    assignedShelter = s;
+                                    break;
+                                }
+                            }
+                        } catch (IllegalArgumentException e) {
+                            // Safe fallback if UUID format is invalid
+                        }
+                    }
+                    user = new ShelterManager(userID, type, firstName, lastName, username, password, email, phoneNumber, dob, location, emergencyContacts, medicalInfo, assignedShelter);
                 }
                 if (user != null) {
                     ret.add(user);
@@ -140,18 +166,41 @@ public class DataLoader extends DataConstants{
                 // Parse the nested Resources array
                 JSONArray resourcesJSON = (JSONArray) shelterJSON.get(SHELTER_RESOURCES);
                 ArrayList<Resource> resources = new ArrayList<>();
-                
-                for (Object resItem : resourcesJSON) {
-                    JSONObject resourceObj = (JSONObject) resItem;
-                    String resName = (String) resourceObj.get(RESOURCE_NAME);
-                    int resQuantity = ((Long) resourceObj.get(RESOURCE_QUANTITY)).intValue();
-                    String resUnit = (String) resourceObj.get(RESOURCE_UNIT);
-                    
-                    resources.add(new Resource(resName, resQuantity, resUnit));
+                if (resourcesJSON != null) {
+                    for (Object resItem : resourcesJSON) {
+                        JSONObject resourceObj = (JSONObject) resItem;
+                        String resName = (String) resourceObj.get(RESOURCE_NAME);
+                        int resQuantity = ((Long) resourceObj.get(RESOURCE_QUANTITY)).intValue();
+                        String resUnit = (String) resourceObj.get(RESOURCE_UNIT);
+                        
+                        resources.add(new Resource(resName, resQuantity, resUnit));
+                    }
                 }
 
-                // Instantiate the Shelter and add to the return list
-                Shelter shelter = new Shelter(shelterID, name, location, maxCapacity, currentOccupancy, allowsPets, isOpen, resources);
+                // Parse occupants with safe fallback
+                JSONArray occupantsJSON = (JSONArray) shelterJSON.get(SHELTER_OCCUPANTS);
+                ArrayList<String> occupants = new ArrayList<>();
+                if (occupantsJSON != null) {
+                    for (Object occItem : occupantsJSON) {
+                        occupants.add((String) occItem);
+                    }
+                }
+
+                // Parse pets with safe fallback
+                JSONArray petsJSON = (JSONArray) shelterJSON.get(SHELTER_PETS);
+                ArrayList<String> pets = new ArrayList<>();
+                if (petsJSON != null) {
+                    for (Object petItem : petsJSON) {
+                        pets.add((String) petItem);
+                    }
+                }
+
+                // Parse hasMedicalStaff with safe fallback
+                Boolean hasMedStaffObj = (Boolean) shelterJSON.get(SHELTER_HASMEDICALSTAFF);
+                boolean hasMedicalStaff = (hasMedStaffObj != null) ? hasMedStaffObj : false;
+
+                // Instantiate using the 11-parameter overloaded Shelter constructor
+                Shelter shelter = new Shelter(shelterID, name, location, maxCapacity, currentOccupancy, allowsPets, isOpen, resources, occupants, pets, hasMedicalStaff);
                 ret.add(shelter);
             }
 
@@ -229,6 +278,25 @@ public class DataLoader extends DataConstants{
                     }
                 }
 
+                String assignedVolIDStr = (String) reqJSON.get(REQUEST_ASSIGNEDVOLUNTEER);
+                if (assignedVolIDStr != null && !assignedVolIDStr.trim().isEmpty()) {
+                    try {
+                        UUID assignedVolID = UUID.fromString(assignedVolIDStr);
+                        User assignedVol = UserList.getInstance().getUser(assignedVolID);
+                        if (assignedVol != null) {
+                            request.setAssignedVolunteer(assignedVol);
+                            if (assignedVol instanceof Volunteer) {
+                                Volunteer vol = (Volunteer) assignedVol;
+                                if (!vol.getAssignedRequests().contains(request)) {
+                                    vol.getAssignedRequests().add(request);
+                                }
+                            }
+                        }
+                    } catch (IllegalArgumentException e) {
+                        // Safe fallback if UUID format is invalid
+                    }
+                }
+                
                 ret.add(request);
             }
         } catch (Exception e) {

@@ -2,6 +2,7 @@ package com.model;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Comparator;
 
 public class HurricaneReliefSystem {
@@ -58,6 +59,10 @@ public class HurricaneReliefSystem {
     public ArrayList<Shelter> findShelter(String name, Location location,
                                           boolean allowsPets) {
         return shelterList.getShelters(name, location, allowsPets);
+    }
+
+    public ArrayList<Shelter> findShelter(boolean allowsPets, boolean requiresMedical, int minCapacity) {
+        return shelterList.getShelters(allowsPets, requiresMedical, minCapacity);
     }
 
     public User getCurrentUser() {
@@ -349,6 +354,12 @@ public class HurricaneReliefSystem {
         return true;
     }
 
+    public boolean checkInFamily(Shelter shelter, List<String> memberNames, String pet) {
+        if(shelter == null) return false;
+        
+        return shelter.checkInFamily(memberNames, pet);
+    }
+    
     public boolean completeRequest(User user, HelpRequest request) {
         if (!(user instanceof ShelterManager)
                 && !(user instanceof SystemAdmin)) {
