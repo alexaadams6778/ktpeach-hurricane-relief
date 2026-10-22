@@ -127,7 +127,8 @@ public class HurricaneReliefSystem {
                 || !requestList.getRequests().contains(request)
                 || !request.getAuthor().getUserID().equals(user.getUserID())
                 || request.getStatus() == Status.CANCELLED
-                || request.getStatus() == Status.RESOLVED) {
+                || request.getStatus() == Status.RESOLVED 
+                || request.getStatus() == Status.COMPLETE) {
             return false;
         }
 
@@ -224,12 +225,41 @@ public class HurricaneReliefSystem {
         Volunteer volunteer = (Volunteer) user;
 
         if (!volunteer.getAssignedRequests().contains(request)
-                || (request.getStatus() != Status.CLAIMED
-                && request.getStatus() != Status.IN_PROGRESS)) {
+                || (request.getStatus() != Status.ASSIGNED
+                && request.getStatus() != Status.CLAIMED)) {
             return false;
         }
 
         volunteer.updateRequestStatus(request);
+        currentRequest = request;
+        requestList.save();
+        return true;
+    }
+
+    public boolean completeRequest(User user, HelpRequest request) {
+        if (!(user instanceof ShelterManager)
+                && !(user instanceof SystemAdmin)) {
+            System.out.println(
+                    "Only a shelter manager can mark a relief request as complete.");
+            return false;
+        }
+
+        if (request == null
+                || !requestList.getRequests().contains(request)
+                || (request.getStatus() != Status.ASSIGNED
+                && request.getStatus() != Status.CLAIMED
+                && request.getStatus() != Status.IN_PROGRESS)) {
+            return false;
+        }
+
+        request.setStatus(Status.COMPLETE);
+
+        User assignedVolunteer = request.getAssignedVolunteer();
+
+        if (assignedVolunteer instanceof Volunteer) {
+            ((Volunteer) assignedVolunteer).releaseRequest(request);
+        }
+
         currentRequest = request;
         requestList.save();
         return true;

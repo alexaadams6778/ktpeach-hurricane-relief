@@ -96,7 +96,8 @@ public class Volunteer extends User {
     public void acceptRequest(HelpRequest request) {
         if (request != null && !assignedRequests.contains(request)) {
             assignedRequests.add(request);
-            request.setStatus(Status.CLAIMED);
+            request.setAssignedVolunteer(this);
+            request.setStatus(Status.ASSIGNED);
             isAvailable = false;
         }
     }
@@ -114,17 +115,10 @@ public class Volunteer extends User {
     }
 
     public void updateRequestStatus(HelpRequest request) {
-        if (request == null || !assignedRequests.contains(request)) {
-            return;
-        }
-
-        if (request.getStatus() == Status.CLAIMED
-                || request.getStatus() == Status.IN_PROGRESS) {
+        if (request != null && assignedRequests.contains(request)
+                && (request.getStatus() == Status.ASSIGNED
+                || request.getStatus() == Status.CLAIMED)) {
             request.updateStatus();
-        }
-
-        if (request.getStatus() == Status.RESOLVED) {
-            releaseRequest(request);
         }
     }
 }
