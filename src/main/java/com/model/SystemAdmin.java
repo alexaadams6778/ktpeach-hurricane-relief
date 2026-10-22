@@ -59,7 +59,14 @@ public class SystemAdmin extends User {
     }
 
     public void updateHurricaneData(HurricaneData hurricaneData) {
-        //todo
+        if (hurricaneData == null) {
+            return;
+        }
+        for(HelpRequest request : RequestList.getInstance().getRequests()) {
+            if(request.getStatus()!= Status.RESOLVED && request.getStatus() != Status.CANCELLED) {
+                request.setHurricaneData(hurricaneData);
+            }
+        }
     }
 
 }
