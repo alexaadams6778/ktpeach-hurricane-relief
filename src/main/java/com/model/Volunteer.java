@@ -53,6 +53,26 @@ public class Volunteer extends User {
         }
     }
 
+    public void addCertification(String certification) {
+        if (certification != null && !certification.isBlank()
+                && !certifications.contains(certification)) {
+            certifications.add(certification);
+        }
+    }
+
+    public boolean canAcceptRequest(HelpRequest request) {
+        if (request == null || request.getStatus() != Status.OPEN
+                || !isAvailable) {
+            return false;
+        }
+
+        if (request.requiresCertification() && certifications.isEmpty()) {
+            return false;
+        }
+
+        return skills.containsAll(request.getNeededSkills());
+    }
+
     public void uploadCertification() {
         // A later UI flow will provide the certification information.
     }
