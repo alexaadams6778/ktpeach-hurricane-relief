@@ -1,7 +1,10 @@
 package com.model;
 import java.util.ArrayList;
 import java.util.UUID;
-
+/**
+ * @author KTPeach
+ * Represents a shelter in the hurricane relief system.
+ */
 public class Shelter {
     
     private UUID shelterID;
@@ -12,7 +15,17 @@ public class Shelter {
     private boolean allowsPets;
     private boolean isOpen;
     private ArrayList<Resource> resources;
-
+/**
+     * Creates a Shelter object with the specified parameters.
+     * @param shelterID the unique identifier for the shelter
+     * @param name the name of the shelter
+     * @param location the location of the shelter
+     * @param maxCapacity the maximum capacity of the shelter
+     * @param currentOccupancy the current occupancy of the shelter
+     * @param allowsPets whether the shelter allows pets
+     * @param isOpen whether the shelter is open
+     * @param resources the list of resources available at the shelter
+     */
     public Shelter(UUID shelterID, String name, Location location, int maxCapacity, int currentOccupancy, boolean allowsPets, boolean isOpen, ArrayList<Resource> resources) {
         this.shelterID = shelterID;
         this.name = name;
@@ -24,6 +37,16 @@ public class Shelter {
         this.resources = resources;
     }
   
+    /**
+     * Creates a Shelter object with the specified parameters, generating a new UUID for the shelter.
+     * @param name the name of the shelter
+     * @param location the location of the shelter
+     * @param maxCapacity the maximum capacity of the shelter
+     * @param currentOccupancy the current occupancy of the shelter
+     * @param allowsPets whether the shelter allows pets
+     * @param isOpen whether the shelter is open
+     * @param resources the list of resources available at the shelter
+     */
   public Shelter(String name, Location location, int maxCapacity, int currentOccupancy, boolean allowsPets, boolean isOpen, ArrayList<Resource> resources) {
         this.shelterID = UUID.randomUUID();
         this.name = name;
@@ -35,61 +58,104 @@ public class Shelter {
         this.resources = resources;
 
     }
-
+/**
+     * Returns the unique identifier of the shelter.
+     * @return the shelterID as a UUID
+     */
     public UUID getShelterID() {
         return shelterID;
     }
-
+    /**
+     * Returns the name of the shelter.
+     * @return the name as a String
+     */
     public String getName() {
         return name;
     }
-
+/**
+     * Returns the location of the shelter.
+     * @return the location as a Location object
+     */
     public Location getLocation() {
         return location;
     }
-
+/**
+     * Returns the maximum capacity of the shelter.
+     * @return the maxCapacity as an int
+     */
     public int getMaxCapacity() {
         return maxCapacity;
     }
-
+/**
+     * Returns the current occupancy of the shelter.
+     * @return the currentOccupancy as an int
+     */
     public int getCurrentOccupancy() {
         return currentOccupancy;
     }
-
+/**
+     * Returns whether the shelter allows pets.
+     * @return true if the shelter allows pets, false otherwise
+     */
     public boolean getAllowsPets() {
         return allowsPets;
     }
-
+/**
+     * Returns the list of resources available at the shelter.
+     * @return the resources as an ArrayList of Resource objects
+     */
     public void setName(String name) {
         this.name = name;
     }
-
+/**
+     * Returns the list of resources available at the shelter.
+     * @return the resources as an ArrayList of Resource objects
+     */
     public void setLocation(Location location) {
         this.location = location;
     }
-
+/**
+     * Returns the list of resources available at the shelter.
+     * @return the resources as an ArrayList of Resource objects
+     */
     public void setMaxCapacity(int maxCapacity) {
         this.maxCapacity = maxCapacity;
     }
+/**
+     * Returns the list of resources available at the shelter.
+     * @return the resources as an ArrayList of Resource objects
+     */
 
     public void setCurrentOccupancy(int currentOccupancy) {
         this.currentOccupancy = currentOccupancy;
     }
-
+/**
+     * Returns the list of resources available at the shelter.
+     * @return the resources as an ArrayList of Resource objects
+     */
     public void setAllowsPets(boolean allowsPets) {
         this.allowsPets = allowsPets;
     }
-
+/**
+     * Returns the list of resources available at the shelter.
+     * @return the resources as an ArrayList of Resource objects
+     */
     public boolean isOpen() {
         return isOpen;
     }
 
     
-
+/**
+     * Returns the list of resources available at the shelter.
+     * @return the resources as an ArrayList of Resource objects
+     */
     public boolean hasVacancy() {
         return isOpen && currentOccupancy < maxCapacity;
     }
-
+/**
+     * Returns the list of resources available at the shelter.
+     * @return the resources as an ArrayList of Resource objects
+     */
     public ArrayList<Resource> getAvailableResources() {
         ArrayList<Resource> available = new ArrayList<Resource>();
         for (Resource resource : resources) {
@@ -99,18 +165,27 @@ public class Shelter {
         }
         return available;
     }
-
+/**
+     * Returns the list of resources available at the shelter.
+     * @return the resources as an ArrayList of Resource objects
+     */
     public void checkInUser(User user) {
         if(user != null && hasVacancy()) {
             currentOccupancy++;
         }
 
     }
-
+/**
+     * Returns the list of resources available at the shelter.
+     * @return the resources as an ArrayList of Resource objects
+     */
     public void updateOperationalStatus() {
         isOpen = !isOpen;
     }
-
+/**
+     * Returns the list of resources available at the shelter.
+     * @return the resources as an ArrayList of Resource objects
+     */
     public String toString() {
         return "\nName: " + getName() + "\nLocation: " + getLocation() + "\nMax Capacity: " + getMaxCapacity() +
         "\nCurrent Occupancy: " + getCurrentOccupancy() + "\nAllows Pets: " + getAllowsPets() + "\nOpen: " + isOpen();
