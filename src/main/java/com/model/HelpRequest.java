@@ -302,6 +302,7 @@ public class HelpRequest {
      * @return the formatted information as a String
      */
 
+    /**
     @Override
     public String toString() {
         String handler = assignedVolunteer == null
@@ -310,4 +311,6 @@ public class HelpRequest {
 
         return description + " - " + status.label + " - " + handler;
     }
+    **/
+
 }

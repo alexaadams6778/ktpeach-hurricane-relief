@@ -62,10 +62,11 @@ public class DataLoader extends DataConstants{
                         JSONObject contactObj = (JSONObject) cItem;
                         String cFirst = (String) contactObj.get(CONTACT_FIRSTNAME);
                         String cLast = (String) contactObj.get(CONTACT_LASTNAME);
+                        int cAge = (int) contactObj.get(CONTACT_AGE);
                         String cEmail = (String) contactObj.get(CONTACT_EMAIL);
                         String cPhone = (String) contactObj.get(CONTACT_PHONENUMBER);
                         String cRel = (String) contactObj.get(CONTACT_RELATIONSHIP);
-                        emergencyContacts.add(new EmergencyContact(cFirst, cLast, cEmail, cPhone, cRel));
+                        emergencyContacts.add(new EmergencyContact(cFirst, cLast, cAge, cEmail, cPhone, cRel));
                     }
                 }
 

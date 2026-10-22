@@ -3,6 +3,8 @@ package com.model;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.UUID;
+import java.io.IOException;
+import java.io.FileWriter;
 
 public class Volunteer extends User {
 
@@ -121,4 +123,15 @@ public class Volunteer extends User {
             request.updateStatus();
         }
     }
+
+    public void exportRequestInfo(HelpRequest request, Shelter shelter, String fileName) {
+        try {
+            FileWriter fileWriter = new FileWriter(fileName);
+            fileWriter.write(request.toString());
+        } catch (IOException e) {
+            System.out.println("An error occurred");
+            e.printStackTrace();
+        }
+    }
+
 }

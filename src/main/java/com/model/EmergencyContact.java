@@ -9,6 +9,7 @@ public class EmergencyContact {
 
     private String firstName;
     private String lastName;
+    private int age;
     private String email;
     private String phoneNumber;
     private String relationship;
@@ -17,15 +18,17 @@ public class EmergencyContact {
      * Constructor for an EmergencyContact object.
      * @param firstName the first name as a String
      * @param lastName the last name as a String
+     * @param age the age as an int
      * @param email the email address as a String
      * @param phoneNumber the phone number as a String
      * @param relationship the relationship to the user as a String
      */
 
-    public EmergencyContact(String firstName, String lastName, String email,
+    public EmergencyContact(String firstName, String lastName, int age, String email,
                             String phoneNumber, String relationship) {
         this.firstName = firstName;
         this.lastName = lastName;
+        this.age = age;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.relationship = relationship;
@@ -47,6 +50,15 @@ public class EmergencyContact {
 
     public String getLastName() {
         return lastName;
+    }
+
+    /**
+     * Returns the age
+     * @return the age as an int
+     */
+
+    public int getAge() {
+        return age;
     }
 
     /**
@@ -83,6 +95,9 @@ public class EmergencyContact {
 
     @Override
     public String toString() {
-        return firstName + " " + lastName + " (" + relationship + "): " + phoneNumber;
+        return "Name: " + getFirstName() + " " + getLastName() + "\n" +
+        "Age: " + getAge() + "\n" + "Phone Number: " + getPhoneNumber() +
+        "\n" + "Email: " + getEmail() + "Location: ";
+
     }
 }

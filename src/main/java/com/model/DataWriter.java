@@ -149,6 +149,7 @@ public class DataWriter extends DataConstants {
         JSONObject emergencyContactJSON = new JSONObject();
         emergencyContactJSON.put(CONTACT_FIRSTNAME, emergencyContact.getFirstName());
         emergencyContactJSON.put(CONTACT_LASTNAME, emergencyContact.getLastName());
+        emergencyContactJSON.put(CONTACT_AGE, emergencyContact.getAge());
         emergencyContactJSON.put(CONTACT_EMAIL, emergencyContact.getEmail());
         emergencyContactJSON.put(CONTACT_PHONENUMBER, emergencyContact.getPhoneNumber());
         emergencyContactJSON.put(CONTACT_RELATIONSHIP, emergencyContact.getRelationship());
