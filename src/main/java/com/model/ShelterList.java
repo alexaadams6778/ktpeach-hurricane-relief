@@ -61,9 +61,12 @@ public class ShelterList {
     public ArrayList<Shelter> getShelters(boolean allowsPets, boolean requiresMedical, int minAvailableSpaces) {
         ArrayList<Shelter> result = new ArrayList<>();
         for(Shelter shelter : getShelters()) {
-            if(allowPetsMatch(shelter, allowsPets) && hasMedicalStaffMatch(shelter, requiresMedical) && hasSpace(shelter, minAvailableSpaces)) {
-                result.add(shelter);
-            }
+            if(!shelter.isOpen()) continue;
+            if(allowsPets && !shelter.getAllowsPets()) continue;
+            if(requiresMedical && !shelter.hasMedicalStaff()) continue;
+            if(!hasSpace(shelter, minAvailableSpaces)) continue;
+
+            result.add(shelter);
         }
         return result;
     }
@@ -137,7 +140,6 @@ public class ShelterList {
      * @param requiresMedical
      * @return true if it does and false if not
      */
-    // TODO: Ask about edge cases
     private boolean hasMedicalStaffMatch(Shelter shelter, boolean requiresMedical) {
         return shelter.hasMedicalStaff() == requiresMedical;
     }
