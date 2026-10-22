@@ -14,11 +14,15 @@ public class SystemAdmin extends User {
                        }
 
     public void approveVolunteer(Volunteer volunteer) {
-        //todo
+        if (volunteer != null) {
+            volunteer.setApproved(true);
+        }
     }
 
     public void removeRequest(HelpRequest request) {
-        //todo
+        if (request != null) {
+            RequestList.getInstance().removeRequest(request);
+        }
     }
 
     public boolean addShelter(String name, Location location, int maxCapacity, int currentOccupancy, boolean allowsPets, boolean isOpen, ArrayList<Resource> resources) {
