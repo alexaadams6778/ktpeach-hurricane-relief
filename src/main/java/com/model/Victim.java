@@ -36,7 +36,10 @@ public class Victim extends User {
                 requiresCertification, neededSkills, numberOfPeople,
                 numberOfPets, status, urgency);
 
-        addActiveRequest(request);
+        if (RequestList.getInstance().addRequest(request)) {
+            addActiveRequest(request);
+            RequestList.getInstance().save();
+        }
     }
 
     public void updateRequest(HelpRequest request) {

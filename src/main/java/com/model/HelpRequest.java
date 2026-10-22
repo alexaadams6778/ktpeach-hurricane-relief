@@ -21,6 +21,7 @@ public class HelpRequest {
     private HurricaneData hurricaneData;
     private ArrayList<Comment> commentThread;
     private String guestPhoneNumber;
+    private User assignedVolunteer;
 
     /**
      * Creates a HelpRequest object when given a UUID (already existing user)
@@ -54,6 +55,7 @@ public class HelpRequest {
         this.hurricaneData = new HurricaneData(85, 1);
         this.commentThread = new ArrayList<Comment>();
         this.guestPhoneNumber = null;
+        this.assignedVolunteer = null;
     }
 
     /**
@@ -93,6 +95,24 @@ public class HelpRequest {
 
     public User getAuthor() {
         return author;
+    }
+
+    /**
+     * Returns the volunteer assigned to handle this request.
+     * @return the assigned volunteer as a User, or null if unassigned
+     */
+    public User getAssignedVolunteer() {
+        return assignedVolunteer;
+    }
+
+    /**
+     * Assigns a volunteer to handle this request.
+     * @param assignedVolunteer the volunteer assigned to the request
+     */
+    public void setAssignedVolunteer(User assignedVolunteer) {
+        if (assignedVolunteer == null || assignedVolunteer instanceof Volunteer) {
+            this.assignedVolunteer = assignedVolunteer;
+        }
     }
 
     /**
@@ -205,12 +225,8 @@ public class HelpRequest {
      */
 
     public void updateStatus() {
-        if (status == Status.OPEN) {
-            status = Status.CLAIMED;
-        } else if (status == Status.CLAIMED) {
+        if (status == Status.ASSIGNED || status == Status.CLAIMED) {
             status = Status.IN_PROGRESS;
-        } else if (status == Status.IN_PROGRESS) {
-            status = Status.RESOLVED;
         }
     }
 
@@ -288,6 +304,10 @@ public class HelpRequest {
 
     @Override
     public String toString() {
-        return description + " - " + status.label;
+        String handler = assignedVolunteer == null
+                ? "Unassigned"
+                : assignedVolunteer.getUsername();
+
+        return description + " - " + status.label + " - " + handler;
     }
 }
