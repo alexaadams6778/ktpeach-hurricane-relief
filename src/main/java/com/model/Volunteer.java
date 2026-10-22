@@ -13,6 +13,7 @@ public class Volunteer extends User {
     private double hours;
     private boolean onCall;
     private boolean hasVehicle;
+    private String vehicleDescription;
 
     public Volunteer(UUID userID, String userType, String firstName, String lastName, String username,
                      String password, String email, String phoneNumber, Date dob,
@@ -29,6 +30,7 @@ public class Volunteer extends User {
         this.hours = 0;
         this.onCall = false;
         this.hasVehicle = hasVehicle;
+        this.vehicleDescription = "";
     }
 
     public ArrayList<Skill> getSkills() {
@@ -45,6 +47,20 @@ public class Volunteer extends User {
 
     public boolean hasVehicle() {
         return hasVehicle;
+    }
+
+    public String getVehicleDescription() {
+        return vehicleDescription;
+    }
+
+    public void setVehicleDescription(String vehicleDescription) {
+        if (vehicleDescription != null) {
+            this.vehicleDescription = vehicleDescription;
+        }
+    }
+
+    public boolean hasSkill(Skill skill) {
+        return skill != null && skills.contains(skill);
     }
 
     public void addSkill(Skill skill) {
