@@ -1,5 +1,6 @@
 package com.model;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 /**
  * @author KTPeach
@@ -278,9 +279,37 @@ public class Shelter {
     public void checkInUser(User user) {
         if(user != null && hasVacancy()) {
             currentOccupancy++;
+            String occupantToAdd = user.getFirstName() + " " + user.getLastName();
+            occupants.add(occupantToAdd);
         }
 
     }
+
+    /**
+     * Checks in a family into shelter if criteria is met
+     * @param memberNames
+     * @param petNameAndType
+     * @return true if succesfully check in and false if not
+     */
+    public boolean checkInFamily(List<String> memberNames, String petNameAndType) {
+        if(memberNames.size() > getAvailableSpaces())
+            return false;
+        if(petNameAndType != null && getAllowsPets() == false) {
+            return false;
+        }
+
+        for(String name : memberNames) {
+            occupants.add(name);
+        }
+        currentOccupancy += memberNames.size();
+
+        if(petNameAndType != null || !petNameAndType.equals("")) {
+            pets.add(petNameAndType);
+        }
+
+        return true;
+    }
+
 /**
      * Returns the list of resources available at the shelter.
      * @return the resources as an ArrayList of Resource objects
@@ -293,9 +322,17 @@ public class Shelter {
      * @return the resources as an ArrayList of Resource objects
      */
     public String toString() {
-        return "\nName: " + getName() + "\nLocation: " + getLocation() + "\nMax Capacity: " + getMaxCapacity() +
-        "\nCurrent Occupancy: " + getCurrentOccupancy() + "\nAllows Pets: " + getAllowsPets() + "\nOpen: " + isOpen();
+        String medicalStaffYN = (hasMedicalStaff) ? "Yes" : "No";
 
+        return "\nName: " + getName() + 
+        "\nLocation: " + getLocation() + 
+        "\nMax Capacity: " + getMaxCapacity() +
+        "\nCurrent Occupancy: " + getCurrentOccupancy() + 
+        "\nAllows Pets: " + getAllowsPets() + 
+        "\nOpen: " + isOpen() +
+        "\nAvailable Spaces: " + getAvailableSpaces() +
+        "\nMedical Staff: " + medicalStaffYN +
+        "\nPets List: " + getPets() +
+        "\nOccupants List: " + getOccupants();
     }
-
 }
