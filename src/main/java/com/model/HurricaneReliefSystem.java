@@ -124,7 +124,7 @@ public class HurricaneReliefSystem {
             return false;
         }
 
-        if (author instanceof Victim) {
+        if (author.getType().equalsIgnoreCase("Victim")) {
             ((Victim) author).addActiveRequest(request);
         }
 
@@ -145,7 +145,7 @@ public class HurricaneReliefSystem {
 
         request.setStatus(Status.CANCELLED);
 
-        if (request.getAuthor() instanceof Victim) {
+        if (request.getAuthor().getType().equalsIgnoreCase("Victim")) {
             ((Victim) request.getAuthor()).cancelRequest(request);
         }
 
@@ -170,7 +170,7 @@ public class HurricaneReliefSystem {
     }
 
     public boolean verifyAdmin(User user) {
-        return user instanceof SystemAdmin;
+        return user.getType().equalsIgnoreCase("SystemAdmin");
     }
 
     public boolean comment(HelpRequest request, User author, String timestamp,
@@ -279,10 +279,17 @@ public class HurricaneReliefSystem {
      * @param request the request being displayed
      * @return formatted request information and its recommendation explanation
      */
-    public String formatRecommendedRequest(Volunteer volunteer,
-                                        HelpRequest request) {
-        return request.toString() + System.lineSeparator()
-                + getRecommendationExplanation(volunteer, request);
+    public String formatRecommendedRequest(Volunteer volunteer, HelpRequest request) {
+        String assignedTo = "Unassigned";
+        if (request.getAssignedVolunteer() != null) {
+            assignedTo = request.getAssignedVolunteer().getUsername();
+        }
+        return "----------------------------------------\n"
+                + "Description: " + request.getDescription() + "\n"
+                + "Location: " + request.getLocation() + "\n"
+                + "Status: " + request.getStatus().label + "\n"
+                + "Assigned to: " + assignedTo + "\n"
+                + getRecommendationExplanation(volunteer, request) + "\n";
     }
 
     /**
@@ -291,8 +298,7 @@ public class HurricaneReliefSystem {
      * @param request the request being ranked
      * @return the request recommendation score
      */
-    private int getRecommendationScore(Volunteer volunteer,
-                                    HelpRequest request) {
+    private int getRecommendationScore(Volunteer volunteer, HelpRequest request) {
         int score = 0;
 
         if (volunteer.getSkills().containsAll(request.getNeededSkills())) {
@@ -324,7 +330,7 @@ public class HurricaneReliefSystem {
     }
 
     public boolean volunteer(User user, HelpRequest request) {
-        if (!(user instanceof Volunteer)) {
+        if (!(user.getType().equalsIgnoreCase("Volunteer"))) {
             return false;
         }
 
@@ -340,8 +346,12 @@ public class HurricaneReliefSystem {
         return true;
     }
 
+    public boolean addEmergencyContact(EmergencyContact emergencyContact) {
+        return getCurrentUser().getEmergencyContacts().add(emergencyContact);
+    }
+
     public boolean updateRequestStatus(User user, HelpRequest request) {
-        if (!(user instanceof Volunteer) || request == null) {
+        if (!(user.getType().equalsIgnoreCase("Volunteer")) || request == null) {
             return false;
         }
 
@@ -366,8 +376,8 @@ public class HurricaneReliefSystem {
     }
     
     public boolean completeRequest(User user, HelpRequest request) {
-        if (!(user instanceof ShelterManager)
-                && !(user instanceof SystemAdmin)) {
+        if (!(user.getType().equalsIgnoreCase("ShelterManager"))
+                && !(user.getType().equalsIgnoreCase("SystemAdmin"))) {
             System.out.println(
                     "Only a shelter manager can mark a relief request as complete.");
             return false;
@@ -385,7 +395,7 @@ public class HurricaneReliefSystem {
 
         User assignedVolunteer = request.getAssignedVolunteer();
 
-        if (assignedVolunteer instanceof Volunteer) {
+        if (assignedVolunteer.getType().equalsIgnoreCase("Volunteer")) {
             ((Volunteer) assignedVolunteer).releaseRequest(request);
         }
 

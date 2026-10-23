@@ -15,6 +15,7 @@
       {
         "firstName": "Daniel",
         "lastName": "Thompson",
+        "age": 24,
         "phoneNumber": "555-010-1843",
         "relationship": "Brother",
         "email": "daniel.thompson@gmail.com"
@@ -42,6 +43,7 @@
       {
         "firstName": "Avery",
         "lastName": "Lee",
+        "age": 25,
         "phoneNumber": "555-010-2757",
         "relationship": "Spouse",
         "email": "avery.lee@gmail.com"

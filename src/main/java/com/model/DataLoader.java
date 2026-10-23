@@ -62,7 +62,8 @@ public class DataLoader extends DataConstants{
                         JSONObject contactObj = (JSONObject) cItem;
                         String cFirst = (String) contactObj.get(CONTACT_FIRSTNAME);
                         String cLast = (String) contactObj.get(CONTACT_LASTNAME);
-                        int cAge = (int) contactObj.get(CONTACT_AGE);
+                        Number ageValue = (Number) contactObj.get(CONTACT_AGE);
+                        int cAge = ageValue.intValue();
                         String cEmail = (String) contactObj.get(CONTACT_EMAIL);
                         String cPhone = (String) contactObj.get(CONTACT_PHONENUMBER);
                         String cRel = (String) contactObj.get(CONTACT_RELATIONSHIP);
