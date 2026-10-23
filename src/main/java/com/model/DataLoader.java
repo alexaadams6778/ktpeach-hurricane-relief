@@ -314,9 +314,7 @@ public class DataLoader extends DataConstants{
                             request.setAssignedVolunteer(assignedVol);
                             if (assignedVol instanceof Volunteer) {
                                 Volunteer vol = (Volunteer) assignedVol;
-                                if (!vol.getAssignedRequests().contains(request)) {
-                                    vol.getAssignedRequests().add(request);
-                                }
+                                vol.restoreAssignment(request);
                             }
                         }
                     } catch (IllegalArgumentException e) {

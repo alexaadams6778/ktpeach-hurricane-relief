@@ -66,46 +66,8 @@ public class HurricaneReliefSystem {
         return shelterList.getShelters(allowsPets, requiresMedical, minCapacity);
     }
 
-    public Shelter findShelterByDrivingDistance(
-            Location location, ArrayList<Shelter> shelters)
-            throws IOException, InterruptedException {
-
-        if (shelters == null || shelters.isEmpty()) {
-            return null;
-        }
-
-        MapTools mapTools = MapTools.getInstance();
-
-        Address startingAddress = new Address(
-                location.getAddress(),
-                location.getCity(),
-                location.getState(),
-                location.getZipCode()
-        );
-
-        Shelter closestShelter = null;
-        double closestDistance = Double.POSITIVE_INFINITY;
-
-        for (Shelter shelter : shelters) {
-            Location shelterLocation = shelter.getLocation();
-
-            Address shelterAddress = new Address(
-                    shelterLocation.getAddress(),
-                    shelterLocation.getCity(),
-                    shelterLocation.getState(),
-                    shelterLocation.getZipCode()
-            );
-
-            double distance = mapTools.getDrivingDistance(
-                    startingAddress, shelterAddress);
-
-            if (distance < closestDistance) {
-                closestDistance = distance;
-                closestShelter = shelter;
-            }
-        }
-
-        return closestShelter;
+    public Shelter findShelterByDrivingDistance(Location location, ArrayList<Shelter> shelters) throws IOException, InterruptedException {
+            return shelterList.findShelterByDrivingDistance(location, shelters);
     }
 
     public User getCurrentUser() {
