@@ -5,6 +5,9 @@ import com.location.MapTools;
 import com.location.Address;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.ZoneId;
 
 public class TripExporter {
     
@@ -15,9 +18,15 @@ public class TripExporter {
             Address address3 = new Address(shelter.getLocation().getAddress(), shelter.getLocation().getCity(), shelter.getLocation().getState(), shelter.getLocation().getZipCode());
             MapTools mapTools = MapTools.getInstance();
             FileWriter fileWriter = new FileWriter(fileName);
-            fileWriter.write("------------------------- Trip Information ------------------------" + "\n" + "Family Member Info:" + "\n"
-                + request.getAuthor() + "\n"
-            );
+            User author = request.getAuthor();
+            LocalDate birthday = author.getDob().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            int age = Period.between(birthday, LocalDate.now()).getYears();
+            fileWriter.write("------------------------- Trip Information ------------------------\n");
+            fileWriter.write("Family Member Info:\n");
+            fileWriter.write("Name: " + author.getFirstName() + " " + author.getLastName() + "\n");
+            fileWriter.write("Age: " + age + "\n");
+            fileWriter.write("Phone: " + author.getPhoneNumber() + "\n");
+            fileWriter.write("Email: " + author.getEmail() + "\n\n");
             for (String familyMember : getFamilyMemberInfo(request.getAuthor())) {
                 fileWriter.write(familyMember + "\n");
             }
@@ -26,11 +35,12 @@ public class TripExporter {
             } else {
                 fileWriter.write("Pet(s): No" + "\n");
             }
-            fileWriter.write("Location: " + request.getLocation() + "\n" + "Assistance Needed: ");
+            fileWriter.write("Location: " + request.getLocation() + "\n");
+            fileWriter.write("Assistance Needed: ");
             for (Skill skill : request.getNeededSkills()) {
                 fileWriter.write(skill.label + " ");
             }
-            fileWriter.write("Description: " + request.getDescription() + "\n");
+            fileWriter.write("\nDescription: " + request.getDescription() + "\n");
             fileWriter.write("\n" + "------------------------- Directions to Location -------------------------" + "\n");
             try {
                 String[] directions1 = mapTools.getDrivingDirections(address1, address2);

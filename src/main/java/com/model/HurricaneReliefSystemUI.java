@@ -16,6 +16,7 @@ import java.io.IOException;
             createRequest();
             matchRequest();
             findShelter();
+            exportTripInfo();
         }
 
         public static void main(String[] args) {
@@ -65,22 +66,31 @@ import java.io.IOException;
         }
 
         public void findShelter() {
-        ArrayList<Shelter> suitableShelters =
-                hurricaneReliefSystem.findShelter(true, true, 3);
-        try {
-            Shelter closestShelter = hurricaneReliefSystem.findShelterByDrivingDistance(carterRequest.getLocation(), suitableShelters);
-            if (closestShelter == null) {
-                System.out.println("No suitable shelter was found.");
-                return;
+            ArrayList<Shelter> suitableShelters =
+                    hurricaneReliefSystem.findShelter(true, true, 3);
+            try {
+                Shelter closestShelter = hurricaneReliefSystem.findShelterByDrivingDistance(carterRequest.getLocation(), suitableShelters);
+                if (closestShelter == null) {
+                    System.out.println("No suitable shelter was found.");
+                    return;
+                }
+                carterRequest.setSelectedShelter(closestShelter);
+                hurricaneReliefSystem.saveRequests();
+                System.out.println("Closest suitable shelter:");
+                System.out.println(closestShelter);
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
-            carterRequest.setSelectedShelter(closestShelter);
-            hurricaneReliefSystem.saveRequests();
-            System.out.println("Closest suitable shelter:");
-            System.out.println(closestShelter);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
         }
+
+        public void exportTripInfo() {
+            User user = hurricaneReliefSystem.getCurrentUser();
+            if (user.getType().equalsIgnoreCase("Volunteer")) {
+                Volunteer rosa = (Volunteer) user;
+                TripExporter.exportTripInfo(carterRequest, rosa, carterRequest.getSelectedShelter(), "carter-trip.txt");
+            }
+        }
+
     }
-}
