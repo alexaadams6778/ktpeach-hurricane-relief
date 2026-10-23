@@ -30,7 +30,7 @@ public class Guest {
      * @return the created help request
      */
     public HelpRequest createRequest(String description, int numberOfPeople,
-                                     int numberOfPets, Urgency urgency) {
+                                     int numberOfPets, String petInfo, Urgency urgency) {
         HelpRequest request = new HelpRequest(
                 null,
                 description,
@@ -39,6 +39,7 @@ public class Guest {
                 new ArrayList<Skill>(),
                 numberOfPeople,
                 numberOfPets,
+                petInfo,
                 Status.OPEN,
                 urgency
         );

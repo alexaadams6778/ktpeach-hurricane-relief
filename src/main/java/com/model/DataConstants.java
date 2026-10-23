@@ -47,6 +47,7 @@ public abstract class DataConstants {
     protected static final String REQUEST_NEEDEDSKILLS = "neededSkills";
     protected static final String REQUEST_NUMBEROFPEOPLE = "numberOfPeople";
     protected static final String REQUEST_NUMBEROFPETS = "numberOfPets";
+    protected static final String REQUEST_PETINFO = "petInfo";
     protected static final String REQUEST_STATUS = "status";
     protected static final String REQUEST_URGENCY = "urgency";
     protected static final String REQUEST_HURRICANEDATA = "hurricaneData";

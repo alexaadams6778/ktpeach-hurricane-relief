@@ -65,7 +65,7 @@ public class RequestList {
     public boolean addRequest(User author, String description, Location location,
                               boolean requiresCertification,
                               ArrayList<Skill> neededSkills, int numberOfPeople,
-                              int numberOfPets, Status status, Urgency urgency) {
+                              int numberOfPets, String petInfo, Status status, Urgency urgency) {
         if (author == null || description == null || description.isBlank()
                 || location == null || numberOfPeople < 0 || numberOfPets < 0
                 || status == null || urgency == null) {
@@ -74,7 +74,7 @@ public class RequestList {
 
         HelpRequest request = new HelpRequest(author, description, location,
                 requiresCertification, neededSkills, numberOfPeople,
-                numberOfPets, status, urgency);
+                numberOfPets, petInfo, status, urgency);
 
         return addRequest(request);
     }

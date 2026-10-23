@@ -235,6 +235,7 @@ public class DataWriter extends DataConstants {
         requestDetails.put(REQUEST_NEEDEDSKILLS, skills);
         requestDetails.put(REQUEST_NUMBEROFPEOPLE, request.getNumberOfPeople());
         requestDetails.put(REQUEST_NUMBEROFPETS, request.getNumberOfPets());
+        requestDetails.put(REQUEST_PETINFO, request.getPetInfo());
         requestDetails.put(REQUEST_STATUS, request.getStatus().name());
         requestDetails.put(REQUEST_URGENCY, request.getUrgency().name());
         requestDetails.put(REQUEST_HURRICANEDATA, getHurricaneDataJSON(request.getHurricaneData()));

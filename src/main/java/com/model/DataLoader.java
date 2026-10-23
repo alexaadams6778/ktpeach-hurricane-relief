@@ -249,6 +249,7 @@ public class DataLoader extends DataConstants{
                 boolean requiresCertification = (Boolean)reqJSON.get(REQUEST_REQUIRESCERTIFICATION);
                 int numberOfPeople = ((Long)reqJSON.get(REQUEST_NUMBEROFPEOPLE)).intValue();
                 int numberOfPets = ((Long)reqJSON.get(REQUEST_NUMBEROFPETS)).intValue();
+                String petInfo = (String)reqJSON.get(REQUEST_PETINFO);
 
                 JSONObject locJSON = (JSONObject)reqJSON.get(REQUEST_LOCATION);
                 String address = (String)locJSON.get(LOCATION_ADDRESS);
@@ -267,7 +268,7 @@ public class DataLoader extends DataConstants{
                 Status status = Status.valueOf((String)reqJSON.get(REQUEST_STATUS));
                 Urgency urgency = Urgency.valueOf((String)reqJSON.get(REQUEST_URGENCY));
 
-                HelpRequest request = new HelpRequest(requestID, author, description, location, requiresCertification, neededSkills, numberOfPeople, numberOfPets, status, urgency);
+                HelpRequest request = new HelpRequest(requestID, author, description, location, requiresCertification, neededSkills, numberOfPeople, numberOfPets, petInfo, status, urgency);
 
                 JSONObject hurrJSON = (JSONObject)reqJSON.get(REQUEST_HURRICANEDATA);
                 if(hurrJSON != null) {

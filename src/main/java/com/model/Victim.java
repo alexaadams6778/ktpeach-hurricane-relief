@@ -38,4 +38,10 @@ public class Victim extends User {
     public void submitRequestForOther(User user, HelpRequest request) {
         addActiveRequest(request);
     }
+
+    public String toString() {
+        return "Name: " + getFirstName() + " " + getLastName() + "\n" + "Age: " + getDob() + "\nPhone: " + getPhoneNumber()
+        + "\nEmail: " + getEmail();
+    }
+
 }

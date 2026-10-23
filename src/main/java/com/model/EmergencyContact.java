@@ -97,7 +97,7 @@ public class EmergencyContact {
     public String toString() {
         return "Name: " + getFirstName() + " " + getLastName() + "\n" +
         "Age: " + getAge() + "\n" + "Phone Number: " + getPhoneNumber() +
-        "\n" + "Email: " + getEmail() + "Location: ";
+        "\n" + "Email: " + getEmail();
 
     }
 }
