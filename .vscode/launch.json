@@ -6,7 +6,9 @@
       "name": "HurricaneReliefSystemUI",
       "request": "launch",
       "mainClass": "com.relief/com.model.HurricaneReliefSystemUI",
-      "projectName": "hurricane_system"
+      "projectName": "hurricane_system",
+      "cwd": "${workspaceFolder}",
+      "envFile": "${workspaceFolder}/.env"
     },
     {
       "type": "java",

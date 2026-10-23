@@ -59,10 +59,12 @@ import java.io.IOException;
             for (HelpRequest request : requests) {
                 System.out.println(hurricaneReliefSystem.formatRecommendedRequest(rosa, request));
             }
+            System.out.println("Rosa volunteers for: " + "\n");
+            hurricaneReliefSystem.volunteer(rosa, requests.get(0));
+            System.out.println(hurricaneReliefSystem.formatRecommendedRequest(rosa, requests.get(0)));
         }
 
         public void findShelter() {
-        // Accepts pets, has medical staff, and has three human spaces.
         ArrayList<Shelter> suitableShelters =
                 hurricaneReliefSystem.findShelter(true, true, 3);
         try {

@@ -47,46 +47,6 @@
   },
   {
     "hurricaneData": { "windSpeeds": 110, "category": 3 },
-    "author": "c1111111-1111-4111-8111-111111111101",
-    "description": "Emergency evacuation transport needed for family with small dog from flooded street.",
-    "requiresCertification": false,
-    "assignedVolunteer": null,
-    "numberOfPets": 1,
-    "urgency": "HIGH",
-    "requestID": "d1111111-1111-4111-8111-111111111101",
-    "neededSkills": ["TRANSPORTATION"],
-    "commentThread": [],
-    "location": {
-      "zipCode": "29401",
-      "address": "1 Vendue Range",
-      "city": "Charleston",
-      "state": "SC"
-    },
-    "numberOfPeople": 3,
-    "status": "OPEN"
-  },
-  {
-    "hurricaneData": { "windSpeeds": 110, "category": 3 },
-    "author": "c1111111-1111-4111-8111-111111111102",
-    "description": "Need transport assistance with a large truck for elderly neighbor and wheelchair.",
-    "requiresCertification": false,
-    "assignedVolunteer": null,
-    "numberOfPets": 0,
-    "urgency": "CRITICAL",
-    "requestID": "d1111111-1111-4111-8111-111111111102",
-    "neededSkills": ["TRANSPORTATION"],
-    "commentThread": [],
-    "location": {
-      "zipCode": "29401",
-      "address": "45 Meeting Street",
-      "city": "Charleston",
-      "state": "SC"
-    },
-    "numberOfPeople": 2,
-    "status": "OPEN"
-  },
-  {
-    "hurricaneData": { "windSpeeds": 110, "category": 3 },
     "author": "c1111111-1111-4111-8111-111111111103",
     "description": "Medical evaluation and first aid check needed for resident with minor injuries.",
     "requiresCertification": true,
