@@ -210,9 +210,10 @@ public class MapTools {
      * @throws IOException
      * @throws InterruptedException
      */
-    private double getDrivingTime(Coordinates start, Coordinates end)
+    public double getDrivingTime(Address startingAddress, Address endingAddress)
             throws IOException, InterruptedException {
-
+        Coordinates start = getCoordinates(startingAddress);
+        Coordinates end = getCoordinates(endingAddress);
         JsonNode route = getRoute(start, end);
 
         return route.path("summary").path("duration").asDouble();

@@ -1,8 +1,10 @@
 package com.model;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
+import com.location.Address;
+import com.location.MapTools;
 
 public class HurricaneReliefSystem {
 
@@ -62,6 +64,48 @@ public class HurricaneReliefSystem {
 
     public ArrayList<Shelter> findShelter(boolean allowsPets, boolean requiresMedical, int minCapacity) {
         return shelterList.getShelters(allowsPets, requiresMedical, minCapacity);
+    }
+
+    public Shelter findShelterByDrivingDistance(
+            Location location, ArrayList<Shelter> shelters)
+            throws IOException, InterruptedException {
+
+        if (shelters == null || shelters.isEmpty()) {
+            return null;
+        }
+
+        MapTools mapTools = MapTools.getInstance();
+
+        Address startingAddress = new Address(
+                location.getAddress(),
+                location.getCity(),
+                location.getState(),
+                location.getZipCode()
+        );
+
+        Shelter closestShelter = null;
+        double closestDistance = Double.POSITIVE_INFINITY;
+
+        for (Shelter shelter : shelters) {
+            Location shelterLocation = shelter.getLocation();
+
+            Address shelterAddress = new Address(
+                    shelterLocation.getAddress(),
+                    shelterLocation.getCity(),
+                    shelterLocation.getState(),
+                    shelterLocation.getZipCode()
+            );
+
+            double distance = mapTools.getDrivingDistance(
+                    startingAddress, shelterAddress);
+
+            if (distance < closestDistance) {
+                closestDistance = distance;
+                closestShelter = shelter;
+            }
+        }
+
+        return closestShelter;
     }
 
     public User getCurrentUser() {
