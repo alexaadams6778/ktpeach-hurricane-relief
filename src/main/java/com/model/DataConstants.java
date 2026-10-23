@@ -23,14 +23,19 @@ public abstract class DataConstants {
     protected static final String USER_MEDICALINFO = "medicalInfo";
     protected static final String CONTACT_FIRSTNAME = "firstName";
     protected static final String CONTACT_LASTNAME = "lastName";
+    protected static final String CONTACT_AGE = "age";
     protected static final String CONTACT_EMAIL = "email";
     protected static final String CONTACT_PHONENUMBER = "phoneNumber";
     protected static final String CONTACT_RELATIONSHIP = "relationship";
+    protected static final String CONTACT_LOCATION = "location";
 
     // ShelterManager & Volunteer
     protected static final String USER_ASSIGNEDSHELTER = "assignedShelter";
     protected static final String USER_HASVEHICLE = "hasVehicle";
     protected static final String USER_VEHICLEDESCRIPTION = "vehicleDescription";
+    protected static final String USER_SKILLS = "skills";
+    protected static final String USER_CERTIFICATIONS = "certifications";
+    protected static final String USER_APPROVED = "approved";
 
     // Request
     protected static final String REQUEST_FILE_NAME = "src/main/java/com/json/requests.json";
@@ -42,11 +47,14 @@ public abstract class DataConstants {
     protected static final String REQUEST_NEEDEDSKILLS = "neededSkills";
     protected static final String REQUEST_NUMBEROFPEOPLE = "numberOfPeople";
     protected static final String REQUEST_NUMBEROFPETS = "numberOfPets";
+    protected static final String REQUEST_PETINFO = "petInfo";
     protected static final String REQUEST_STATUS = "status";
     protected static final String REQUEST_URGENCY = "urgency";
     protected static final String REQUEST_HURRICANEDATA = "hurricaneData";
     protected static final String REQUEST_COMMENTTHREAD = "commentThread";
     protected static final String REQUEST_ASSIGNEDVOLUNTEER = "assignedVolunteer";
+    protected static final String REQUEST_SELECTEDSHELTER = "selectedShelter";
+    protected static final String REQUEST_REQUIRESMEDICALSTAFF = "requiresMedicalStaff";
 
     // Shelter
     protected static final String SHELTER_FILE_NAME = "src/main/java/com/json/shelters.json";
@@ -61,6 +69,7 @@ public abstract class DataConstants {
     protected static final String SHELTER_OCCUPANTS = "occupants";
     protected static final String SHELTER_PETS = "pets";
     protected static final String SHELTER_HASMEDICALSTAFF = "hasMedicalStaff";
+    protected static final String SHELTER_CHECKEDINREQUESTS = "checkedInRequests";
     
     // Location
     protected static final String LOCATION_ADDRESS = "address";

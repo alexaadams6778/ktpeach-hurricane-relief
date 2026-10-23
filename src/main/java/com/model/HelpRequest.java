@@ -16,6 +16,7 @@ public class HelpRequest {
     private ArrayList<Skill> neededSkills;
     private int numberOfPeople;
     private int numberOfPets;
+    private String petInfo;
     private Status status;
     private Urgency urgency;
     private HurricaneData hurricaneData;
@@ -39,7 +40,7 @@ public class HelpRequest {
     public HelpRequest(UUID requestID, User author, String description,
                        Location location, boolean requiresCertification,
                        ArrayList<Skill> neededSkills, int numberOfPeople,
-                       int numberOfPets, Status status, Urgency urgency) {
+                       int numberOfPets, String petInfo, Status status, Urgency urgency) {
         this.requestID = requestID;
         this.author = author;
         this.description = description;
@@ -50,6 +51,7 @@ public class HelpRequest {
                 : new ArrayList<Skill>(neededSkills);
         this.numberOfPeople = numberOfPeople;
         this.numberOfPets = numberOfPets;
+        this.petInfo = petInfo;
         this.status = status == null ? Status.OPEN : status;
         this.urgency = urgency;
         this.hurricaneData = new HurricaneData(85, 1);
@@ -72,11 +74,11 @@ public class HelpRequest {
      */
     public HelpRequest(User author, String description, Location location,
                        boolean requiresCertification, ArrayList<Skill> neededSkills,
-                       int numberOfPeople, int numberOfPets, Status status,
+                       int numberOfPeople, int numberOfPets, String petInfo, Status status,
                        Urgency urgency) {
         this(UUID.randomUUID(), author, description, location,
                 requiresCertification, neededSkills, numberOfPeople,
-                numberOfPets, status, urgency);
+                numberOfPets, petInfo, status, urgency);
     }
 
     /**
@@ -169,6 +171,10 @@ public class HelpRequest {
         return numberOfPets;
     }
 
+    public String getPetInfo() {
+        return petInfo;
+    }
+
     /**
      * Returns the status
      * @return the status as a Status enum
@@ -249,6 +255,11 @@ public class HelpRequest {
     public void setNumberOfPets(int numberOfPets) {
         this.numberOfPets = numberOfPets;
     }
+
+    public void setPetInfo(String petInfo) {
+        this.petInfo = petInfo;
+    }
+
     /**
      * Sets the request status if the given status isn't null
      * @param status the status of the request as a Status enum
@@ -302,6 +313,7 @@ public class HelpRequest {
      * @return the formatted information as a String
      */
 
+
     @Override
     public String toString() {
         String handler = assignedVolunteer == null
@@ -310,4 +322,36 @@ public class HelpRequest {
 
         return description + " - " + status.label + " - " + handler;
     }
+
+    // The family names/ages, pet identity and medical note use the existing description.
+    private Shelter selectedShelter;
+    private boolean requiresMedicalStaff;
+
+    public Shelter getSelectedShelter() {
+        return selectedShelter;
+    }
+
+    public void setSelectedShelter(Shelter selectedShelter) {
+        this.selectedShelter = selectedShelter;
+    }
+
+    public boolean requiresMedicalStaff() {
+        return requiresMedicalStaff;
+    }
+
+    public void setRequiresMedicalStaff(boolean requiresMedicalStaff) {
+        this.requiresMedicalStaff = requiresMedicalStaff;
+    }
+
+    public boolean isActiveAssignment() {
+        return status == Status.ASSIGNED || status == Status.CLAIMED
+                || status == Status.IN_PROGRESS;
+    }
+
+    public boolean isTerminal() {
+        return status == Status.COMPLETE || status == Status.RESOLVED
+                || status == Status.CANCELLED;
+    }
+
+
 }

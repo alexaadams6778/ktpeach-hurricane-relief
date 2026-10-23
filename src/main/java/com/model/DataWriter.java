@@ -146,6 +146,15 @@ public class DataWriter extends DataConstants {
             Volunteer volunteer = (Volunteer) user;
             userDetails.put(USER_HASVEHICLE, volunteer.hasVehicle());
             userDetails.put(USER_VEHICLEDESCRIPTION, volunteer.getVehicleDescription());
+            JSONArray skillsJSON = new JSONArray();
+            for (Skill skill : volunteer.getSkills()) {
+                skillsJSON.add(skill.name());
+            }
+            userDetails.put(USER_SKILLS, skillsJSON);
+            JSONArray certificationsJSON = new JSONArray();
+            certificationsJSON.addAll(volunteer.getCertifications());
+            userDetails.put(USER_CERTIFICATIONS, certificationsJSON);
+            userDetails.put(USER_APPROVED, volunteer.isApproved());
         }
 
         return userDetails;
@@ -176,6 +185,7 @@ public class DataWriter extends DataConstants {
         JSONObject emergencyContactJSON = new JSONObject();
         emergencyContactJSON.put(CONTACT_FIRSTNAME, emergencyContact.getFirstName());
         emergencyContactJSON.put(CONTACT_LASTNAME, emergencyContact.getLastName());
+        emergencyContactJSON.put(CONTACT_AGE, emergencyContact.getAge());
         emergencyContactJSON.put(CONTACT_EMAIL, emergencyContact.getEmail());
         emergencyContactJSON.put(CONTACT_PHONENUMBER, emergencyContact.getPhoneNumber());
         emergencyContactJSON.put(CONTACT_RELATIONSHIP, emergencyContact.getRelationship());
@@ -225,6 +235,7 @@ public class DataWriter extends DataConstants {
         requestDetails.put(REQUEST_NEEDEDSKILLS, skills);
         requestDetails.put(REQUEST_NUMBEROFPEOPLE, request.getNumberOfPeople());
         requestDetails.put(REQUEST_NUMBEROFPETS, request.getNumberOfPets());
+        requestDetails.put(REQUEST_PETINFO, request.getPetInfo());
         requestDetails.put(REQUEST_STATUS, request.getStatus().name());
         requestDetails.put(REQUEST_URGENCY, request.getUrgency().name());
         requestDetails.put(REQUEST_HURRICANEDATA, getHurricaneDataJSON(request.getHurricaneData()));
@@ -232,6 +243,10 @@ public class DataWriter extends DataConstants {
 
         User assignedVolunteer = request.getAssignedVolunteer();
         requestDetails.put(REQUEST_ASSIGNEDVOLUNTEER, assignedVolunteer != null ? assignedVolunteer.getUserID().toString() : null);
+        Shelter selectedShelter = request.getSelectedShelter();
+        requestDetails.put(REQUEST_SELECTEDSHELTER,
+                selectedShelter == null ? null : selectedShelter.getShelterID().toString());
+        requestDetails.put(REQUEST_REQUIRESMEDICALSTAFF, request.requiresMedicalStaff());
 
         return requestDetails;
 

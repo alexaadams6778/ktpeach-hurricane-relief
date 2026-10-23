@@ -3,7 +3,6 @@ package com.model;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Comparator;
 
 public class HurricaneReliefSystem {
 
@@ -104,7 +103,7 @@ public class HurricaneReliefSystem {
     public boolean addRequest(User author, String description, Location location,
                               boolean requiresCertification,
                               ArrayList<Skill> neededSkills, int numberOfPeople,
-                              int numberOfPets, Status status, Urgency urgency) {
+                              int numberOfPets, String petInfo, Status status, Urgency urgency) {
         if (author == null || description == null || description.isBlank()
                 || location == null || numberOfPeople < 0 || numberOfPets < 0
                 || status == null || urgency == null) {
@@ -113,7 +112,7 @@ public class HurricaneReliefSystem {
 
         HelpRequest request = new HelpRequest(author, description, location,
                 requiresCertification, neededSkills, numberOfPeople,
-                numberOfPets, status, urgency);
+                numberOfPets, petInfo, status, urgency);
 
         if (!requestList.addRequest(request)) {
             return false;
@@ -354,7 +353,7 @@ public class HurricaneReliefSystem {
         return true;
     }
 
-    public boolean checkInFamily(Shelter shelter, List<String> memberNames, String pet) {
+    public boolean checkInFamily(Shelter shelter, ArrayList<String> memberNames, String pet) {
         if(shelter == null) return false;
         
         return shelter.checkInFamily(memberNames, pet);

@@ -3,6 +3,8 @@ package com.model;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.UUID;
+import java.io.IOException;
+import java.io.FileWriter;
 
 public class Volunteer extends User {
 
@@ -10,8 +12,6 @@ public class Volunteer extends User {
     private ArrayList<String> certifications;
     private boolean isAvailable;
     private ArrayList<HelpRequest> assignedRequests;
-    private double hours;
-    private boolean onCall;
     private boolean hasVehicle;
     private String vehicleDescription;
     private boolean approved;
@@ -28,8 +28,6 @@ public class Volunteer extends User {
         this.certifications = new ArrayList<String>();
         this.isAvailable = true;
         this.assignedRequests = new ArrayList<HelpRequest>();
-        this.hours = 0;
-        this.onCall = false;
         this.hasVehicle = hasVehicle;
         this.vehicleDescription = "";
         this.approved = false;
@@ -99,10 +97,6 @@ public class Volunteer extends User {
         return skills.containsAll(request.getNeededSkills());
     }
 
-    public void uploadCertification() {
-        // A later UI flow will provide the certification information.
-    }
-
     public void acceptRequest(HelpRequest request) {
         if (request != null && !assignedRequests.contains(request)) {
             assignedRequests.add(request);
@@ -120,10 +114,6 @@ public class Volunteer extends User {
         }
     }
 
-    public void flagRequest(HelpRequest request) {
-        // A reason/status for the flag will be added with HelpRequest.
-    }
-
     public void updateRequestStatus(HelpRequest request) {
         if (request != null && assignedRequests.contains(request)
                 && (request.getStatus() == Status.ASSIGNED
@@ -131,4 +121,17 @@ public class Volunteer extends User {
             request.updateStatus();
         }
     }
+
+    public ArrayList<String> getCertifications() {
+        return new ArrayList<String>(certifications);
+    }
+
+    public void restoreAssignment(HelpRequest request) {
+        if (request != null && request.isActiveAssignment()
+                && !assignedRequests.contains(request)) {
+            assignedRequests.add(request);
+        }
+        isAvailable = assignedRequests.isEmpty();
+    }
+
 }

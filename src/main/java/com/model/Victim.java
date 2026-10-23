@@ -28,24 +28,6 @@ public class Victim extends User {
         }
     }
 
-    public void createRequest(User author, String description, Location location,
-                              boolean requiresCertification,
-                              ArrayList<Skill> neededSkills, int numberOfPeople,
-                              int numberOfPets, Status status, Urgency urgency) {
-        HelpRequest request = new HelpRequest(author, description, location,
-                requiresCertification, neededSkills, numberOfPeople,
-                numberOfPets, status, urgency);
-
-        if (RequestList.getInstance().addRequest(request)) {
-            addActiveRequest(request);
-            RequestList.getInstance().save();
-        }
-    }
-
-    public void updateRequest(HelpRequest request) {
-        addActiveRequest(request);
-    }
-
     public void cancelRequest(HelpRequest request) {
         if (request != null) {
             activeRequests.remove(request);
@@ -56,4 +38,10 @@ public class Victim extends User {
     public void submitRequestForOther(User user, HelpRequest request) {
         addActiveRequest(request);
     }
+
+    public String toString() {
+        return "Name: " + getFirstName() + " " + getLastName() + "\n" + "Age: " + getDob() + "\nPhone: " + getPhoneNumber()
+        + "\nEmail: " + getEmail();
+    }
+
 }
