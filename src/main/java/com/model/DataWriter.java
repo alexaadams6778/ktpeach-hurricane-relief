@@ -146,6 +146,15 @@ public class DataWriter extends DataConstants {
             Volunteer volunteer = (Volunteer) user;
             userDetails.put(USER_HASVEHICLE, volunteer.hasVehicle());
             userDetails.put(USER_VEHICLEDESCRIPTION, volunteer.getVehicleDescription());
+            JSONArray skillsJSON = new JSONArray();
+            for (Skill skill : volunteer.getSkills()) {
+                skillsJSON.add(skill.name());
+            }
+            userDetails.put(USER_SKILLS, skillsJSON);
+            JSONArray certificationsJSON = new JSONArray();
+            certificationsJSON.addAll(volunteer.getCertifications());
+            userDetails.put(USER_CERTIFICATIONS, certificationsJSON);
+            userDetails.put(USER_APPROVED, volunteer.isApproved());
         }
 
         return userDetails;
@@ -233,6 +242,10 @@ public class DataWriter extends DataConstants {
 
         User assignedVolunteer = request.getAssignedVolunteer();
         requestDetails.put(REQUEST_ASSIGNEDVOLUNTEER, assignedVolunteer != null ? assignedVolunteer.getUserID().toString() : null);
+        Shelter selectedShelter = request.getSelectedShelter();
+        requestDetails.put(REQUEST_SELECTEDSHELTER,
+                selectedShelter == null ? null : selectedShelter.getShelterID().toString());
+        requestDetails.put(REQUEST_REQUIRESMEDICALSTAFF, request.requiresMedicalStaff());
 
         return requestDetails;
 

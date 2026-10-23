@@ -82,8 +82,14 @@ public class Shelter {
         this.resources = resources;
         if (occupants != null)
             this.occupants = occupants;
+        else {
+            occupants = new ArrayList<String>();
+        }
         if (pets != null) 
             this.pets = pets;
+        else {
+            pets = new ArrayList<String>();
+        }
         this.hasMedicalStaff = hasMedicalStaff;
     }
 
@@ -288,7 +294,7 @@ public class Shelter {
      * @param petNameAndType
      * @return true if succesfully check in and false if not
      */
-    public boolean checkInFamily(List<String> memberNames, String petNameAndType) {
+    public boolean checkInFamily(ArrayList<String> memberNames, String petNameAndType) {
         if(memberNames.size() > getAvailableSpaces())
             return false;
         if(petNameAndType != null && getAllowsPets() == false) {

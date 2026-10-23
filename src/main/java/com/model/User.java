@@ -99,20 +99,12 @@ public abstract class User {
         return medicalInfo;
     }
 
-    public void updateProfile() {
-        
-    }
-
     public void changeUsername(String username) {
         this.username = username;
     }
 
     public void changePassword(String password) {
         this.password = password;
-    }
-
-    public void requestAccountDeletion() {
-        
     }
 
     public boolean exists(String username, String password) {

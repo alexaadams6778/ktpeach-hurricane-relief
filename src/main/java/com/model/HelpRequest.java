@@ -302,7 +302,7 @@ public class HelpRequest {
      * @return the formatted information as a String
      */
 
-    /**
+
     @Override
     public String toString() {
         String handler = assignedVolunteer == null
@@ -311,6 +311,36 @@ public class HelpRequest {
 
         return description + " - " + status.label + " - " + handler;
     }
-    **/
+
+    // The family names/ages, pet identity and medical note use the existing description.
+    private Shelter selectedShelter;
+    private boolean requiresMedicalStaff;
+
+    public Shelter getSelectedShelter() {
+        return selectedShelter;
+    }
+
+    public void setSelectedShelter(Shelter selectedShelter) {
+        this.selectedShelter = selectedShelter;
+    }
+
+    public boolean requiresMedicalStaff() {
+        return requiresMedicalStaff;
+    }
+
+    public void setRequiresMedicalStaff(boolean requiresMedicalStaff) {
+        this.requiresMedicalStaff = requiresMedicalStaff;
+    }
+
+    public boolean isActiveAssignment() {
+        return status == Status.ASSIGNED || status == Status.CLAIMED
+                || status == Status.IN_PROGRESS;
+    }
+
+    public boolean isTerminal() {
+        return status == Status.COMPLETE || status == Status.RESOLVED
+                || status == Status.CANCELLED;
+    }
+
 
 }

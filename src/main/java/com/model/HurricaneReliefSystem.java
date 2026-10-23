@@ -3,7 +3,6 @@ package com.model;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Comparator;
 
 public class HurricaneReliefSystem {
 
@@ -354,7 +353,7 @@ public class HurricaneReliefSystem {
         return true;
     }
 
-    public boolean checkInFamily(Shelter shelter, List<String> memberNames, String pet) {
+    public boolean checkInFamily(Shelter shelter, ArrayList<String> memberNames, String pet) {
         if(shelter == null) return false;
         
         return shelter.checkInFamily(memberNames, pet);

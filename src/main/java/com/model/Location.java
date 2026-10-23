@@ -48,22 +48,6 @@ public class Location {
         return zipCode;
     }
 /**
-     * Updates the location with new address, city, state, and zip code
-     * @param address the new street address as a String
-     * @param city the new city as a String
-     * @param state the new state as a String
-     * @param zipCode the new zip code as a String
-     */
-    public void updateLocation() {
-        
-    }
-/**
-     * Toggles the location's availability status
-     */
-    public void toggleLocation() {
-        
-    }
-/**
      * Compares this location with another location for equality
      * @param location the other location to compare with
      * @return true if the locations are equal, false otherwise

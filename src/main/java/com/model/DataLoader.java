@@ -94,6 +94,19 @@ public class DataLoader extends DataConstants{
                     if (vehicleDesc != null) {
                         volunteer.setVehicleDescription(vehicleDesc);
                     }
+                    JSONArray skillsJSON = (JSONArray) userJSON.get(USER_SKILLS);
+                    if (skillsJSON != null) {
+                        for (Object skill : skillsJSON) {
+                            volunteer.addSkill(Skill.valueOf((String) skill));
+                        }
+                    }
+                    JSONArray certificationsJSON = (JSONArray) userJSON.get(USER_CERTIFICATIONS);
+                    if (certificationsJSON != null) {
+                        for (Object certification : certificationsJSON) {
+                            volunteer.addCertification((String) certification);
+                        }
+                    }
+                    volunteer.setApproved(Boolean.TRUE.equals(userJSON.get(USER_APPROVED)));
                     user = volunteer;
                 }
                 if(type != null && (type.equalsIgnoreCase("ShelterManager") || type.equalsIgnoreCase("sheltermanager"))) {
@@ -262,6 +275,19 @@ public class DataLoader extends DataConstants{
                     int category = ((Long)hurrJSON.get(HURRICANE_CATEGORY)).intValue();
                     request.setHurricaneData(new HurricaneData(windSpeeds, category));
                 }
+
+                request.setRequiresMedicalStaff(Boolean.TRUE.equals(
+                        reqJSON.get(REQUEST_REQUIRESMEDICALSTAFF)));
+                String selectedShelterID = (String) reqJSON.get(REQUEST_SELECTEDSHELTER);
+                if (selectedShelterID != null) {
+                    for (Shelter shelter : ShelterList.getInstance().getShelters()) {
+                        if (shelter.getShelterID().toString().equals(selectedShelterID)) {
+                            request.setSelectedShelter(shelter);
+                            break;
+                        }
+                    }
+                }
+
 
                 JSONArray commentsJSON = (JSONArray)reqJSON.get(REQUEST_COMMENTTHREAD);
                 if(commentsJSON != null) {

@@ -100,7 +100,7 @@ public class MapTools {
     }
 
     /**
-     * Finds the shelter with the shortest driving time.
+     * Finds the shelter with the shortest driving distance.
      * @param startingAddress The address we are driving from
      * @param shelters The list of shelters we are choosing from
      * @return The address of the closest shelter
@@ -113,18 +113,16 @@ public class MapTools {
         Coordinates startingCoordinates = getCoordinates(startingAddress);
 
         Address closestShelter = null;
-        double shortestTime = Double.MAX_VALUE;
+        double shortestDistance = Double.MAX_VALUE;
 
         for (Address shelter : shelters) {
             Coordinates shelterCoordinates = getCoordinates(shelter);
 
-            double drivingTime = getDrivingTime(
-                    startingCoordinates,
-                    shelterCoordinates
-            );
+            double drivingDistance = readDrivingDistance(getRoute(
+                    startingCoordinates, shelterCoordinates));
 
-            if (drivingTime < shortestTime) {
-                shortestTime = drivingTime;
+            if (drivingDistance < shortestDistance) {
+                shortestDistance = drivingDistance;
                 closestShelter = shelter;
             }
         }
@@ -361,4 +359,20 @@ public class MapTools {
             );
         }
     }
+
+    /** Returns route distance in meters, not estimated travel time. */
+    public double getDrivingDistance(Address start, Address end)
+            throws IOException, InterruptedException {
+        return readDrivingDistance(getRoute(getCoordinates(start), getCoordinates(end)));
+    }
+
+    private double readDrivingDistance(JsonNode route) throws IOException {
+        JsonNode distance = route.path("summary").path("distance");
+        if (!distance.isNumber() || !Double.isFinite(distance.asDouble())
+                || distance.asDouble() < 0) {
+            throw new IOException("The routing service did not return a valid driving distance.");
+        }
+        return distance.asDouble();
+    }
+
 }

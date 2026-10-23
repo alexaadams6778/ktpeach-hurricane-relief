@@ -92,11 +92,15 @@ public class UserList {
                 new ArrayList<EmergencyContact>(),
                 new ArrayList<String>()
             );
+        } else if (type.equalsIgnoreCase("ShelterManager")) {
+            newUser = new ShelterManager(UUID.randomUUID(), "ShelterManager", firstName, lastName, username, password, email, phoneNumber, dob, location,
+            new ArrayList<EmergencyContact>(), new ArrayList<String>(), null);
         } else {
-            return null; // invalid account type
+            return null;
         }
 
         if (userList.addUser(newUser)) {
+            save();
             return newUser;
         }
 
