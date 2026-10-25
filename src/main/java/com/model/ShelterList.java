@@ -1,19 +1,32 @@
 package com.model;
+
 import java.io.IOException;
 import java.util.ArrayList;
 
 import com.location.Address;
 import com.location.MapTools;
 
+/**
+ * Stores and manages all shelters in the Hurricane Relief System.
+ * Uses the singleton pattern so the application shares one shelter list.
+ */
 public class ShelterList {
-    
+
     private static ShelterList shelterList;
     private ArrayList<Shelter> shelters;
 
+    /**
+     * Creates the shelter list and loads saved shelters from JSON.
+     */
     private ShelterList() {
         shelters = DataLoader.loadShelters();
     }
 
+    /**
+     * Returns the single shared ShelterList instance.
+     *
+     * @return the ShelterList instance
+     */
     public static ShelterList getInstance() {
         if (shelterList == null) {
             shelterList = new ShelterList();
@@ -21,12 +34,23 @@ public class ShelterList {
         return shelterList;
     }
 
+    /**
+     * Returns every shelter in the system.
+     *
+     * @return the list of shelters
+     */
     public ArrayList<Shelter> getShelters() {
         return shelters;
     }
 
+    /**
+     * Returns shelters whose names contain the provided text.
+     *
+     * @param name the shelter name to search for
+     * @return the matching shelters
+     */
     public ArrayList<Shelter> getShelters(String name) {
-         ArrayList<Shelter> result = new ArrayList<Shelter>();
+        ArrayList<Shelter> result = new ArrayList<Shelter>();
         for (Shelter shelter : shelters) {
             if (matchesName(shelter, name)) {
                 result.add(shelter);
@@ -35,20 +59,18 @@ public class ShelterList {
         return result;
     }
 
+    /**
+     * Returns shelters matching a name and location.
+     *
+     * @param name the shelter name to search for
+     * @param location the shelter location to search for
+     * @return the matching shelters
+     */
     public ArrayList<Shelter> getShelters(String name, Location location) {
         ArrayList<Shelter> result = new ArrayList<Shelter>();
         for (Shelter shelter : getShelters(name)) {
-            if (matchesName(shelter, name) && matchesLocation(shelter, location)) {
-                result.add(shelter);
-            }
-        }
-        return result;
-    }
-
-    public ArrayList<Shelter> getShelters(String name, Location location, boolean allowsPets) {
-        ArrayList<Shelter> result = new ArrayList<Shelter>();
-        for (Shelter shelter : getShelters(name, location)) {
-            if (matchesName(shelter, name) && matchesLocation(shelter, location) && shelter.getAllowsPets() == allowsPets) {
+            if (matchesName(shelter, name)
+                    && matchesLocation(shelter, location)) {
                 result.add(shelter);
             }
         }
@@ -56,25 +78,66 @@ public class ShelterList {
     }
 
     /**
-     * Returns shelters that meet required criteria
-     * @param allowsPets
-     * @param requiresMedical
-     * @param minAvailableSpaces
-     * @return ArrayList of shelters that meet given criteria
+     * Returns shelters matching name, location, and pet-policy criteria.
+     *
+     * @param name the shelter name to search for
+     * @param location the shelter location to search for
+     * @param allowsPets whether the shelter must allow pets
+     * @return the matching shelters
      */
-    public ArrayList<Shelter> getShelters(boolean allowsPets, boolean requiresMedical, int minAvailableSpaces) {
-        ArrayList<Shelter> result = new ArrayList<>();
-        for(Shelter shelter : getShelters()) {
-            if(!shelter.isOpen()) continue;
-            if(allowsPets && !shelter.getAllowsPets()) continue;
-            if(requiresMedical && !shelter.hasMedicalStaff()) continue;
-            if(!hasSpace(shelter, minAvailableSpaces)) continue;
+    public ArrayList<Shelter> getShelters(String name, Location location,
+                                          boolean allowsPets) {
+        ArrayList<Shelter> result = new ArrayList<Shelter>();
+        for (Shelter shelter : getShelters(name, location)) {
+            if (matchesName(shelter, name)
+                    && matchesLocation(shelter, location)
+                    && shelter.getAllowsPets() == allowsPets) {
+                result.add(shelter);
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Returns open shelters that meet pet, medical-staff, and capacity requirements.
+     *
+     * @param allowsPets whether the shelter must allow pets
+     * @param requiresMedical whether medical staff are required
+     * @param minAvailableSpaces the minimum number of spaces needed
+     * @return the shelters meeting all requirements
+     */
+    public ArrayList<Shelter> getShelters(boolean allowsPets,
+                                          boolean requiresMedical,
+                                          int minAvailableSpaces) {
+        ArrayList<Shelter> result = new ArrayList<Shelter>();
+        for (Shelter shelter : getShelters()) {
+            if (!shelter.isOpen()) {
+                continue;
+            }
+            if (allowsPets && !shelter.getAllowsPets()) {
+                continue;
+            }
+            if (requiresMedical && !shelter.hasMedicalStaff()) {
+                continue;
+            }
+            if (!hasSpace(shelter, minAvailableSpaces)) {
+                continue;
+            }
 
             result.add(shelter);
         }
         return result;
     }
 
+    /**
+     * Finds the closest shelter by driving distance from a given location.
+     *
+     * @param location the starting location
+     * @param shelters the shelters to compare
+     * @return the closest shelter, or null if no shelters are available
+     * @throws IOException if the map service cannot be reached
+     * @throws InterruptedException if the map request is interrupted
+     */
     public Shelter findShelterByDrivingDistance(
             Location location, ArrayList<Shelter> shelters)
             throws IOException, InterruptedException {
@@ -117,10 +180,31 @@ public class ShelterList {
         return closestShelter;
     }
 
-    public boolean addShelter(String name, Location location, int maxCapacity, int currentOccupancy, boolean allowsPets, boolean isOpen, ArrayList<Resource> resources) {
-        return addShelter(new Shelter(name, location, maxCapacity, currentOccupancy, allowsPets, isOpen, resources));
+    /**
+     * Creates and adds a new shelter.
+     *
+     * @param name the shelter name
+     * @param location the shelter location
+     * @param maxCapacity the maximum capacity
+     * @param currentOccupancy the current number of occupants
+     * @param allowsPets whether pets are allowed
+     * @param isOpen whether the shelter is open
+     * @param resources the shelter resources
+     * @return true if the shelter was added successfully
+     */
+    public boolean addShelter(String name, Location location, int maxCapacity,
+                              int currentOccupancy, boolean allowsPets,
+                              boolean isOpen, ArrayList<Resource> resources) {
+        return addShelter(new Shelter(name, location, maxCapacity,
+                currentOccupancy, allowsPets, isOpen, resources));
     }
 
+    /**
+     * Adds an existing shelter when it is valid and its name is unique.
+     *
+     * @param shelter the shelter to add
+     * @return true if the shelter was added successfully
+     */
     public boolean addShelter(Shelter shelter) {
         if (shelter == null) {
             return false;
@@ -134,6 +218,12 @@ public class ShelterList {
         return true;
     }
 
+    /**
+     * Removes a shelter from the list using its unique ID.
+     *
+     * @param shelter the shelter to remove
+     * @return true if the shelter was removed successfully
+     */
     public boolean removeShelter(Shelter shelter) {
         if (shelter == null) {
             return false;
@@ -147,54 +237,77 @@ public class ShelterList {
         return false;
     }
 
+    /**
+     * Removes all shelters from the in-memory shelter list.
+     */
     public void clearShelters() {
         shelters.clear();
     }
-    
+
+    /**
+     * Saves all shelters to the shelters JSON file.
+     */
     public void save() {
         DataWriter.saveShelters();
     }
 
+    /**
+     * Determines whether a shelter name matches a search term.
+     *
+     * @param shelter the shelter to evaluate
+     * @param name the name search term
+     * @return true if the shelter name matches
+     */
     private boolean matchesName(Shelter shelter, String name) {
-        if(name == null || name.isEmpty()) {
+        if (name == null || name.isEmpty()) {
             return true;
         }
         return shelter.getName().toLowerCase().contains(name.toLowerCase());
     }
 
+    /**
+     * Determines whether a shelter is at a specified location.
+     *
+     * @param shelter the shelter to evaluate
+     * @param location the location to match
+     * @return true if the shelter location matches
+     */
     private boolean matchesLocation(Shelter shelter, Location location) {
-        if(location == null) {
+        if (location == null) {
             return true;
         }
         return shelter.getLocation().equals(location);
     }
 
-    // if(allowPetsMatch(shelter, allowsPets) && hasMedicalStaffMatch(shelter, requiresMedical) && hasSpace(shelter, minAvailableSpaces))
     /**
-     * Checks if shelter meets criteria with pets
-     * @param shelter
-     * @param allowsPets
-     * @return true if both parameters match and false if they dont
+     * Determines whether a shelter's pet policy matches the requested policy.
+     *
+     * @param shelter the shelter to evaluate
+     * @param allowsPets the required pet policy
+     * @return true if the pet policy matches
      */
     private boolean allowPetsMatch(Shelter shelter, boolean allowsPets) {
         return shelter.getAllowsPets() == allowsPets;
     }
 
     /**
-     * Checks if shelter meets criteria with Medical Staff
-     * @param shelter
-     * @param requiresMedical
-     * @return true if it does and false if not
+     * Determines whether a shelter's medical-staff availability matches a requirement.
+     *
+     * @param shelter the shelter to evaluate
+     * @param requiresMedical whether medical staff are required
+     * @return true if the medical-staff requirement matches
      */
-    private boolean hasMedicalStaffMatch(Shelter shelter, boolean requiresMedical) {
+    private boolean hasMedicalStaffMatch(Shelter shelter,
+                                         boolean requiresMedical) {
         return shelter.hasMedicalStaff() == requiresMedical;
     }
 
     /**
-     * Checks if shelter has enough space
-     * @param shelter
-     * @param minAvailableSpaces
-     * @return true if it does and false if not
+     * Determines whether a shelter has enough available capacity.
+     *
+     * @param shelter the shelter to evaluate
+     * @param minAvailableSpaces the minimum available spaces required
+     * @return true if the shelter has enough space
      */
     private boolean hasSpace(Shelter shelter, int minAvailableSpaces) {
         return shelter.getAvailableSpaces() >= minAvailableSpaces;

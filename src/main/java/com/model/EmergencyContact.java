@@ -1,10 +1,9 @@
 package com.model;
 
 /**
- * @author KTPeach
- * EmergencyContact, contact information for someone to notify in an emergency.
+ * Represents a person to contact in an emergency.
+ * Stores contact information and their relationship to the user.
  */
-
 public class EmergencyContact {
 
     private String firstName;
@@ -15,17 +14,18 @@ public class EmergencyContact {
     private String relationship;
 
     /**
-     * Constructor for an EmergencyContact object.
-     * @param firstName the first name as a String
-     * @param lastName the last name as a String
-     * @param age the age as an int
-     * @param email the email address as a String
-     * @param phoneNumber the phone number as a String
-     * @param relationship the relationship to the user as a String
+     * Creates an emergency contact.
+     *
+     * @param firstName the contact's first name
+     * @param lastName the contact's last name
+     * @param age the contact's age
+     * @param email the contact's email address
+     * @param phoneNumber the contact's phone number
+     * @param relationship the contact's relationship to the user
      */
-
-    public EmergencyContact(String firstName, String lastName, int age, String email,
-                            String phoneNumber, String relationship) {
+    public EmergencyContact(String firstName, String lastName, int age,
+                            String email, String phoneNumber,
+                            String relationship) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
@@ -35,69 +35,69 @@ public class EmergencyContact {
     }
 
     /**
-     * Returns the first name
-     * @return the first name as a String
+     * Returns the contact's first name.
+     *
+     * @return the first name
      */
-
     public String getFirstName() {
         return firstName;
     }
 
     /**
-     * Returns the last name
-     * @return the last name as a String
+     * Returns the contact's last name.
+     *
+     * @return the last name
      */
-
     public String getLastName() {
         return lastName;
     }
 
     /**
-     * Returns the age
-     * @return the age as an int
+     * Returns the contact's age.
+     *
+     * @return the age
      */
-
     public int getAge() {
         return age;
     }
 
     /**
-     * Returns the email
-     * @return the email as a String
+     * Returns the contact's email address.
+     *
+     * @return the email address
      */
-
     public String getEmail() {
         return email;
     }
 
     /**
-     * Returns the phone number
-     * @return the phone number as a String
+     * Returns the contact's phone number.
+     *
+     * @return the phone number
      */
-
     public String getPhoneNumber() {
         return phoneNumber;
     }
 
     /**
-     * Returns the relationship
-     * @return the relationship as a String
+     * Returns the contact's relationship to the user.
+     *
+     * @return the relationship
      */
-
     public String getRelationship() {
         return relationship;
     }
 
     /**
-     * Returns the name, relationship, and phone number
-     * @return the formatted information as a String
+     * Returns formatted contact information.
+     *
+     * @return the name, age, phone number, and email of this contact
      */
-
     @Override
     public String toString() {
-        return "Name: " + getFirstName() + " " + getLastName() + "\n" +
-        "Age: " + getAge() + "\n" + "Phone Number: " + getPhoneNumber() +
-        "\n" + "Email: " + getEmail();
-
+        return "Name: " + getFirstName() + " " + getLastName()
+                + "\nAge: " + getAge()
+                + "\nPhone Number: " + getPhoneNumber()
+                + "\nEmail: " + getEmail();
     }
 }

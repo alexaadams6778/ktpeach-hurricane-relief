@@ -3,62 +3,66 @@ package com.model;
 import com.location.Address;
 import com.location.MapTools;
 
+/**
+ * Provides a simple console test for finding the closest shelter
+ * and displaying driving directions from a Charleston address.
+ */
 public class UI {
 
+    /**
+     * Runs the shelter-location demonstration using sample Charleston-area shelters.
+     */
     public void run() {
-        // A Charleston address near the waterfront
         Address userAddress = new Address(
                 "1 Vendue Range",
                 "Charleston",
                 "SC",
                 "29401"
         );
+
         Address closestShelter;
 
-        // Example hurricane-shelter locations
         Address[] shelters = {
                 new Address("2950 Carner Avenue",
-                        "North Charleston", "SC", "29405"), // Military Magnet
+                        "North Charleston", "SC", "29405"),
 
                 new Address("5200 Lackawanna Boulevard",
-                        "North Charleston", "SC", "29405"), // North Charleston CAES
+                        "North Charleston", "SC", "29405"),
 
                 new Address("3841 Leeds Avenue",
-                        "North Charleston", "SC", "29405"), // Bond Court
+                        "North Charleston", "SC", "29405"),
 
                 new Address("3625 Ashley Phosphate Road",
-                        "North Charleston", "SC", "29418"), // Stall High School
+                        "North Charleston", "SC", "29418"),
 
                 new Address("6401 Dorchester Road",
-                        "North Charleston", "SC", "29418"), // Zucker Middle School
+                        "North Charleston", "SC", "29418"),
 
                 new Address("1624 State Road",
-                        "Summerville", "SC", "29483"), // Cane Bay High School
+                        "Summerville", "SC", "29483"),
 
                 new Address("1053 Russellville Road",
-                        "St. Stephen", "SC", "29479"), // St. Stephen Elementary
+                        "St. Stephen", "SC", "29479"),
 
                 new Address("200 Macedonia Foxes Circle",
-                        "St. Stephen", "SC", "29479"), // Macedonia Middle School
+                        "St. Stephen", "SC", "29479"),
 
                 new Address("101 Westview Boulevard",
-                        "Goose Creek", "SC", "29445"), // Westview Middle School
+                        "Goose Creek", "SC", "29445"),
 
                 new Address("1101 Boone Hill Road",
-                        "Summerville", "SC", "29483") // Summerville High School
+                        "Summerville", "SC", "29483")
         };
 
         try {
             closestShelter = MapTools.getInstance()
                     .findClosestAddress(userAddress, shelters);
 
-            System.out.println("User address: "
-                    + userAddress);
+            System.out.println("User address: " + userAddress);
+            System.out.println("Closest shelter: " + closestShelter);
 
-            System.out.println("Closest shelter: "
-                    + closestShelter);
-
-            String[] directions = MapTools.getInstance().getDrivingDirections(userAddress, closestShelter);
+            String[] directions = MapTools.getInstance()
+                    .getDrivingDirections(userAddress, closestShelter);
 
             for (String direction : directions) {
                 System.out.println(direction);
@@ -70,6 +74,11 @@ public class UI {
         }
     }
 
+    /**
+     * Starts the console shelter-location demonstration.
+     *
+     * @param args command-line arguments, which are not used
+     */
     public static void main(String[] args) {
         new UI().run();
     }

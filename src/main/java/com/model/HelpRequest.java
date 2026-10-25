@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 /**
- * A request for help with its location, needs, status, and comments.
+ * Represents a request for hurricane-relief assistance.
+ * Stores the request's needs, location, status, assigned volunteer,
+ * comments, and selected shelter.
  */
 public class HelpRequest {
 
@@ -23,24 +25,29 @@ public class HelpRequest {
     private ArrayList<Comment> commentThread;
     private String guestPhoneNumber;
     private User assignedVolunteer;
+    private Shelter selectedShelter;
+    private boolean requiresMedicalStaff;
 
     /**
-     * Creates a HelpRequest object when given a UUID (already existing user)
-     * @param requestID the unique identifier of the request as a UUID
-     * @param author the user who created the request as a User object
-     * @param description the description of the help needed as a String
-     * @param location the location as a Location object
-     * @param requiresCertification whether the request requires a certified volunteer as a boolean
-     * @param neededSkills the required skills as an ArrayList of Skill enum
-     * @param numberOfPeople the number of people needing help as an int
-     * @param numberOfPets the number of pets needing help as an int
-     * @param status the status of the request as a Status enum
-     * @param urgency the priority of the request as an Urgency enum
+     * Creates a request using an existing ID, such as when loading saved data.
+     *
+     * @param requestID the unique request ID
+     * @param author the user who created the request
+     * @param description the description of needed assistance
+     * @param location the location where help is needed
+     * @param requiresCertification whether a certified volunteer is needed
+     * @param neededSkills the skills needed for the request
+     * @param numberOfPeople the number of people needing help
+     * @param numberOfPets the number of pets needing help
+     * @param petInfo information about the pets
+     * @param status the request status
+     * @param urgency the urgency level
      */
     public HelpRequest(UUID requestID, User author, String description,
                        Location location, boolean requiresCertification,
                        ArrayList<Skill> neededSkills, int numberOfPeople,
-                       int numberOfPets, String petInfo, Status status, Urgency urgency) {
+                       int numberOfPets, String petInfo, Status status,
+                       Urgency urgency) {
         this.requestID = requestID;
         this.author = author;
         this.description = description;
@@ -61,20 +68,23 @@ public class HelpRequest {
     }
 
     /**
-     * Creates a HelpRequest object without a UUID (new user)
-     * @param author the user who created the request as a User object
-     * @param description the description of the help needed as a String
-     * @param location the location as a Location object
-     * @param requiresCertification whether the request requires a certified volunteer as a boolean
-     * @param neededSkills the required skills as an ArrayList of Skill enum
-     * @param numberOfPeople the number of people needing help as an int
-     * @param numberOfPets the number of pets needing help as an int
-     * @param status the status of the request as a Status enum
-     * @param urgency the priority of the request as an Urgency enum
+     * Creates a new request and automatically generates a unique request ID.
+     *
+     * @param author the user who created the request
+     * @param description the description of needed assistance
+     * @param location the location where help is needed
+     * @param requiresCertification whether a certified volunteer is needed
+     * @param neededSkills the skills needed for the request
+     * @param numberOfPeople the number of people needing help
+     * @param numberOfPets the number of pets needing help
+     * @param petInfo information about the pets
+     * @param status the initial request status
+     * @param urgency the urgency level
      */
     public HelpRequest(User author, String description, Location location,
-                       boolean requiresCertification, ArrayList<Skill> neededSkills,
-                       int numberOfPeople, int numberOfPets, String petInfo, Status status,
+                       boolean requiresCertification,
+                       ArrayList<Skill> neededSkills, int numberOfPeople,
+                       int numberOfPets, String petInfo, Status status,
                        Urgency urgency) {
         this(UUID.randomUUID(), author, description, location,
                 requiresCertification, neededSkills, numberOfPeople,
@@ -82,26 +92,27 @@ public class HelpRequest {
     }
 
     /**
-     * Returns the request ID
-     * @return the request ID as a UUID
+     * Returns the unique request ID.
+     *
+     * @return the request ID
      */
-
     public UUID getRequestID() {
         return requestID;
     }
 
     /**
-     * Returns the author
-     * @return the author as a User
+     * Returns the user who created the request.
+     *
+     * @return the request author
      */
-
     public User getAuthor() {
         return author;
     }
 
     /**
      * Returns the volunteer assigned to handle this request.
-     * @return the assigned volunteer as a User, or null if unassigned
+     *
+     * @return the assigned volunteer, or null when unassigned
      */
     public User getAssignedVolunteer() {
         return assignedVolunteer;
@@ -109,7 +120,8 @@ public class HelpRequest {
 
     /**
      * Assigns a volunteer to handle this request.
-     * @param assignedVolunteer the volunteer assigned to the request
+     *
+     * @param assignedVolunteer the volunteer to assign, or null to unassign
      */
     public void setAssignedVolunteer(User assignedVolunteer) {
         if (assignedVolunteer == null || assignedVolunteer instanceof Volunteer) {
@@ -118,107 +130,118 @@ public class HelpRequest {
     }
 
     /**
-     * Returns the description
-     * @return the description as a String
+     * Returns the request description.
+     *
+     * @return the request description
      */
-
     public String getDescription() {
         return description;
     }
 
     /**
-     * Returns the location
-     * @return the location as a Location
+     * Returns the location where help is needed.
+     *
+     * @return the request location
      */
-
     public Location getLocation() {
         return location;
     }
 
     /**
-     * Returns whether the request requires a certified volunteer
-     * @return true if certification is required as a boolean
+     * Determines whether the request requires a certified volunteer.
+     *
+     * @return true if certification is required
      */
-
     public boolean requiresCertification() {
         return requiresCertification;
     }
 
     /**
-     * Returns the needed skills
-     * @return the needed skills as an ArrayList of Skill enum
+     * Returns the skills needed for this request.
+     *
+     * @return the list of needed skills
      */
-
     public ArrayList<Skill> getNeededSkills() {
         return neededSkills;
     }
 
     /**
-     * Returns the number of people
-     * @return the number of people as an int
+     * Returns the number of people needing assistance.
+     *
+     * @return the number of people
      */
-
     public int getNumberOfPeople() {
         return numberOfPeople;
     }
 
     /**
-     * Returns the number of pets
-     * @return the number of pets as an int
+     * Returns the number of pets needing assistance.
+     *
+     * @return the number of pets
      */
-
     public int getNumberOfPets() {
         return numberOfPets;
     }
 
+    /**
+     * Returns the pet information for this request.
+     *
+     * @return the pet information
+     */
     public String getPetInfo() {
         return petInfo;
     }
 
     /**
-     * Returns the status
-     * @return the status as a Status enum
+     * Returns the current request status.
+     *
+     * @return the request status
      */
-
     public Status getStatus() {
         return status;
     }
 
     /**
-     * Returns the urgency
-     * @return the urgency as an Urgency enum
+     * Returns the urgency level of the request.
+     *
+     * @return the request urgency
      */
-
     public Urgency getUrgency() {
         return urgency;
     }
 
     /**
-     * Returns the hurricane data
-     * @return the hurricane data as a HurricaneData object
+     * Returns the hurricane data linked to this request.
+     *
+     * @return the hurricane data
      */
-
     public HurricaneData getHurricaneData() {
         return hurricaneData;
     }
 
     /**
-     * Returns the comment thread
-     * @return the comment thread as an ArrayList of Comment objects
+     * Returns the comments on this request.
+     *
+     * @return the request comment thread
      */
-
     public ArrayList<Comment> getCommentThread() {
         return commentThread;
     }
 
+    /**
+     * Returns the phone number for the guest who created this request.
+     *
+     * @return the guest phone number, or null for account-based requests
+     */
     public String getGuestPhoneNumber() {
         return guestPhoneNumber;
     }
-    /**
-     * Adds a comment to the request if the comment is not null
-     * @param comment the comment as a Comment object
-     */
 
+    /**
+     * Adds a comment to this request when the comment is valid.
+     *
+     * @param comment the comment to add
+     */
     public void addComment(Comment comment) {
         if (comment != null) {
             commentThread.add(comment);
@@ -226,45 +249,68 @@ public class HelpRequest {
     }
 
     /**
-     * Updates an open request to claimed, a claimed request to in progress, or an
-     * in-progress request to resolved
+     * Advances an assigned or claimed request to in progress.
      */
-
     public void updateStatus() {
         if (status == Status.ASSIGNED || status == Status.CLAIMED) {
             status = Status.IN_PROGRESS;
         }
     }
 
+    /**
+     * Updates the request description.
+     *
+     * @param description the new description
+     */
     public void setDescription(String description) {
         if (description != null) {
             this.description = description;
         }
     }
 
+    /**
+     * Updates the request location.
+     *
+     * @param location the new location
+     */
     public void setLocation(Location location) {
         if (location != null) {
             this.location = location;
         }
     }
 
+    /**
+     * Updates the number of people needing help.
+     *
+     * @param numberOfPeople the updated number of people
+     */
     public void setNumberOfPeople(int numberOfPeople) {
         this.numberOfPeople = numberOfPeople;
     }
 
+    /**
+     * Updates the number of pets needing help.
+     *
+     * @param numberOfPets the updated number of pets
+     */
     public void setNumberOfPets(int numberOfPets) {
         this.numberOfPets = numberOfPets;
     }
 
+    /**
+     * Updates the pet information for this request.
+     *
+     * @param petInfo the updated pet information
+     */
     public void setPetInfo(String petInfo) {
         this.petInfo = petInfo;
     }
 
     /**
-     * Sets the request status if the given status isn't null
-     * @param status the status of the request as a Status enum
+     * Updates the request status when the provided status is valid.
+     *
+     * @param status the new request status
      */
-
     public void setStatus(Status status) {
         if (status != null) {
             this.status = status;
@@ -272,10 +318,10 @@ public class HelpRequest {
     }
 
     /**
-     * Sets the request priority if the given urgency is not null
-     * @param urgency the priority of the request as an Urgency enum
+     * Updates the urgency level when the provided value is valid.
+     *
+     * @param urgency the new urgency level
      */
-
     public void setUrgency(Urgency urgency) {
         if (urgency != null) {
             this.urgency = urgency;
@@ -283,37 +329,47 @@ public class HelpRequest {
     }
 
     /**
-     * Sets the hurricane data
-     * @param hurricaneData the hurricane information as a HurricaneData object
+     * Updates the hurricane data for this request.
+     *
+     * @param hurricaneData the updated hurricane information
      */
-
     public void setHurricaneData(HurricaneData hurricaneData) {
         this.hurricaneData = hurricaneData;
     }
 
+    /**
+     * Stores the phone number of the guest who created this request.
+     *
+     * @param guestPhoneNumber the guest's phone number
+     */
     public void setGuestPhoneNumber(String guestPhoneNumber) {
         this.guestPhoneNumber = guestPhoneNumber;
     }
 
     /**
-     * Checks the location, certification requirement, and optional skill of a request
+     * Checks whether this request matches location, certification, and skill criteria.
+     *
      * @param location the location to match
-     * @param requiresCertification whether the request requires a certified volunteer as a boolean
-     * @param skill the skill as a Skill enum
-     * @return true if it's a match as a boolean
+     * @param requiresCertification whether certification must be required
+     * @param skill an optional required skill
+     * @return true if this request matches all criteria
      */
+    public boolean isARequest(Location location, boolean requiresCertification,
+                              Skill skill) {
+        boolean sameLocation = this.location == null
+                ? location == null
+                : this.location.equals(location);
 
-    public boolean isARequest(Location location, boolean requiresCertification, Skill skill) {
-        boolean sameLocation = this.location == null ? location == null : this.location.equals(location);
-        return sameLocation && this.requiresCertification == requiresCertification && (skill == null || neededSkills.contains(skill));
+        return sameLocation
+                && this.requiresCertification == requiresCertification
+                && (skill == null || neededSkills.contains(skill));
     }
 
     /**
-     * Returns the description and status
-     * @return the formatted information as a String
+     * Returns a concise display string for the request.
+     *
+     * @return the description, status, and assigned volunteer username
      */
-
-
     @Override
     public String toString() {
         String handler = assignedVolunteer == null
@@ -323,35 +379,59 @@ public class HelpRequest {
         return description + " - " + status.label + " - " + handler;
     }
 
-    // The family names/ages, pet identity and medical note use the existing description.
-    private Shelter selectedShelter;
-    private boolean requiresMedicalStaff;
-
+    /**
+     * Returns the shelter selected for this request.
+     *
+     * @return the selected shelter, or null if one has not been selected
+     */
     public Shelter getSelectedShelter() {
         return selectedShelter;
     }
 
+    /**
+     * Selects a shelter for this request.
+     *
+     * @param selectedShelter the selected shelter
+     */
     public void setSelectedShelter(Shelter selectedShelter) {
         this.selectedShelter = selectedShelter;
     }
 
+    /**
+     * Determines whether medical staff are required for this request.
+     *
+     * @return true if medical staff are required
+     */
     public boolean requiresMedicalStaff() {
         return requiresMedicalStaff;
     }
 
+    /**
+     * Updates whether medical staff are required.
+     *
+     * @param requiresMedicalStaff true when medical staff are required
+     */
     public void setRequiresMedicalStaff(boolean requiresMedicalStaff) {
         this.requiresMedicalStaff = requiresMedicalStaff;
     }
 
+    /**
+     * Determines whether the request is actively assigned or in progress.
+     *
+     * @return true if the request has an active assignment
+     */
     public boolean isActiveAssignment() {
         return status == Status.ASSIGNED || status == Status.CLAIMED
                 || status == Status.IN_PROGRESS;
     }
 
+    /**
+     * Determines whether the request has reached a final status.
+     *
+     * @return true if the request is complete, resolved, or cancelled
+     */
     public boolean isTerminal() {
         return status == Status.COMPLETE || status == Status.RESOLVED
                 || status == Status.CANCELLED;
     }
-
-
 }
