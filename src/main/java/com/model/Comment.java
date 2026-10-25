@@ -3,6 +3,7 @@ package com.model;
 import java.util.ArrayList;
 
 /**
+ * @author KTPeach
  * Represents a comment posted on a help request.
  * A comment records its author, time, text, and any text replies.
  */

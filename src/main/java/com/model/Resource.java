@@ -1,6 +1,7 @@
 package com.model;
 
 /**
+ * @author KTPeach
  * Represents a supply or resource available at a shelter.
  * Examples include water, food, beds, or medical supplies.
  */

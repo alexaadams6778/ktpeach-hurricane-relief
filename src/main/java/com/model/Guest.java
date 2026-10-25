@@ -3,6 +3,7 @@ package com.model;
 import java.util.ArrayList;
 
 /**
+ * @author KTPeach
  * Represents a guest who can submit a help request without creating an account.
  * A guest is identified by their phone number and current location.
  */
@@ -75,7 +76,7 @@ public class Guest {
         }
 
         if (request.getStatus() == Status.CANCELLED
-                || request.getStatus() == Status.RESOLVED) {
+                || request.getStatus() == Status.COMPLETE) {
             return;
         }
 

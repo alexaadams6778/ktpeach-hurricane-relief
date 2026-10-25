@@ -3,10 +3,9 @@ package com.model;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
-import com.location.Address;
-import com.location.MapTools;
 
 /**
+ * @author KTPeach
  * Provides the main facade for the Hurricane Relief System.
  * Coordinates users, help requests, shelters, recommendations,
  * and hurricane information.
@@ -263,8 +262,7 @@ public class HurricaneReliefSystem {
         if (user == null || request == null || request.getAuthor() == null
                 || !requestList.getRequests().contains(request)
                 || !request.getAuthor().getUserID().equals(user.getUserID())
-                || request.getStatus() == Status.CANCELLED
-                || request.getStatus() == Status.RESOLVED 
+                || request.getStatus() == Status.CANCELLED 
                 || request.getStatus() == Status.COMPLETE) {
             return false;
         }
@@ -537,8 +535,7 @@ public class HurricaneReliefSystem {
         Volunteer volunteer = (Volunteer) user;
 
         if (!volunteer.getAssignedRequests().contains(request)
-                || (request.getStatus() != Status.ASSIGNED
-                && request.getStatus() != Status.CLAIMED)) {
+                || (request.getStatus() != Status.ASSIGNED)) {
             return false;
         }
 
@@ -578,7 +575,6 @@ public class HurricaneReliefSystem {
         if (request == null
                 || !requestList.getRequests().contains(request)
                 || (request.getStatus() != Status.ASSIGNED
-                && request.getStatus() != Status.CLAIMED
                 && request.getStatus() != Status.IN_PROGRESS)) {
             return false;
         }

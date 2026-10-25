@@ -3,8 +3,6 @@ package com.model;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.UUID;
-import java.io.IOException;
-import java.io.FileWriter;
 
 /**
  * Represents a volunteer who can be matched with and assigned to help requests.
@@ -37,13 +35,13 @@ public class Volunteer extends User {
      * @param medicalInfo the volunteer's medical information
      * @param hasVehicle whether the volunteer has a vehicle
      */
-    public Volunteer(UUID userID, String userType, String firstName,
+    public Volunteer(UUID userID, String type, String firstName,
                      String lastName, String username, String password,
                      String email, String phoneNumber, Date dob,
                      Location location,
                      ArrayList<EmergencyContact> emergencyContacts,
                      ArrayList<String> medicalInfo, boolean hasVehicle) {
-        super(userID, userType, firstName, lastName, username, password,
+        super(userID, type, firstName, lastName, username, password,
                 email, phoneNumber, dob, location, emergencyContacts,
                 medicalInfo);
 
@@ -216,8 +214,7 @@ public class Volunteer extends User {
      */
     public void updateRequestStatus(HelpRequest request) {
         if (request != null && assignedRequests.contains(request)
-                && (request.getStatus() == Status.ASSIGNED
-                || request.getStatus() == Status.CLAIMED)) {
+                && (request.getStatus() == Status.ASSIGNED)) {
             request.updateStatus();
         }
     }

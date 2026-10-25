@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.UUID;
 
 /**
+ * @author KTPeach
  * Represents a manager assigned to operate a shelter.
  * A shelter manager can be authorized to complete relief requests.
  */

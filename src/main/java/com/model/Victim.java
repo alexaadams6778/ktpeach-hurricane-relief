@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.UUID;
 
 /**
+ * @author KTPeach
  * Represents a person or family requesting hurricane-relief assistance.
  * A victim can create, track, and cancel active help requests.
  */

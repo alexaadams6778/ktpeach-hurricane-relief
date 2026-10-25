@@ -1,6 +1,7 @@
 package com.model;
 
 /**
+ * @author KTPeach
  * Lists the urgency levels that can be assigned to a help request.
  */
 public enum Urgency {

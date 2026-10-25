@@ -1,6 +1,7 @@
 package com.model;
 
 /**
+ * @author KTPeach
  * Represents a street address, city, state, and ZIP code.
  * Locations are used for users, shelters, and help requests.
  */

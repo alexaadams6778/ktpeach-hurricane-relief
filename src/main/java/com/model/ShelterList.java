@@ -7,6 +7,7 @@ import com.location.Address;
 import com.location.MapTools;
 
 /**
+ * @author KTPeach
  * Stores and manages all shelters in the Hurricane Relief System.
  * Uses the singleton pattern so the application shares one shelter list.
  */
@@ -297,8 +298,7 @@ public class ShelterList {
      * @param requiresMedical whether medical staff are required
      * @return true if the medical-staff requirement matches
      */
-    private boolean hasMedicalStaffMatch(Shelter shelter,
-                                         boolean requiresMedical) {
+    private boolean hasMedicalStaffMatch(Shelter shelter, boolean requiresMedical) {
         return shelter.hasMedicalStaff() == requiresMedical;
     }
 

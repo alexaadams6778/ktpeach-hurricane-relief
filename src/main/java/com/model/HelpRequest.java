@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 /**
+ * @author KTPeach
  * Represents a request for hurricane-relief assistance.
  * Stores the request's needs, location, status, assigned volunteer,
  * comments, and selected shelter.
@@ -252,7 +253,7 @@ public class HelpRequest {
      * Advances an assigned or claimed request to in progress.
      */
     public void updateStatus() {
-        if (status == Status.ASSIGNED || status == Status.CLAIMED) {
+        if (status == Status.ASSIGNED) {
             status = Status.IN_PROGRESS;
         }
     }
@@ -421,8 +422,7 @@ public class HelpRequest {
      * @return true if the request has an active assignment
      */
     public boolean isActiveAssignment() {
-        return status == Status.ASSIGNED || status == Status.CLAIMED
-                || status == Status.IN_PROGRESS;
+        return status == Status.ASSIGNED || status == Status.IN_PROGRESS;
     }
 
     /**
@@ -431,7 +431,6 @@ public class HelpRequest {
      * @return true if the request is complete, resolved, or cancelled
      */
     public boolean isTerminal() {
-        return status == Status.COMPLETE || status == Status.RESOLVED
-                || status == Status.CANCELLED;
+        return status == Status.COMPLETE || status == Status.CANCELLED;
     }
 }

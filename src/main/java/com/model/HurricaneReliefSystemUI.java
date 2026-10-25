@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 /**
+ * @author KTPeach
  * Runs the console demonstration scenarios for the Hurricane Relief System.
  * Demonstrates request creation, volunteer matching, shelter selection,
  * trip export, family check-in, and role-based completion permissions.
@@ -30,7 +31,7 @@ public class HurricaneReliefSystemUI {
         matchRequest();
         findShelter();
         exportTripInfo();
-        completeScenario();
+        permissionsCheck();
     }
 
     /**
@@ -203,8 +204,8 @@ public class HurricaneReliefSystemUI {
      * Demonstrates that volunteers cannot complete a request, while a shelter
      * manager can complete it after the family checks into the shelter.
      */
-    public void completeScenario() {
-        System.out.println("\nCompletion permissions:");
+    public void permissionsCheck() {
+        System.out.println("\nCompletion permissions:\n");
 
         User rosa = hurricaneReliefSystem.getCurrentUser();
 

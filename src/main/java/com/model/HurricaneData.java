@@ -1,6 +1,7 @@
 package com.model;
 
 /**
+ * @author KTPeach
  * Stores wind-speed and category information for a hurricane.
  */
 public class HurricaneData {

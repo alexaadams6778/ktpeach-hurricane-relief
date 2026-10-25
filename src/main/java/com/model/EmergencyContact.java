@@ -1,6 +1,7 @@
 package com.model;
 
 /**
+ * @author KTPeach
  * Represents a person to contact in an emergency.
  * Stores contact information and their relationship to the user.
  */

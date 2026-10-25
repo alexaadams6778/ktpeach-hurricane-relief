@@ -1,10 +1,10 @@
 package com.model;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
 /**
+ * @author KTPeach
  * Represents a hurricane-relief shelter.
  * Stores capacity, occupancy, pet policy, resources, occupants,
  * and medical-staff availability.

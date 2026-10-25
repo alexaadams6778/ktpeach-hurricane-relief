@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.UUID;
 
 /**
+ * @author KTPeach
  * Stores and manages every user account in the Hurricane Relief System.
  * Uses the singleton pattern so the application shares one user list.
  */

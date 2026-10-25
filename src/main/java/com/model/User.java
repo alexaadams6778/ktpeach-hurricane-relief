@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.UUID;
 
 /**
+ * @author KTPeach
  * Represents a general user of the Hurricane Relief System.
  * Stores account, contact, location, emergency-contact, and medical information.
  */

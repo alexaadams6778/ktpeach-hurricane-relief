@@ -43,7 +43,7 @@ public class DataWriter extends DataConstants {
      * @return a JSONObject containing the shelter data
      */
 
-    public static JSONObject getShelterJSON(Shelter shelter) {
+    private static JSONObject getShelterJSON(Shelter shelter) {
         JSONObject shelterDetails = new JSONObject();
         shelterDetails.put(SHELTER_ID, shelter.getShelterID().toString());
         shelterDetails.put(SHELTER_NAME, shelter.getName());

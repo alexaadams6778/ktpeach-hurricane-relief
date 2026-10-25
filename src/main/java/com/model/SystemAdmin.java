@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.UUID;
 
 /**
+ * @author KTPeach
  * Represents a system administrator in the Hurricane Relief System.
  * A system administrator can approve volunteers, manage shelters,
  * remove inappropriate requests, and update hurricane information.
@@ -139,7 +140,7 @@ public class SystemAdmin extends User {
 
             for (HelpRequest request : RequestList.getInstance()
                     .getRequests()) {
-                if (request.getStatus() != Status.RESOLVED
+                if (request.getStatus() != Status.COMPLETE
                         && request.getStatus() != Status.CANCELLED) {
                     request.setHurricaneData(hurricaneData);
                 }

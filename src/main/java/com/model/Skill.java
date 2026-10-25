@@ -1,6 +1,7 @@
 package com.model;
 
 /**
+ * @author KTPeach
  * Lists the specialized skills a volunteer may have
  * or that a help request may require.
  */

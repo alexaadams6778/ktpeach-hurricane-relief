@@ -3,6 +3,7 @@ package com.model;
 import java.util.ArrayList;
 
 /**
+ * @author KTPeach
  * Stores and manages all help requests in the Hurricane Relief System.
  * Uses the singleton pattern so the application shares one request list.
  */
