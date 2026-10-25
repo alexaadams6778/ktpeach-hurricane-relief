@@ -13,8 +13,9 @@ import java.nio.charset.StandardCharsets;
 import java.time.Duration;
 
 /**
- * 
- * MapTools Provides map api tools
+ * Provides geocoding, driving-distance, route, and direction tools
+ * through the configured mapping API.
+ * Uses the singleton pattern so one MapTools instance is shared.
  */
 public class MapTools {
     private static final String GEOCODING_URL =
@@ -39,6 +40,11 @@ public class MapTools {
         objectMapper = new ObjectMapper();
     }
 
+    /**
+     * Returns the single shared MapTools instance.
+     *
+     * @return the MapTools instance
+     */
     public static MapTools getInstance() {
         if(mapTools == null){
             mapTools = new MapTools();
@@ -361,7 +367,15 @@ public class MapTools {
         }
     }
 
-    /** Returns route distance in meters, not estimated travel time. */
+    /**
+     * Calculates the driving distance between two addresses in meters.
+     *
+     * @param start the route starting address
+     * @param end the route ending address
+     * @return the driving distance in meters
+     * @throws IOException if the routing service cannot return a valid distance
+     * @throws InterruptedException if the route request is interrupted
+     */
     public double getDrivingDistance(Address start, Address end)
             throws IOException, InterruptedException {
         return readDrivingDistance(getRoute(getCoordinates(start), getCoordinates(end)));

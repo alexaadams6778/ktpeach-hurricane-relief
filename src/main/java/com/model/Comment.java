@@ -1,12 +1,11 @@
 package com.model;
 
-/**
- * @author KTPeach
- * Comments on a help request
- */
-
 import java.util.ArrayList;
 
+/**
+ * Represents a comment posted on a help request.
+ * A comment records its author, time, text, and any text replies.
+ */
 public class Comment {
 
     private User author;
@@ -15,12 +14,12 @@ public class Comment {
     private ArrayList<String> replies;
 
     /**
-     * the constructor for a Comment object
-     * @param author the user that created the comment as a User object
-     * @param timestamp the time when the comment was posted as a String
-     * @param text the contents of the comment as a String
+     * Creates a comment on a help request.
+     *
+     * @param author the user who wrote the comment
+     * @param timestamp the time the comment was posted
+     * @param text the comment text
      */
-
     public Comment(User author, String timestamp, String text) {
         this.author = author;
         this.timestamp = timestamp;
@@ -29,46 +28,46 @@ public class Comment {
     }
 
     /**
-     * returns the author of the comment
-     * @return a User
+     * Returns the user who wrote the comment.
+     *
+     * @return the comment author
      */
-
     public User getAuthor() {
         return author;
     }
 
     /**
-     * returns the timestamp of the comment
-     * @return a String
+     * Returns the time the comment was posted.
+     *
+     * @return the comment timestamp
      */
-
     public String getTimestamp() {
         return timestamp;
     }
 
     /**
-     * returns the contents of the comment
-     * @return a String
+     * Returns the comment text.
+     *
+     * @return the comment text
      */
-
     public String getText() {
         return text;
     }
 
     /**
-     * returns the replies to the comments
-     * @return an ArrayList of Strings
+     * Returns the replies to this comment.
+     *
+     * @return the list of reply text
      */
-
     public ArrayList<String> getReplies() {
         return replies;
     }
 
     /**
-     * adds a reply to a comment, and checks to make sure the reply is valid
-     * @param reply the reply to the comment as a String
+     * Adds a nonblank reply to this comment.
+     *
+     * @param reply the reply text to add
      */
-
     public void addReply(String reply) {
         if (reply != null && !reply.isBlank()) {
             replies.add(reply);
@@ -76,10 +75,10 @@ public class Comment {
     }
 
     /**
-     * Returns the author and the contents of the comment
-     * @return the formatted information as a String
+     * Returns the author username and comment text.
+     *
+     * @return the formatted comment
      */
-
     @Override
     public String toString() {
         return author.getUsername() + ": " + text;
