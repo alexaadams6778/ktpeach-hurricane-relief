@@ -4,6 +4,10 @@ KTPeach Hurricane Relief System is a Java application designed to help communiti
 
 The project demonstrates a complete relief scenario: the Carter family creates a request for transportation and medical support, Rosa Delgado is matched as a transportation volunteer, the system recommends a suitable shelter, trip information is exported, the family checks in, and Shelter Manager Felix Vance completes the request.
 
+## Walkthrough Video
+
+YouTube Link: [youtube.com/watch?v=iax2gTID8e8](https://www.youtube.com/watch?v=iax2gTID8e8)
+
 ## Features
 
 - Create and manage hurricane-relief help requests
