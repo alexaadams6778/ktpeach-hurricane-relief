@@ -2,6 +2,7 @@ package com.model;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.net.URI;
 import java.util.ArrayList;
 
 import org.json.simple.JSONArray;
@@ -27,7 +28,7 @@ public class DataWriter extends DataConstants {
             jsonShelters.add(getShelterJSON(shelters.get(i)));
         }
 
-        try (FileWriter file = new FileWriter(SHELTER_FILE_NAME)) {
+        try (FileWriter file = new FileWriter(SHELTER_FILE_NAME,getFileWritingPath(SHELTER_FILE_NAME_JSON, SHELTER_FILE_NAME_JSON))) {
 
             file.write(jsonShelters.toJSONString());
             file.flush();
@@ -282,4 +283,18 @@ public class DataWriter extends DataConstants {
         }
         return commentsJSON;
     }
+
+    private static String getFileWritingPath(String PATH_NAME, String JUNIT_PATH_NAME) {
+		try {
+			if(isJUnitTest()){
+				URI url = DataWriter.class.getResource(JUNIT_PATH_NAME).toURI();
+				return url.getPath();
+			} else {
+				return PATH_NAME;
+			}
+		} catch(Exception e){
+			System.out.println("Difficulty getting resource path");
+			return "";
+		}
+	}
 }

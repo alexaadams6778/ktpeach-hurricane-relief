@@ -9,6 +9,7 @@ public abstract class DataConstants {
 
     // User
     protected static final String USER_FILE_NAME = "src/main/java/com/json/users.json";
+    protected static final String USER_FILE_NAME_JSON = "/data/users.json";
     protected static final String USER_TYPE = "type";
     protected static final String USER_ID = "userID";
     protected static final String USER_FIRSTNAME = "firstName";
@@ -39,6 +40,7 @@ public abstract class DataConstants {
 
     // Request
     protected static final String REQUEST_FILE_NAME = "src/main/java/com/json/requests.json";
+protected static final String REQUEST_FILE_NAME_JSON = "/data/requests.json";
     protected static final String REQUEST_ID = "requestID";
     protected static final String REQUEST_AUTHOR = "author";
     protected static final String REQUEST_DESCRIPTION = "description";
@@ -58,6 +60,7 @@ public abstract class DataConstants {
 
     // Shelter
     protected static final String SHELTER_FILE_NAME = "src/main/java/com/json/shelters.json";
+    protected static final String SHELTER_FILE_NAME_JSON = "/data/shelters.json";
     protected static final String SHELTER_ID = "shelterID";
     protected static final String SHELTER_NAME = "name";
     protected static final String SHELTER_LOCATION = "location";
@@ -90,4 +93,13 @@ public abstract class DataConstants {
     protected static final String COMMENT_ID = "commentID";
     protected static final String COMMENT_TIMESTAMP = "timestamp";
     protected static final String COMMENT_TEXT = "text";
+
+    public static boolean isJUnitTest() {  
+		for (StackTraceElement element : Thread.currentThread().getStackTrace()) {
+		  if (element.getClassName().startsWith("org.junit.")) {
+			return true;
+		  }           
+		}
+		return false;
+	  }
 }
