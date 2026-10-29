@@ -28,7 +28,7 @@ public class DataWriter extends DataConstants {
             jsonShelters.add(getShelterJSON(shelters.get(i)));
         }
 
-        try (FileWriter file = new FileWriter(SHELTER_FILE_NAME,getFileWritingPath(SHELTER_FILE_NAME_JSON, SHELTER_FILE_NAME_JSON))) {
+        try (FileWriter file = new FileWriter(getFileWritingPath(SHELTER_FILE_NAME_JSON, SHELTER_FILE_NAME_JSON))) {
 
             file.write(jsonShelters.toJSONString());
             file.flush();
@@ -103,7 +103,7 @@ public class DataWriter extends DataConstants {
                 jsonUsers.add(getUserJSON(users.get(i)));
             }
 
-            try (FileWriter file = new FileWriter(USER_FILE_NAME)) {
+            try (FileWriter file = new FileWriter(getFileWritingPath(USER_FILE_NAME, USER_FILE_NAME_JSON))) {
 
                 file.write(jsonUsers.toJSONString());
                 file.flush();
@@ -206,7 +206,7 @@ public class DataWriter extends DataConstants {
                 jsonRequests.add(getRequestJSON(requests.get(i)));
             }
 
-            try (FileWriter file = new FileWriter(REQUEST_FILE_NAME)) {
+            try (FileWriter file = new FileWriter(getFileWritingPath(REQUEST_FILE_NAME, REQUEST_FILE_NAME_JSON))) {
 
                 file.write(jsonRequests.toJSONString());
                 file.flush();
