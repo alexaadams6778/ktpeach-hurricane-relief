@@ -154,7 +154,7 @@ public class DataLoader extends DataConstants{
 
         try {
             // Read the JSON file
-            FileReader reader = new FileReader(SHELTER_FILE_NAME); 
+            BufferedReader reader = getReaderFromFile(SHELTER_FILE_NAME, SHELTER_FILE_NAME_JSON);
             JSONParser parser = new JSONParser();
             JSONArray sheltersJSON = (JSONArray) parser.parse(reader);
 
@@ -238,7 +238,7 @@ public class DataLoader extends DataConstants{
         ArrayList<HelpRequest> ret = new ArrayList<>();
 
         try {
-            FileReader reader = new FileReader(REQUEST_FILE_NAME);
+            BufferedReader reader = getReaderFromFile(REQUEST_FILE_NAME, REQUEST_FILE_NAME_JSON);
             JSONParser parser = new JSONParser();
             JSONArray requestsJSON = (JSONArray)parser.parse(reader);
 
