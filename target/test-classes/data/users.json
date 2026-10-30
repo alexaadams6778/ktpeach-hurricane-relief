@@ -1,1 +1,177 @@
-[]
+[
+  {
+    "firstName": "Maya",
+    "lastName": "Thompson",
+    "password": "securePassword123",
+    "phoneNumber": "555-010-1842",
+    "dob": "1994-06-18",
+    "location": {
+      "zipCode": "32301",
+      "address": "418 Oak Street",
+      "city": "Tallahassee",
+      "state": "FL"
+    },
+    "emergencyContacts": [
+      {
+        "firstName": "Daniel",
+        "lastName": "Thompson",
+        "age": 24,
+        "phoneNumber": "555-010-1843",
+        "relationship": "Brother",
+        "email": "daniel.thompson@gmail.com"
+      }
+    ],
+    "medicalInfo": ["Peanut allergy"],
+    "type": "Victim",
+    "userID": "5a2f3d4a-12bc-4e6d-9c01-7d1f2a3b4c5d",
+    "email": "maya.thompson@gmail.com",
+    "username": "maya.thompson"
+  },
+  {
+    "firstName": "Jordan",
+    "lastName": "Lee",
+    "password": "securePassword456",
+    "phoneNumber": "555-010-2756",
+    "dob": "1988-11-03",
+    "location": {
+      "zipCode": "32501",
+      "address": "92 Harbor Drive",
+      "city": "Pensacola",
+      "state": "FL"
+    },
+    "emergencyContacts": [
+      {
+        "firstName": "Avery",
+        "lastName": "Lee",
+        "age": 25,
+        "phoneNumber": "555-010-2757",
+        "relationship": "Spouse",
+        "email": "avery.lee@gmail.com"
+      }
+    ],
+    "medicalInfo": [],
+    "type": "Admin",
+    "userID": "8c6e1b2d-3f4a-4c5b-9d8e-0f1a2b3c4d5e",
+    "email": "jordan.lee@gmail.com",
+    "username": "jordan.lee"
+  },
+  {
+    "lastName": "Reese",
+    "emergencyContacts": [],
+    "medicalInfo": [],
+    "type": "Volunteer",
+    "userID": "44ffdbf5-a74d-4568-9ac0-8ca5350cede0",
+    "firstName": "Colby",
+    "password": "jackcheese",
+    "phoneNumber": "111-111-1111",
+    "vehicleDescription": "",
+    "hasVehicle": false,
+    "dob": "1988-11-03",
+    "location": {
+      "zipCode": "32501",
+      "address": "92 Harbor Drive",
+      "city": "Pensacola",
+      "state": "FL"
+    },
+    "email": "colby.reese@gmail.com",
+    "username": "colby.reese"
+  },
+  {
+    "lastName": "Delgado",
+    "emergencyContacts": [],
+    "medicalInfo": [],
+    "type": "Volunteer",
+    "userID": "a2222222-2222-4222-8222-222222222201",
+    "firstName": "Rosa",
+    "password": "fordTruck2026",
+    "phoneNumber": "843-555-0199",
+    "vehicleDescription": "Ford F-350 truck",
+    "hasVehicle": true,
+    "dob": "1990-04-12",
+    "location": {
+      "zipCode": "29401",
+      "address": "120 Broad Street",
+      "city": "Charleston",
+      "state": "SC"
+    },
+    "email": "rosa.delgado@gmail.com",
+    "username": "rosa.delgado"
+  },
+  {
+    "lastName": "Vance",
+    "emergencyContacts": [],
+    "medicalInfo": [],
+    "type": "ShelterManager",
+    "userID": "a3333333-3333-4333-8333-333333333301",
+    "firstName": "Felix",
+    "password": "shelterAdmin2026",
+    "phoneNumber": "843-555-0144",
+    "assignedShelter": "b1111111-1111-4111-8111-111111111101",
+    "dob": "1985-08-20",
+    "location": {
+      "zipCode": "29405",
+      "address": "2950 Carner Avenue",
+      "city": "North Charleston",
+      "state": "SC"
+    },
+    "email": "felix.vance@charlestonshelters.org",
+    "username": "felix.shelter"
+  },
+  {
+    "firstName": "Sarah",
+    "lastName": "Jenkins",
+    "password": "password123",
+    "phoneNumber": "843-555-0101",
+    "dob": "1992-03-14",
+    "location": {
+      "zipCode": "29401",
+      "address": "1 Vendue Range",
+      "city": "Charleston",
+      "state": "SC"
+    },
+    "emergencyContacts": [],
+    "medicalInfo": [],
+    "type": "Victim",
+    "userID": "c1111111-1111-4111-8111-111111111101",
+    "email": "sarah.jenkins@gmail.com",
+    "username": "sarah.jenkins"
+  },
+  {
+    "firstName": "David",
+    "lastName": "Miller",
+    "password": "password123",
+    "phoneNumber": "843-555-0102",
+    "dob": "1984-11-25",
+    "location": {
+      "zipCode": "29401",
+      "address": "45 Meeting Street",
+      "city": "Charleston",
+      "state": "SC"
+    },
+    "emergencyContacts": [],
+    "medicalInfo": [],
+    "type": "Victim",
+    "userID": "c1111111-1111-4111-8111-111111111102",
+    "email": "david.miller@gmail.com",
+    "username": "david.miller"
+  },
+  {
+    "firstName": "Elena",
+    "lastName": "Rostova",
+    "password": "password123",
+    "phoneNumber": "843-555-0103",
+    "dob": "1996-07-08",
+    "location": {
+      "zipCode": "29401",
+      "address": "88 King Street",
+      "city": "Charleston",
+      "state": "SC"
+    },
+    "emergencyContacts": [],
+    "medicalInfo": [],
+    "type": "Victim",
+    "userID": "c1111111-1111-4111-8111-111111111103",
+    "email": "elena.rostova@gmail.com",
+    "username": "elena.rostova"
+  }
+]
