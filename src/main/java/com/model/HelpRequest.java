@@ -356,10 +356,10 @@ public class HelpRequest {
      * @return true if this request matches all criteria
      */
     public boolean isARequest(Location location, boolean requiresCertification,
-                              Skill skill) {
+                            Skill skill) {
         boolean sameLocation = this.location == null
                 ? location == null
-                : this.location.equals(location);
+                : location != null && this.location.equals(location);
 
         return sameLocation
                 && this.requiresCertification == requiresCertification
