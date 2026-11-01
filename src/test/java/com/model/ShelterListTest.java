@@ -8,6 +8,47 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+// NOTE REQUIRED FROM BLACKBOARD AS ALLOWED: Formatted with AI
+/**
+ * Test cases and reasoning for ShelterList unit tests.
+ *
+ * +---------------------------------------------------+--------------------------------------------------------------------+
+ * | Test                                              | Reasoning                                                          |
+ * +---------------------------------------------------+--------------------------------------------------------------------+
+ * | testGetInstanceReturnsSameList                    | Verifies multiple calls to getInstance return the same object      |
+ * | testGettingAllShelters                            | Ensures getShelters returns every shelter in the list              |
+ * | testClearingShelters                              | Verifies clearShelters empties the list                            |
+ * | testAddingShelterWithDetails                      | Successfully adds a new shelter built from its details             |
+ * | testAddingShelterObject                           | Successfully adds an existing Shelter object                       |
+ * | testAddingNullShelter                             | Rejects adding a null shelter and returns false                    |
+ * | testAddingDuplicateName                           | Rejects adding a shelter with an existing name                     |
+ * | testAddingDuplicateNameDifferentCase              | Rejects a duplicate name even when the capitals differ             |
+ * | testRemovingShelter                               | Removes a shelter so it is no longer in the list                   |
+ * | testRemovingNullShelter                           | Returns false when removing a null shelter                         |
+ * | testRemovingShelterNotInList                      | Returns false when the shelter is not in the list                  |
+ * | testRemovingShelterBySameID                       | Removes a shelter by ID even when given a different object         |
+ * | testFindingByFullName                             | Finds the shelter matching an exact name                           |
+ * | testFindingByPartialName                          | Finds all shelters whose names contain the search text             |
+ * | testFindingByNameIgnoresCase                      | Validates that name searches ignore capital letters                |
+ * | testFindingByNameNotFound                         | Returns an empty list when no names match                          |
+ * | testFindingByEmptyName                            | Returns every shelter when the name is empty                       |
+ * | testFindingByNullName                             | Returns every shelter when the name is null                        |
+ * | testFindingByNameAndLocation                      | Finds shelters matching both name and location                     |
+ * | testFindingByNameAndEquivalentLocation            | Matches a different Location object with the same address          |
+ * | testFindingByNameAndWrongLocation                 | Returns an empty list for a location in another city               |
+ * | testFindingByNameAndNullLocation                  | Ignores location filtering when the location is null               |
+ * | testFindingSheltersThatAllowPets                  | Returns only shelters that allow pets                              |
+ * | testFindingSheltersThatDoNotAllowPets             | Returns only shelters that do not allow pets                       |
+ * | testFindingOpenSheltersWithNoRequirements         | Ensures closed shelters are never returned                         |
+ * | testFindingOpenSheltersThatAllowPets              | Returns only open shelters that allow pets                         |
+ * | testFindingOpenSheltersWithMedicalStaff           | Returns only open shelters that have medical staff                 |
+ * | testFindingSheltersWithEnoughSpace                | Leaves out shelters without enough free spaces                     |
+ * | testFindingSheltersWithExactSpace                 | Includes a shelter with exactly the spaces needed                  |
+ * | testFindingSheltersWithAllRequirementsNoMatch     | Returns an empty list when no shelter meets every requirement      |
+ * | testClosestShelterWithNullList                    | Returns null when the shelter list is null                         |
+ * | testClosestShelterWithEmptyList                   | Returns null when the shelter list is empty                        |
+ * +---------------------------------------------------+--------------------------------------------------------------------+
+ */
 public class ShelterListTest {
 
     private ShelterList shelterList = ShelterList.getInstance();
@@ -246,3 +287,5 @@ public class ShelterListTest {
                 new ArrayList<Shelter>()));
     }
 }
+
+//
