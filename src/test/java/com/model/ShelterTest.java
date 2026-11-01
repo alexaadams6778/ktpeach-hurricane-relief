@@ -10,6 +10,59 @@ import java.util.UUID;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+// NOTE REQUIRED FROM BLACKBOARD AS ALLOWED: Formatted with AI
+/**
+ * Test cases and reasoning for Shelter unit tests.
+ *
+ * +---------------------------------------------------+--------------------------------------------------------------------+
+ * | Test                                              | Reasoning                                                          |
+ * +---------------------------------------------------+--------------------------------------------------------------------+
+ * | testCreatingShelterWithExistingID                 | Verifies saved ID is kept and all constructor fields are set       |
+ * | testCreatingShelterWithGeneratedID                | Verifies a new shelter gets an automatically generated ID          |
+ * | testCreatingSheltersWithDifferentIDs              | Ensures two new shelters never share the same ID                   |
+ * | testCreatingShelterStartsWithNoOccupantsOrPets    | Ensures a new shelter starts with empty occupant and pet lists     |
+ * | testCreatingShelterStartsWithoutMedicalStaff      | Verifies medical staff defaults to false                           |
+ * | testCreatingShelterWithAllDataAndExistingID       | Verifies full constructor stores lists and medical staff with ID   |
+ * | testCreatingShelterWithExistingIDAndNullLists     | Ensures null lists become empty lists instead of staying null      |
+ * | testCreatingShelterWithAllDataAndGeneratedID      | Verifies full constructor without ID stores medical staff          |
+ * | testCreatingShelterWithGeneratedIDAndNullLists    | Ensures null lists become empty lists without an ID                |
+ * | testSettingName                                   | Verifies setName updates the shelter name                          |
+ * | testSettingLocation                               | Verifies setLocation updates the shelter location                  |
+ * | testSettingMaxCapacity                            | Verifies setMaxCapacity updates the maximum capacity               |
+ * | testSettingCurrentOccupancy                       | Verifies setCurrentOccupancy updates the occupancy                 |
+ * | testSettingAllowsPets                             | Verifies setAllowsPets updates the pet policy                      |
+ * | testSettingOccupants                              | Verifies setOccupants replaces the occupant list                   |
+ * | testSettingPets                                   | Verifies setPets replaces the pet list                             |
+ * | testSettingMedicalStaff                           | Verifies medical staff can be turned on and off                    |
+ * | testHasVacancyWithSpaceLeft                       | Returns true when an open shelter is below capacity                |
+ * | testNoVacancyWhenFull                             | Returns false when the shelter is at capacity                      |
+ * | testNoVacancyWhenOverCapacity                     | Returns false when occupancy is over capacity                      |
+ * | testNoVacancyWhenClosed                           | Returns false when the shelter is closed                           |
+ * | testAvailableSpaces                               | Verifies available spaces equals capacity minus occupancy          |
+ * | testAvailableSpacesWhenFull                       | Returns zero available spaces when the shelter is full             |
+ * | testAvailableSpacesNeverNegative                  | Ensures available spaces never go below zero                       |
+ * | testAvailableResourcesSkipsEmptyResources         | Ensures resources with zero quantity are left out                  |
+ * | testAvailableResourcesWhenAllEmpty                | Returns an empty list when every resource is out of stock          |
+ * | testAvailableResourcesWithNoResources             | Returns an empty list when the shelter has no resources            |
+ * | testCheckingInUser                                | Verifies check-in adds one occupant and records their name         |
+ * | testCheckingInUserWhenFull                        | Rejects check-in when the shelter is full                          |
+ * | testCheckingInUserWhenClosed                      | Rejects check-in when the shelter is closed                        |
+ * | testCheckingInNullUser                            | Safely ignores a null user without crashing                        |
+ * | testCheckingInUsersUntilFull                      | Ensures check-in stops once capacity is reached                    |
+ * | testCheckingInFamilyThatFits                      | Checks in a family that fits within the available spaces           |
+ * | testCheckingInFamilyTooLarge                      | Rejects a family larger than the available spaces                  |
+ * | testCheckingInFamilyWithPetAllowed                | Records the pet when the shelter allows pets                       |
+ * | testCheckingInFamilyWithPetNotAllowed             | Rejects a family with a pet when pets are not allowed              |
+ * | testCheckingInFamilyWithBlankPet                  | Ensures a blank pet entry is not recorded as a pet                 |
+ * | testCheckingInEmptyFamily                         | Verifies an empty family leaves occupancy unchanged                |
+ * | testUpdatingStatusClosesShelter                   | Verifies updating status closes an open shelter                    |
+ * | testUpdatingStatusTwiceReopensShelter             | Verifies updating status twice reopens the shelter                 |
+ * | testToStringIncludesName                          | Ensures the summary includes the shelter name                      |
+ * | testToStringWithoutMedicalStaff                   | Ensures the summary shows "No" without medical staff               |
+ * | testToStringWithMedicalStaff                      | Ensures the summary shows "Yes" with medical staff                 |
+ * | testToStringShowsAvailableSpaces                  | Ensures the summary shows the available spaces                     |
+ * +---------------------------------------------------+--------------------------------------------------------------------+
+ */
 public class ShelterTest {
 
     private UUID shelterID;
@@ -364,4 +417,6 @@ public class ShelterTest {
     void testToStringShowsAvailableSpaces() {
         assertTrue(shelter.toString().contains("Available Spaces: 2"));
     }
-}
+} 
+
+//
