@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="com.model.DataWriterTest" time="0.673" tests="36" errors="0" skipped="0" failures="0">
+  <properties>
+    <property name="java.specification.version" value="27"/>
+    <property name="sun.cpu.isalist" value="amd64"/>
+    <property name="sun.jnu.encoding" value="Cp1252"/>
+    <property name="java.class.path" value="C:\Users\opers\CSCE247\ktpeach-hurricane-relief\target\test-classes;C:\Users\opers\CSCE247\ktpeach-hurricane-relief\target\classes;C:\Users\opers\.m2\repository\org\mockito\mockito-core\5.14.2\mockito-core-5.14.2.jar;C:\Users\opers\.m2\repository\net\bytebuddy\byte-buddy\1.15.4\byte-buddy-1.15.4.jar;C:\Users\opers\.m2\repository\net\bytebuddy\byte-buddy-agent\1.15.4\byte-buddy-agent-1.15.4.jar;C:\Users\opers\.m2\repository\org\objenesis\objenesis\3.3\objenesis-3.3.jar;C:\Users\opers\.m2\repository\junit\junit\4.13.2\junit-4.13.2.jar;C:\Users\opers\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;C:\Users\opers\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.11.3\junit-jupiter-api-5.11.3.jar;C:\Users\opers\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\opers\.m2\repository\org\junit\platform\junit-platform-commons\1.11.3\junit-platform-commons-1.11.3.jar;C:\Users\opers\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\opers\.m2\repository\com\fasterxml\jackson\core\jackson-databind\2.18.2\jackson-databind-2.18.2.jar;C:\Users\opers\.m2\repository\com\fasterxml\jackson\core\jackson-annotations\2.18.2\jackson-annotations-2.18.2.jar;C:\Users\opers\.m2\repository\com\fasterxml\jackson\core\jackson-core\2.18.2\jackson-core-2.18.2.jar;C:\Users\opers\.m2\repository\com\googlecode\json-simple\json-simple\1.1.1\json-simple-1.1.1.jar;C:\Users\opers\.m2\repository\org\openjfx\javafx-controls\17.0.12\javafx-controls-17.0.12.jar;C:\Users\opers\.m2\repository\org\openjfx\javafx-controls\17.0.12\javafx-controls-17.0.12-win.jar;C:\Users\opers\.m2\repository\org\openjfx\javafx-graphics\17.0.12\javafx-graphics-17.0.12.jar;C:\Users\opers\.m2\repository\org\openjfx\javafx-graphics\17.0.12\javafx-graphics-17.0.12-win.jar;C:\Users\opers\.m2\repository\org\openjfx\javafx-base\17.0.12\javafx-base-17.0.12.jar;C:\Users\opers\.m2\repository\org\openjfx\javafx-base\17.0.12\javafx-base-17.0.12-win.jar;C:\Users\opers\.m2\repository\org\openjfx\javafx-fxml\17.0.12\javafx-fxml-17.0.12.jar;C:\Users\opers\.m2\repository\org\openjfx\javafx-fxml\17.0.12\javafx-fxml-17.0.12-win.jar;C:\Users\opers\.m2\repository\org\openjfx\javafx-web\17.0.12\javafx-web-17.0.12.jar;C:\Users\opers\.m2\repository\org\openjfx\javafx-web\17.0.12\javafx-web-17.0.12-win.jar;C:\Users\opers\.m2\repository\org\openjfx\javafx-media\17.0.12\javafx-media-17.0.12.jar;C:\Users\opers\.m2\repository\org\openjfx\javafx-media\17.0.12\javafx-media-17.0.12-win.jar;"/>
+    <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="user.variant" value=""/>
+    <property name="java.vendor.url" value="https://java.oracle.com/"/>
+    <property name="user.timezone" value="America/New_York"/>
+    <property name="os.name" value="Windows 11"/>
+    <property name="java.vm.specification.version" value="27"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="user.country" value="US"/>
+    <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-27\bin"/>
+    <property name="sun.java.command" value="C:\Users\opers\AppData\Local\Temp\surefire5779775715456793266\surefirebooter-20261101150615685_3.jar C:\Users\opers\AppData\Local\Temp\surefire5779775715456793266 2026-11-01T15-06-15_287-jvmRun1 surefire-20261101150615685_1tmp surefire_0-20261101150615685_2tmp"/>
+    <property name="jdk.debug" value="release"/>
+    <property name="surefire.test.class.path" value="C:\Users\opers\CSCE247\ktpeach-hurricane-relief\target\test-classes;C:\Users\opers\CSCE247\ktpeach-hurricane-relief\target\classes;C:\Users\opers\.m2\repository\org\mockito\mockito-core\5.14.2\mockito-core-5.14.2.jar;C:\Users\opers\.m2\repository\net\bytebuddy\byte-buddy\1.15.4\byte-buddy-1.15.4.jar;C:\Users\opers\.m2\repository\net\bytebuddy\byte-buddy-agent\1.15.4\byte-buddy-agent-1.15.4.jar;C:\Users\opers\.m2\repository\org\objenesis\objenesis\3.3\objenesis-3.3.jar;C:\Users\opers\.m2\repository\junit\junit\4.13.2\junit-4.13.2.jar;C:\Users\opers\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;C:\Users\opers\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.11.3\junit-jupiter-api-5.11.3.jar;C:\Users\opers\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\opers\.m2\repository\org\junit\platform\junit-platform-commons\1.11.3\junit-platform-commons-1.11.3.jar;C:\Users\opers\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\opers\.m2\repository\com\fasterxml\jackson\core\jackson-databind\2.18.2\jackson-databind-2.18.2.jar;C:\Users\opers\.m2\repository\com\fasterxml\jackson\core\jackson-annotations\2.18.2\jackson-annotations-2.18.2.jar;C:\Users\opers\.m2\repository\com\fasterxml\jackson\core\jackson-core\2.18.2\jackson-core-2.18.2.jar;C:\Users\opers\.m2\repository\com\googlecode\json-simple\json-simple\1.1.1\json-simple-1.1.1.jar;C:\Users\opers\.m2\repository\org\openjfx\javafx-controls\17.0.12\javafx-controls-17.0.12.jar;C:\Users\opers\.m2\repository\org\openjfx\javafx-controls\17.0.12\javafx-controls-17.0.12-win.jar;C:\Users\opers\.m2\repository\org\openjfx\javafx-graphics\17.0.12\javafx-graphics-17.0.12.jar;C:\Users\opers\.m2\repository\org\openjfx\javafx-graphics\17.0.12\javafx-graphics-17.0.12-win.jar;C:\Users\opers\.m2\repository\org\openjfx\javafx-base\17.0.12\javafx-base-17.0.12.jar;C:\Users\opers\.m2\repository\org\openjfx\javafx-base\17.0.12\javafx-base-17.0.12-win.jar;C:\Users\opers\.m2\repository\org\openjfx\javafx-fxml\17.0.12\javafx-fxml-17.0.12.jar;C:\Users\opers\.m2\repository\org\openjfx\javafx-fxml\17.0.12\javafx-fxml-17.0.12-win.jar;C:\Users\opers\.m2\repository\org\openjfx\javafx-web\17.0.12\javafx-web-17.0.12.jar;C:\Users\opers\.m2\repository\org\openjfx\javafx-web\17.0.12\javafx-web-17.0.12-win.jar;C:\Users\opers\.m2\repository\org\openjfx\javafx-media\17.0.12\javafx-media-17.0.12.jar;C:\Users\opers\.m2\repository\org\openjfx\javafx-media\17.0.12\javafx-media-17.0.12-win.jar;"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="user.home" value="C:\Users\opers"/>
+    <property name="user.language" value="en"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.version.date" value="2026-09-15"/>
+    <property name="java.home" value="C:\Program Files\Java\jdk-27"/>
+    <property name="file.separator" value="\"/>
+    <property name="basedir" value="C:\Users\opers\CSCE247\ktpeach-hurricane-relief"/>
+    <property name="java.vm.compressedOopsMode" value="Zero based"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="surefire.real.class.path" value="C:\Users\opers\AppData\Local\Temp\surefire5779775715456793266\surefirebooter-20261101150615685_3.jar"/>
+    <property name="user.script" value=""/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="java.runtime.version" value="27+35-2325"/>
+    <property name="user.name" value="opers"/>
+    <property name="stdout.encoding" value="Cp1252"/>
+    <property name="path.separator" value=";"/>
+    <property name="os.version" value="10.0"/>
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
+    <property name="file.encoding" value="UTF-8"/>
+    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
+    <property name="localRepository" value="C:\Users\opers\.m2\repository"/>
+    <property name="java.vendor.url.bug" value="https://bugreport.java.com/bugreport/"/>
+    <property name="java.io.tmpdir" value="C:\Users\opers\AppData\Local\Temp\"/>
+    <property name="java.version" value="27"/>
+    <property name="user.dir" value="C:\Users\opers\CSCE247\ktpeach-hurricane-relief"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="sun.os.patch.level" value=""/>
+    <property name="native.encoding" value="Cp1252"/>
+    <property name="java.library.path" value="C:\Program Files\Java\jdk-27\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Program Files\dotnet\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\Users\opers\Downloads\apache-maven-3.9.16-bin\apache-maven-3.9.16\bin;C:\Users\opers\AppData\Local\Microsoft\WindowsApps;C:\Users\opers\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\opers\AppData\Local\GitHubDesktop\bin;C:\Users\opers\AppData\Roaming\npm;C:\Users\opers\AppData\Local\PowerToys\DSCModules\;C:\Tools\rojo;C:\Users\opers\AppData\Local\Programs\Microsoft VS Code\bin\copilot-shim;;c:\Users\opers\.vscode\extensions\vscjava.vscode-java-debug-0.60.0\bundled\scripts\noConfigScripts;c:\Users\opers\AppData\Roaming\Code\User\globalStorage\github.copilot-chat\debugCommand;C:\Users\opers\AppData\Local\Programs\Microsoft VS Code\bin\copilot-shim;."/>
+    <property name="java.vm.info" value="mixed mode, sharing"/>
+    <property name="stderr.encoding" value="Cp1252"/>
+    <property name="java.vendor" value="Oracle Corporation"/>
+    <property name="java.vm.version" value="27+35-2325"/>
+    <property name="stdin.encoding" value="Cp1252"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="java.class.version" value="71.0"/>
+  </properties>
+  <testcase name="testWritingAdmin" classname="com.model.DataWriterTest" time="0.143"/>
+  <testcase name="testWritingHurricaneData" classname="com.model.DataWriterTest" time="0.019"/>
+  <testcase name="testWritingRequestSkills" classname="com.model.DataWriterTest" time="0.015"/>
+  <testcase name="testWritingUserProfile" classname="com.model.DataWriterTest" time="0.014"/>
+  <testcase name="testWritingOneShelter" classname="com.model.DataWriterTest" time="0.014"/>
+  <testcase name="testWritingUnassignedRequest" classname="com.model.DataWriterTest" time="0.014"/>
+  <testcase name="testWritingRequestWithoutSkillsOrPets" classname="com.model.DataWriterTest" time="0.011"/>
+  <testcase name="testWritingRequestComments" classname="com.model.DataWriterTest" time="0.012"/>
+  <testcase name="testWritingSelectedShelterAndMedicalNeeds" classname="com.model.DataWriterTest" time="0.013"/>
+  <testcase name="testWritingAssignedVolunteer" classname="com.model.DataWriterTest" time="0.011"/>
+  <testcase name="testWritingEmergencyContacts" classname="com.model.DataWriterTest" time="0.014"/>
+  <testcase name="testWritingMultipleShelters" classname="com.model.DataWriterTest" time="0.01"/>
+  <testcase name="testWritingVolunteerDefaults" classname="com.model.DataWriterTest" time="0.011"/>
+  <testcase name="testWritingMultipleRequests" classname="com.model.DataWriterTest" time="0.011"/>
+  <testcase name="testWritingShelterOccupantsAndPets" classname="com.model.DataWriterTest" time="0.011"/>
+  <testcase name="testWritingShelterLocation" classname="com.model.DataWriterTest" time="0.01"/>
+  <testcase name="testWritingEmptyUserDetails" classname="com.model.DataWriterTest" time="0.011"/>
+  <testcase name="testWritingClosedShelterWithoutPets" classname="com.model.DataWriterTest" time="0.008"/>
+  <testcase name="testWritingMultipleUsers" classname="com.model.DataWriterTest" time="0.013"/>
+  <testcase name="testWritingRequestStatusAndUrgency" classname="com.model.DataWriterTest" time="0.009"/>
+  <testcase name="testWritingUsersAfterRemoval" classname="com.model.DataWriterTest" time="0.01"/>
+  <testcase name="testWritingMedicalInfo" classname="com.model.DataWriterTest" time="0.012"/>
+  <testcase name="testWritingShelterResources" classname="com.model.DataWriterTest" time="0.01"/>
+  <testcase name="testWritingZeroUsers" classname="com.model.DataWriterTest" time="0.007"/>
+  <testcase name="testWritingSpecialCharactersInUser" classname="com.model.DataWriterTest" time="0.014"/>
+  <testcase name="testWritingRequestLocation" classname="com.model.DataWriterTest" time="0.014"/>
+  <testcase name="testWritingUserLocation" classname="com.model.DataWriterTest" time="0.013"/>
+  <testcase name="testWritingEmptyShelterDetails" classname="com.model.DataWriterTest" time="0.01"/>
+  <testcase name="testWritingZeroShelters" classname="com.model.DataWriterTest" time="0.009"/>
+  <testcase name="testWritingOneUser" classname="com.model.DataWriterTest" time="0.012"/>
+  <testcase name="testWritingZeroRequests" classname="com.model.DataWriterTest" time="0.008"/>
+  <testcase name="testWritingOneRequest" classname="com.model.DataWriterTest" time="0.013"/>
+  <testcase name="testWritingManagerWithShelter" classname="com.model.DataWriterTest" time="0.011"/>
+  <testcase name="testWritingManagerWithoutShelter" classname="com.model.DataWriterTest" time="0.01"/>
+  <testcase name="testWritingSpecialCharactersInRequest" classname="com.model.DataWriterTest" time="0.009"/>
+  <testcase name="testWritingVolunteerDetails" classname="com.model.DataWriterTest" time="0.009"/>
+</testsuite>
