@@ -1,0 +1,6 @@
+# Created at 2026-11-01T15:19:53.384
+Corrupted channel by directly writing to native stream in forked JVM 1. Stream 'Error occurred during initialization of boot layer'.
+
+# Created at 2026-11-01T15:19:53.392
+Corrupted channel by directly writing to native stream in forked JVM 1. Stream 'java.lang.module.FindException: Module jdk.jsobject not found, required by javafx.web'.
+
