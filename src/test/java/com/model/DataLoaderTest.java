@@ -11,6 +11,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+// NOTE REQUIRED FROM BLACKBOARD AS ALLOWED: Formatted with AI
 /**
  * +---------------------------------------------------+--------------------------------------------------------------------+
  * | Test                                              | Reasoning                                                          |
