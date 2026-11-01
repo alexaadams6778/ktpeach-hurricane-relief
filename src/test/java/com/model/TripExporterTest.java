@@ -63,6 +63,10 @@ public class TripExporterTest {
 
     @AfterEach
     public void tearDown() {
+        if (mockedMapTools != null) {
+            mockedMapTools.close();
+        }
+
         Thread.interrupted();
     }
 
