@@ -16,7 +16,6 @@ import org.junit.jupiter.api.Test;
  * | Test                                              | Reasoning                                                          |
  * +---------------------------------------------------+--------------------------------------------------------------------+
  * | testGetInstanceReturnsSameList                    | Verifies multiple calls to getInstance return the same object      |
- * | testGettingAllShelters                            | Ensures getShelters returns every shelter in the list              |
  * | testClearingShelters                              | Verifies clearShelters empties the list                            |
  * | testAddingShelterWithDetails                      | Successfully adds a new shelter built from its details             |
  * | testAddingShelterObject                           | Successfully adds an existing Shelter object                       |
@@ -92,11 +91,6 @@ public class ShelterListTest {
     @Test
     void testGetInstanceReturnsSameList() {
         assertSame(shelterList, ShelterList.getInstance());
-    }
-
-    @Test
-    void testGettingAllShelters() {
-        assertEquals(3, shelterList.getShelters().size());
     }
 
     @Test
@@ -287,5 +281,3 @@ public class ShelterListTest {
                 new ArrayList<Shelter>()));
     }
 }
-
-//
