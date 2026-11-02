@@ -1,4 +1,0 @@
---patch-module
-com.relief=_
---add-reads
-com.relief=ALL-UNNAMED
