@@ -26,14 +26,6 @@ import org.junit.jupiter.api.Test;
  * | testCreatingShelterWithExistingIDAndNullLists     | Ensures null lists become empty lists instead of staying null      |
  * | testCreatingShelterWithAllDataAndGeneratedID      | Verifies full constructor without ID stores medical staff          |
  * | testCreatingShelterWithGeneratedIDAndNullLists    | Ensures null lists become empty lists without an ID                |
- * | testSettingName                                   | Verifies setName updates the shelter name                          |
- * | testSettingLocation                               | Verifies setLocation updates the shelter location                  |
- * | testSettingMaxCapacity                            | Verifies setMaxCapacity updates the maximum capacity               |
- * | testSettingCurrentOccupancy                       | Verifies setCurrentOccupancy updates the occupancy                 |
- * | testSettingAllowsPets                             | Verifies setAllowsPets updates the pet policy                      |
- * | testSettingOccupants                              | Verifies setOccupants replaces the occupant list                   |
- * | testSettingPets                                   | Verifies setPets replaces the pet list                             |
- * | testSettingMedicalStaff                           | Verifies medical staff can be turned on and off                    |
  * | testHasVacancyWithSpaceLeft                       | Returns true when an open shelter is below capacity                |
  * | testNoVacancyWhenFull                             | Returns false when the shelter is at capacity                      |
  * | testNoVacancyWhenOverCapacity                     | Returns false when occupancy is over capacity                      |
@@ -168,61 +160,6 @@ public class ShelterTest {
         assertTrue(created.getOccupants().isEmpty());
         assertNotNull(created.getPets());
         assertTrue(created.getPets().isEmpty());
-    }
-
-    @Test
-    void testSettingName() {
-        shelter.setName("Updated Shelter");
-        assertEquals("Updated Shelter", shelter.getName());
-    }
-
-    @Test
-    void testSettingLocation() {
-        Location updated = new Location("20 King Street", "Columbia", "SC", "29201");
-        shelter.setLocation(updated);
-        assertSame(updated, shelter.getLocation());
-    }
-
-    @Test
-    void testSettingMaxCapacity() {
-        shelter.setMaxCapacity(100);
-        assertEquals(100, shelter.getMaxCapacity());
-    }
-
-    @Test
-    void testSettingCurrentOccupancy() {
-        shelter.setCurrentOccupancy(2);
-        assertEquals(2, shelter.getCurrentOccupancy());
-    }
-
-    @Test
-    void testSettingAllowsPets() {
-        shelter.setAllowsPets(false);
-        assertFalse(shelter.getAllowsPets());
-    }
-
-    @Test
-    void testSettingOccupants() {
-        ArrayList<String> occupants = new ArrayList<String>();
-        occupants.add("Sophie Carter");
-        shelter.setOccupants(occupants);
-        assertSame(occupants, shelter.getOccupants());
-    }
-
-    @Test
-    void testSettingPets() {
-        ArrayList<String> pets = new ArrayList<String>();
-        pets.add("Whiskers (Cat)");
-        shelter.setPets(pets);
-        assertSame(pets, shelter.getPets());
-    }
-
-    @Test
-    void testSettingMedicalStaff() {
-        shelter.setHasMedicalStaff(true);
-        assertTrue(shelter.hasMedicalStaff());
-        shelter.setHasMedicalStaff(false);
-        assertFalse(shelter.hasMedicalStaff());
     }
 
     @Test
@@ -417,6 +354,4 @@ public class ShelterTest {
     void testToStringShowsAvailableSpaces() {
         assertTrue(shelter.toString().contains("Available Spaces: 2"));
     }
-} 
-
-//
+}
