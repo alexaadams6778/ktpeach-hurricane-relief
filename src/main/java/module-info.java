@@ -12,4 +12,6 @@ module com.relief {
 
     opens com.model to javafx.fxml;
     exports com.model;
+
+    opens com.controllers to javafx.fxml;
 }
