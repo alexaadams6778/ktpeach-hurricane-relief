@@ -1,20 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?import java.net.URL?>
-
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Button?>
-<?import javafx.geometry.Insets?>
-
-<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controllers.HomeController">
-   <children>
-      <Label text="Primary View" />
-      <Button fx:id="primaryButton" text="Switch to Secondary View" onAction="#switchToSecondary"/>
-   </children>
-   <padding>
-      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-   </padding>
-   <stylesheets>
-      <URL value="@styles.css" />
-   </stylesheets>
-</VBox>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.SVGPath?>
+<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.controllers.HomeController" styleClass="home-root">
+ <stylesheets><URL value="@styles.css"/></stylesheets>
+ <top>
+  <VBox styleClass="home-header" spacing="16">
+   <HBox alignment="CENTER_LEFT" spacing="10">
+    <StackPane minWidth="36" prefWidth="36" maxWidth="36" minHeight="36" prefHeight="36" maxHeight="36" styleClass="brand-icon"><SVGPath content="M 2 10 L 12 2 L 22 10 M 5 8 L 5 22 L 10 22 L 10 14 L 14 14 L 14 22 L 19 22 L 19 8" styleClass="icon"/></StackPane>
+    <VBox spacing="1"><Label text="KTPeach" styleClass="brand-name"/><Label text="HURRICANE RELIEF" styleClass="brand-subtitle"/></VBox>
+    <Region HBox.hgrow="ALWAYS"/>
+    <Button text="FC" styleClass="avatar" onAction="#showProfile" accessibleText="Open Frank Carter's profile"/>
+   </HBox>
+   <VBox spacing="5"><Label text="Hi, Frank." styleClass="greeting"/><Label text="Let’s find the support you need." styleClass="muted"/></VBox>
+  </VBox>
+ </top>
+ <center>
+  <ScrollPane fitToWidth="true" fitToHeight="false" hbarPolicy="NEVER" styleClass="home-scroll">
+   <content><VBox styleClass="home-content" alignment="TOP_LEFT" fillWidth="true" spacing="18">
+    <Label text="Immediate danger? Call 911" maxWidth="Infinity" styleClass="emergency-banner"/>
+    <VBox styleClass="support-card" spacing="6">
+     <HBox alignment="CENTER_LEFT"><Label text="SUPPORT STARTS HERE" styleClass="eyebrow"/><Region HBox.hgrow="ALWAYS"/><StackPane minWidth="28" prefWidth="28" maxWidth="28" minHeight="28" prefHeight="28" maxHeight="28" styleClass="support-icon"><SVGPath content="M 2 10 L 12 2 L 22 10 M 5 8 L 5 22 L 10 22 L 10 14 L 14 14 L 14 22 L 19 22 L 19 8" styleClass="icon, peach-icon"/></StackPane></HBox>
+     <Label text="What do you need today?" wrapText="true" styleClass="support-title"/>
+     <Label text="Tell us what you and your family need." wrapText="true" styleClass="support-description"/>
+     <Button fx:id="createRequestButton" maxWidth="Infinity" styleClass="create-button" onAction="#createRequest" accessibleText="Create request">
+      <graphic><HBox prefWidth="${createRequestButton.width - 30}" alignment="CENTER_LEFT" spacing="10"><Label text="Create request" styleClass="create-label"/><Region HBox.hgrow="ALWAYS"/><SVGPath content="M 3 12 L 21 12 M 14 5 L 21 12 L 14 19" styleClass="icon"/></HBox></graphic>
+     </Button>
+    </VBox>
+    <VBox spacing="10">
+     <HBox alignment="CENTER_LEFT"><Label text="Your requests" styleClass="section-title"/><Region HBox.hgrow="ALWAYS"/><Button text="View all" styleClass="text-button" onAction="#showRequests"/></HBox>
+     <Button fx:id="requestCard" maxWidth="Infinity" minHeight="108" prefHeight="108" maxHeight="108" VBox.vgrow="NEVER" styleClass="detail-card" onAction="#showRequests" accessibleText="Transport and medical support. 4 people, 1 pet. Finding a volunteer.">
+      <graphic><HBox prefWidth="${requestCard.width - 30}" fillHeight="false" alignment="TOP_LEFT" spacing="12">
+       <StackPane minWidth="34" prefWidth="34" maxWidth="34" minHeight="34" prefHeight="34" maxHeight="34" styleClass="request-icon"><SVGPath content="M 6 2 L 16 2 L 20 6 L 20 22 L 6 22 Z M 9 9 L 17 9 M 9 13 L 17 13 M 9 17 L 15 17" styleClass="icon"/></StackPane>
+       <VBox spacing="7"><Label text="Transport &amp; medical support" wrapText="true" styleClass="card-title"/><Label text="4 people · 1 pet" styleClass="muted"/><Label text="Finding a volunteer" styleClass="status-pill"/></VBox>
+      </HBox></graphic>
+     </Button>
+    </VBox>
+    <VBox spacing="10">
+     <Label text="Find a shelter" styleClass="section-title"/>
+     <Button fx:id="shelterCard" maxWidth="Infinity" minHeight="98" prefHeight="98" maxHeight="98" VBox.vgrow="NEVER" styleClass="detail-card, shelter-card" onAction="#showShelters" accessibleText="Military Magnet Academy. Open, 25 spaces available. Pets welcome. Medical staff.">
+      <graphic><HBox prefWidth="${shelterCard.width - 30}" fillHeight="false" alignment="TOP_LEFT" spacing="14"><StackPane minWidth="24" prefWidth="24" maxWidth="24" minHeight="24" prefHeight="24" maxHeight="24" styleClass="shelter-icon"><SVGPath content="M 2 10 L 12 2 L 22 10 M 5 8 L 5 22 L 10 22 L 10 14 L 14 14 L 14 22 L 19 22 L 19 8" styleClass="icon"/></StackPane><VBox spacing="8"><Label text="Military Magnet Academy" wrapText="true" styleClass="card-title"/><Label text="Open · 25 spaces available" styleClass="shelter-availability"/><Label text="Pets welcome · Medical staff" styleClass="shelter-description"/></VBox></HBox></graphic>
+     </Button>
+    </VBox>
+   </VBox></content>
+  </ScrollPane>
+ </center>
+ <bottom><HBox fillHeight="false" alignment="CENTER" styleClass="bottom-nav" spacing="8"><Button minWidth="0" prefWidth="0" maxWidth="Infinity" minHeight="44" prefHeight="44" maxHeight="44" HBox.hgrow="ALWAYS" styleClass="nav-button, nav-selected" onAction="#showHome" accessibleText="Home"><graphic><VBox alignment="CENTER" spacing="5"><SVGPath content="M 2 10 L 12 2 L 22 10 M 5 8 L 5 22 L 10 22 L 10 14 L 14 14 L 14 22 L 19 22 L 19 8" styleClass="icon"/><Label text="Home" styleClass="nav-label"/></VBox></graphic></Button><Button minWidth="0" prefWidth="0" maxWidth="Infinity" minHeight="44" prefHeight="44" maxHeight="44" HBox.hgrow="ALWAYS" styleClass="nav-button" onAction="#showRequests" accessibleText="Requests"><graphic><VBox alignment="CENTER" spacing="5"><SVGPath content="M 6 2 L 16 2 L 20 6 L 20 22 L 6 22 Z M 9 9 L 17 9 M 9 13 L 17 13 M 9 17 L 15 17" styleClass="icon"/><Label text="Requests" styleClass="nav-label"/></VBox></graphic></Button><Button minWidth="0" prefWidth="0" maxWidth="Infinity" minHeight="44" prefHeight="44" maxHeight="44" HBox.hgrow="ALWAYS" styleClass="nav-button" onAction="#showShelters" accessibleText="Shelters"><graphic><VBox alignment="CENTER" spacing="5"><SVGPath content="M 2 10 L 12 2 L 22 10 M 5 8 L 5 22 L 10 22 L 10 14 L 14 14 L 14 22 L 19 22 L 19 8" styleClass="icon"/><Label text="Shelters" styleClass="nav-label"/></VBox></graphic></Button><Button minWidth="0" prefWidth="0" maxWidth="Infinity" minHeight="44" prefHeight="44" maxHeight="44" HBox.hgrow="ALWAYS" styleClass="nav-button" onAction="#showProfile" accessibleText="Profile"><graphic><VBox alignment="CENTER" spacing="5"><SVGPath content="M 16 6 A 4 4 0 1 1 8 6 A 4 4 0 1 1 16 6 M 4 22 L 4 19 C 4 13 20 13 20 19 L 20 22" styleClass="icon"/><Label text="Profile" styleClass="nav-label"/></VBox></graphic></Button></HBox></bottom>
+</BorderPane>

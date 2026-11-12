@@ -1,34 +1,76 @@
+/* JavaFX CSS: home.fxml owns the layout; these rules style its controls. */
+.root {
+    -fx-font-family: "Arial";
+    -fx-font-size: 12px;
+    -fx-text-fill: #173f39;
+    -fx-background-color: #f7f9f5;
+}
+.label { -fx-text-fill: #173f39; }
 .button {
-    -fx-background-color: #F8CFB7;
+    -fx-background-color: #f8c7ab;
     -fx-background-radius: 12;
     -fx-background-insets: 0;
-
-    -fx-text-fill: #164B43;
-    -fx-font-family: "Arial";
-    -fx-font-size: 14px;
+    -fx-text-fill: #173f39;
     -fx-font-weight: bold;
-
-    -fx-padding: 14 20;
-    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 12 16;
     -fx-cursor: hand;
-
     -fx-border-color: transparent;
-    -fx-border-width: 2;
+    -fx-border-width: 1;
     -fx-border-radius: 12;
 }
-
-.button:hover {
-    -fx-background-color: #F4BFA0;
+.button:hover { -fx-background-color: #f3b998; }
+.button:pressed { -fx-opacity: 0.85; }
+.button:focused { -fx-border-color: #17574d; }
+.home-header {
+    -fx-background-color: #fbe9de;
+    -fx-padding: 22 22 24 22;
+    -fx-border-color: transparent transparent #adc4ba transparent;
+    -fx-border-width: 0 0 1 0;
 }
+.brand-icon { -fx-background-color: #f8c7ab; -fx-background-radius: 10; -fx-padding: 7; }
+.icon { -fx-fill: transparent; -fx-stroke: #17574d; -fx-stroke-width: 1.6; -fx-stroke-line-cap: round; -fx-stroke-line-join: round; -fx-scale-x: 0.8; -fx-scale-y: 0.8; }
+.brand-name { -fx-font-size: 16px; -fx-font-weight: bold; }
+.brand-subtitle { -fx-font-size: 7px; }
+.avatar { -fx-background-color: white; -fx-background-radius: 100; -fx-border-radius: 100; -fx-min-width: 34; -fx-min-height: 34; -fx-padding: 0; -fx-font-size: 11px; }
+.greeting { -fx-font-size: 26px; -fx-font-weight: bold; }
+.muted { -fx-text-fill: #687f78; -fx-font-weight: normal; -fx-font-size: 12px; }
+.home-scroll, .home-scroll > .viewport { -fx-background-color: #f7f9f5; }
+.home-scroll { -fx-padding: 0; -fx-background-insets: 0; }
+.home-scroll > .scroll-bar:vertical { -fx-pref-width: 7; -fx-background-color: transparent; }
+.home-scroll > .scroll-bar:vertical .thumb { -fx-background-color: #cad6ce; -fx-background-radius: 4; }
+.home-content { -fx-padding: 18 22 20 22; }
+.emergency-banner { -fx-background-color: #fbe9de; -fx-background-radius: 9; -fx-padding: 10 12; -fx-text-fill: #87500d; -fx-font-size: 11px; -fx-font-weight: bold; }
+.support-card { -fx-background-color: #17574d; -fx-background-radius: 18; -fx-padding: 12 16 15 16; }
+.eyebrow { -fx-text-fill: #f8c7ab; -fx-font-size: 8px; -fx-font-weight: bold; }
+.support-icon { -fx-background-color: #326d60; -fx-background-radius: 100; -fx-padding: 3; }
+.peach-icon { -fx-stroke: #f8c7ab; -fx-scale-x: 0.65; -fx-scale-y: 0.65; }
+.support-title { -fx-text-fill: white; -fx-font-size: 20px; -fx-font-weight: bold; }
+.support-description { -fx-text-fill: #d6e4de; -fx-font-size: 12px; }
+.create-button { -fx-padding: 12 14; -fx-graphic-text-gap: 0; -fx-content-display: graphic-only; }
+.create-label { -fx-font-size: 14px; -fx-font-weight: bold; }
+.section-title { -fx-font-size: 16px; -fx-font-weight: bold; }
+.text-button { -fx-background-color: transparent; -fx-padding: 5 10; -fx-font-size: 10px; -fx-text-fill: #17574d; }
+.text-button:hover { -fx-background-color: #e8efe5; }
+.detail-card { -fx-background-color: white; -fx-background-radius: 15; -fx-border-color: #d7e1da; -fx-border-radius: 15; -fx-padding: 15 14 12 14; -fx-alignment: center-left; -fx-content-display: graphic-only; }
+.detail-card:hover { -fx-background-color: #f0f5ef; }
+.card-title { -fx-font-size: 13px; -fx-font-weight: bold; }
+.request-icon { -fx-background-color: #e8efe5; -fx-background-radius: 100; -fx-padding: 6; }
+.status-pill { -fx-background-color: white; -fx-border-color: #d7e1da; -fx-border-radius: 30; -fx-background-radius: 30; -fx-padding: 8 12; -fx-font-size: 11px; -fx-font-weight: normal; -fx-min-width: 150; }
+.shelter-card { -fx-padding: 16 14; }
+.shelter-icon { -fx-padding: 2; }
+.shelter-availability { -fx-text-fill: #17574d; -fx-font-size: 12px; -fx-font-weight: normal; }
+.shelter-description { -fx-text-fill: #687f78; -fx-font-size: 11px; -fx-font-weight: normal; }
+.bottom-nav { -fx-background-color: white; -fx-border-color: #d7e1da transparent transparent transparent; -fx-border-width: 1 0 0 0; -fx-padding: 5 14 8 14; }
+.nav-button { -fx-background-color: transparent; -fx-background-radius: 14; -fx-border-radius: 14; -fx-padding: 4 8; -fx-content-display: graphic-only; }
+.nav-button:hover { -fx-background-color: #f0f5ef; }
+.nav-selected { -fx-background-color: #e8efe5; }
+.nav-label { -fx-text-fill: #687f78; -fx-font-size: 9px; -fx-font-weight: normal; }
+.nav-selected .nav-label { -fx-text-fill: #17574d; -fx-font-weight: bold; }
 
-.button:pressed {
-    -fx-background-color: #EBAE8C;
-}
+.home-root { -fx-background-color: #f7f9f5; }
 
-.button:focused {
-    -fx-border-color: #164B43;
-}
-
-.button:disabled {
-    -fx-opacity: 0.5;
-}
+/* Keep card graphics compact; HBox normally stretches icon containers vertically. */
+.detail-card { -fx-min-height: 108; -fx-pref-height: 108; -fx-max-height: 108; }
+.shelter-card { -fx-min-height: 98; -fx-pref-height: 98; -fx-max-height: 98; }
+.bottom-nav { -fx-spacing: 8; }
+.nav-button { -fx-min-width: 0; -fx-pref-width: 0; -fx-min-height: 44; -fx-pref-height: 44; -fx-max-height: 44; }
