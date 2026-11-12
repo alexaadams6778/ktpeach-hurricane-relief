@@ -62,10 +62,9 @@ public class LoginController {
     }
 
     @FXML
-    void login(ActionEvent event) {
-        String username = txt_fullName.getText();
-        String password = txt_password.getText();
-        System.out.println("Username: " + username + "\nPassword: " + password);
+        void login(ActionEvent event) throws IOException {
+            App.fullName = txt_fullName.getText();
+            App.setRoot("home");
     }
 
 }

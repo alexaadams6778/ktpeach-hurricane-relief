@@ -14,7 +14,7 @@
     <Region HBox.hgrow="ALWAYS"/>
     <Button text="FC" styleClass="avatar" onAction="#showProfile" accessibleText="Open Frank Carter's profile"/>
    </HBox>
-   <VBox spacing="5"><Label text="Hi, Frank." styleClass="greeting"/><Label text="Let’s find the support you need." styleClass="muted"/></VBox>
+   <VBox spacing="5"><Label fx:id="greetingLabel" text="Hi, " styleClass="greeting"/><Label text="Let’s find the support you need." styleClass="muted"/></VBox>
   </VBox>
  </top>
  <center>
