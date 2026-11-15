@@ -6,7 +6,13 @@ The project demonstrates a complete relief scenario: the Carter family creates a
 
 ## Walkthrough Video
 
-YouTube Link: [youtube.com/watch?v=iax2gTID8e8](https://www.youtube.com/watch?v=iax2gTID8e8)
+[Watch the project walkthrough on YouTube](https://www.youtube.com/watch?v=iax2gTID8e8)
+
+## Prototype
+
+[View the KTPeach Hurricane Relief Prototype](docs/KTPeach-Hurricane-Relief-Prototype.pdf)
+
+The prototype includes resident, volunteer, shelter-search, and shelter-manager flows.
 
 ## Features
 
@@ -34,6 +40,8 @@ The project uses several object-oriented design patterns and principles:
 - Java 17
 - Maven
 - A map API key stored locally as `MAP_API_KEY`
+
+### Set up the API key
 
 Create a local `.env` file in the project root:
 
