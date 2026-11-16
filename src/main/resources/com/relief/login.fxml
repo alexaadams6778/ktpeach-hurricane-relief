@@ -5,11 +5,13 @@
 <?import javafx.scene.shape.SVGPath?>
 <BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.controllers.LoginController" styleClass="auth-root">
-    <stylesheets><URL value="@styles.css"/></stylesheets>
+    <stylesheets>
+        <URL value="@styles.css"/>
+    </stylesheets>
     <top>
-        <VBox styleClass="home-header, auth-header" spacing="20">
+        <VBox styleClass="home-header, auth-header" spacing="18">
             <HBox alignment="CENTER_LEFT" spacing="10">
-                <StackPane minWidth="32" prefWidth="32" maxWidth="32" minHeight="32" prefHeight="32" maxHeight="32" styleClass="brand-icon">
+                <StackPane minWidth="28" prefWidth="28" maxWidth="28" minHeight="28" prefHeight="28" maxHeight="28" styleClass="brand-icon">
                     <SVGPath content="M 2 10 L 12 2 L 22 10 M 5 8 L 5 22 L 10 22 L 10 14 L 14 14 L 14 22 L 19 22 L 19 8" styleClass="icon"/>
                 </StackPane>
                 <VBox spacing="1"><Label text="KTPeach" styleClass="brand-name"/><Label text="HURRICANE RELIEF" styleClass="brand-subtitle"/></VBox>
@@ -24,17 +26,31 @@
         <ScrollPane fitToWidth="true" hbarPolicy="NEVER" styleClass="home-scroll" pannable="true">
             <content>
                 <VBox styleClass="auth-content" spacing="20" fillWidth="true">
-                    <VBox fx:id="nameGroup" spacing="7">
-                        <Label text="Full name" labelFor="$fullNameField" styleClass="auth-field-label"/>
-                        <TextField fx:id="txt_fullName" promptText="Enter your full name" styleClass="auth-field"/>
+                    <VBox fx:id="nameGroup">
+                        <GridPane hgap="12">
+                            <columnConstraints>
+                                <ColumnConstraints percentWidth="50" hgrow="ALWAYS" minWidth="0"/>
+                                <ColumnConstraints percentWidth="50" hgrow="ALWAYS" minWidth="0"/>
+                            </columnConstraints>
+                            <children>
+                                <VBox spacing="7" GridPane.columnIndex="0" minWidth="0">
+                                    <Label text="First name" labelFor="$txt_firstName" styleClass="auth-field-label"/>
+                                    <TextField fx:id="txt_firstName" promptText="First name" minWidth="0" maxWidth="Infinity" styleClass="auth-field"/>
+                                </VBox>
+                                <VBox spacing="7" GridPane.columnIndex="1" minWidth="0">
+                                    <Label text="Last name" labelFor="$txt_lastName" styleClass="auth-field-label"/>
+                                    <TextField fx:id="txt_lastName" promptText="Last name" minWidth="0" maxWidth="Infinity" styleClass="auth-field"/>
+                                </VBox>
+                            </children>
+                        </GridPane>
                     </VBox>
                     <VBox spacing="7">
                         <Label text="Email address" labelFor="$emailField" styleClass="auth-field-label"/>
-                        <TextField fx:id="txt_email" promptText="you@example.com" styleClass="auth-field"/>
+                        <TextField fx:id="emailField" promptText="you@example.com" styleClass="auth-field"/>
                     </VBox>
                     <VBox spacing="7">
                         <Label text="Password" labelFor="$passwordField" styleClass="auth-field-label"/>
-                        <PasswordField fx:id="txt_password" promptText="Create a password" styleClass="auth-field"/>
+                        <PasswordField fx:id="passwordField" promptText="Create a password" styleClass="auth-field"/>
                         <Label fx:id="passwordHint" text="Use at least 8 characters." styleClass="auth-hint"/>
                     </VBox>
                     <VBox fx:id="termsGroup" spacing="3" styleClass="auth-terms">
@@ -47,7 +63,7 @@
                         </HBox>
                     </VBox>
                     <Label fx:id="feedback" wrapText="true" visible="false" managed="false" styleClass="auth-feedback"/>
-                    <Button fx:id="submitButton" maxWidth="Infinity" styleClass="create-button, auth-submit" onAction="#login" accessibleText="Create account">
+                    <Button fx:id="submitButton" onAction="#login" maxWidth="Infinity" styleClass="create-button, auth-submit" accessibleText="Create account">
                         <graphic>
                             <HBox prefWidth="${submitButton.width - 30}" alignment="CENTER_LEFT" spacing="10">
                                 <Label fx:id="submitLabel" text="Create account" styleClass="create-label"/>
@@ -66,7 +82,7 @@
     </center>
     <bottom>
         <VBox spacing="18" styleClass="auth-footer">
-            <Button fx:id="guestButton" minHeight="76" prefHeight="76" maxHeight="76" VBox.vgrow="NEVER" maxWidth="Infinity" styleClass="auth-guest" accessibleText="Find a shelter without an account">
+            <Button fx:id="guestButton" minHeight="66" prefHeight="66" maxHeight="66" VBox.vgrow="NEVER" maxWidth="Infinity" styleClass="auth-guest" accessibleText="Find a shelter without an account">
                 <graphic>
                     <HBox prefWidth="${guestButton.width - 30}" minHeight="40" prefHeight="40" maxHeight="40" fillHeight="false" alignment="CENTER_LEFT" spacing="12">
                         <SVGPath content="M 2 10 L 12 2 L 22 10 M 5 8 L 5 22 L 10 22 L 10 14 L 14 14 L 14 22 L 19 22 L 19 8" styleClass="icon"/>

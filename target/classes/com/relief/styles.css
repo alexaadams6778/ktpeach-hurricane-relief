@@ -128,3 +128,42 @@
 .auth-guest:hover { -fx-background-color: #dce8d8; }
 .auth-guest-title { -fx-font-size: 13px; -fx-font-weight: bold; }
 .auth-small-arrow { -fx-scale-x: 0.6; -fx-scale-y: 0.6; }
+
+/* Load after styles.css. Every selector is scoped to the account screen. */
+.auth-root .auth-header { -fx-padding: 18 22 28 22; }
+.auth-root .brand-name { -fx-font-size: 14px; }
+.auth-root .brand-subtitle { -fx-font-size: 6px; }
+.auth-root .brand-icon { -fx-background-radius: 8; -fx-padding: 4; }
+.auth-root .auth-title { -fx-font-size: 26px; -fx-font-weight: bold; }
+.auth-root .auth-content { -fx-padding: 24 22 28 22; -fx-spacing: 20; }
+.auth-root .auth-field-label { -fx-font-size: 12px; -fx-font-weight: bold; }
+.auth-root .auth-field {
+    -fx-min-width: 0;
+    -fx-min-height: 44;
+    -fx-pref-height: 44;
+    -fx-max-height: 44;
+    -fx-background-color: white;
+    -fx-background-radius: 10;
+    -fx-background-insets: 0;
+    -fx-border-color: #d7e1da;
+    -fx-border-radius: 10;
+    -fx-border-width: 1;
+    -fx-padding: 12;
+    -fx-text-fill: #173f39;
+    -fx-prompt-text-fill: #687f78;
+}
+.auth-root .auth-field:focused { -fx-border-color: #17574d; -fx-border-width: 2; -fx-padding: 11; }
+.auth-root .auth-submit { -fx-min-height: 46; -fx-pref-height: 46; -fx-max-height: 46; }
+.auth-root .auth-footer { -fx-padding: 12 22 24 22; -fx-spacing: 20; }
+.auth-root .auth-guest {
+    -fx-min-height: 66;
+    -fx-pref-height: 66;
+    -fx-max-height: 66;
+    -fx-padding: 12 14;
+    -fx-background-color: #e8efe5;
+    -fx-background-radius: 14;
+    -fx-border-radius: 14;
+}
+.auth-root .auth-guest-title { -fx-font-size: 13px; -fx-font-weight: bold; }
+.auth-root .auth-hint { -fx-font-size: 11px; -fx-text-fill: #687f78; -fx-font-weight: normal; }
+

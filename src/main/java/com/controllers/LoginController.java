@@ -21,7 +21,10 @@ public class LoginController {
     private Label feedback;
 
     @FXML
-    private TextField txt_fullName;
+    private TextField txt_firstName;
+
+    @FXML
+    private TextField txt_lastName;
 
     @FXML
     private Button guestButton;
@@ -63,7 +66,9 @@ public class LoginController {
 
     @FXML
         void login(ActionEvent event) throws IOException {
-            App.fullName = txt_fullName.getText();
+            String firstName = txt_firstName.getText().trim();
+            String lastName = txt_lastName.getText().trim();
+            String fullName = (txt_firstName + " " + txt_lastName).trim();
             App.setRoot("home");
     }
 
