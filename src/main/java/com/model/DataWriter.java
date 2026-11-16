@@ -3,6 +3,12 @@ package com.model;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URI;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.AtomicMoveNotSupportedException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 
 import org.json.simple.JSONArray;
@@ -95,23 +101,35 @@ public class DataWriter extends DataConstants {
      */
 
     public static void saveUsers() {
-            UserList userList = UserList.getInstance();
-            ArrayList<User> users = userList.getUsers();
-            JSONArray jsonUsers = new JSONArray();
-
-            for (int i = 0; i < users.size(); i++) {
-                jsonUsers.add(getUserJSON(users.get(i)));
-            }
-
-            try (FileWriter file = new FileWriter(getFileWritingPath(USER_FILE_NAME, USER_FILE_NAME_JSON))) {
-
-                file.write(jsonUsers.toJSONString());
-                file.flush();
-
-            } catch(IOException e) {
-                e.printStackTrace();
-            }
+        try {
+            saveUsersChecked(UserList.getInstance().getUsers());
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+    }
+
+    /** Writes a complete snapshot; callers only report success after the file is saved. */
+    public static void saveUsersChecked(ArrayList<User> users) throws IOException {
+        JSONArray jsonUsers = new JSONArray();
+        for (User user : users) {
+            jsonUsers.add(getUserJSON(user));
+        }
+        String fileName = getFileWritingPath(USER_FILE_NAME, USER_FILE_NAME_JSON);
+        if (fileName.isEmpty()) throw new IOException("Could not locate users.json.");
+        Path destination = Paths.get(fileName).toAbsolutePath();
+        Path temporary = Files.createTempFile(destination.getParent(), "users-", ".tmp");
+        try {
+            Files.writeString(temporary, jsonUsers.toJSONString(), StandardCharsets.UTF_8);
+            try {
+                Files.move(temporary, destination, StandardCopyOption.ATOMIC_MOVE,
+                        StandardCopyOption.REPLACE_EXISTING);
+            } catch (AtomicMoveNotSupportedException e) {
+                Files.move(temporary, destination, StandardCopyOption.REPLACE_EXISTING);
+            }
+        } finally {
+            Files.deleteIfExists(temporary);
+        }
+    }
 
 
     /**
@@ -130,7 +148,8 @@ public class DataWriter extends DataConstants {
         userDetails.put(USER_PASSWORD, user.getPassword());
         userDetails.put(USER_EMAIL, user.getEmail());
         userDetails.put(USER_PHONENUMBER, user.getPhoneNumber());
-        userDetails.put(USER_DOB, new java.text.SimpleDateFormat("yyyy-MM-dd").format(user.getDob()));
+        userDetails.put(USER_DOB, user.getDob() == null ? null
+                : new java.text.SimpleDateFormat("yyyy-MM-dd").format(user.getDob()));
         userDetails.put(USER_LOCATION, getLocationJSON(user.getLocation()));
         JSONArray emergencyContactsJSON = new JSONArray();
         for (EmergencyContact emergencyContact : user.getEmergencyContacts()) {
@@ -169,6 +188,7 @@ public class DataWriter extends DataConstants {
 
     private static JSONObject getLocationJSON(Location location) {
         JSONObject locationJSON = new JSONObject();
+        if (location == null) return locationJSON;
         locationJSON.put(LOCATION_ADDRESS, location.getAddress());
         locationJSON.put(LOCATION_CITY, location.getCity());
         locationJSON.put(LOCATION_STATE, location.getState());

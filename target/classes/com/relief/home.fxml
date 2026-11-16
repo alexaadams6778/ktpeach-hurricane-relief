@@ -12,9 +12,9 @@
     <StackPane minWidth="36" prefWidth="36" maxWidth="36" minHeight="36" prefHeight="36" maxHeight="36" styleClass="brand-icon"><SVGPath content="M 2 10 L 12 2 L 22 10 M 5 8 L 5 22 L 10 22 L 10 14 L 14 14 L 14 22 L 19 22 L 19 8" styleClass="icon"/></StackPane>
     <VBox spacing="1"><Label text="KTPeach" styleClass="brand-name"/><Label text="HURRICANE RELIEF" styleClass="brand-subtitle"/></VBox>
     <Region HBox.hgrow="ALWAYS"/>
-    <Button fx:id="profileButton" text="FC" styleClass="avatar" onAction="#showProfile" accessibleText="Open your profile"/>
+    <Button fx:id="profileButton" text="?" styleClass="avatar" onAction="#showProfile" accessibleText="Open your profile"/>
    </HBox>
-   <VBox spacing="5"><Label fx:id="greetingLabel" text="Hi, " styleClass="greeting"/><Label text="Let’s find the support you need." styleClass="muted"/></VBox>
+   <VBox spacing="5"><Label fx:id="greetingLabel" text="Hi!" styleClass="greeting"/><Label text="Let’s find the support you need." styleClass="muted"/></VBox>
   </VBox>
  </top>
  <center>
@@ -30,18 +30,20 @@
      </Button>
     </VBox>
     <VBox spacing="10">
-     <HBox alignment="CENTER_LEFT"><Label text="Your requests" styleClass="section-title"/><Region HBox.hgrow="ALWAYS"/><Button text="View all" styleClass="text-button" onAction="#showRequests"/></HBox>
-     <Button fx:id="requestCard" maxWidth="Infinity" minHeight="108" prefHeight="108" maxHeight="108" VBox.vgrow="NEVER" styleClass="detail-card" onAction="#showRequests" accessibleText="Transport and medical support. 4 people, 1 pet. Finding a volunteer.">
+     <HBox alignment="CENTER_LEFT"><Label fx:id="requestsHeading" text="Your requests" styleClass="section-title"/><Region HBox.hgrow="ALWAYS"/><Button fx:id="viewRequestsButton" text="View all" styleClass="text-button" onAction="#showRequests"/></HBox>
+     <Label fx:id="emptyRequests" text="No requests yet." wrapText="true" styleClass="muted"/>
+     <Button fx:id="requestCard" visible="false" managed="false" maxWidth="Infinity" minHeight="108" prefHeight="108" maxHeight="108" VBox.vgrow="NEVER" styleClass="detail-card" onAction="#showRequests" accessibleText="Your request">
       <graphic><HBox prefWidth="${requestCard.width - 30}" fillHeight="false" alignment="TOP_LEFT" spacing="12">
        <StackPane minWidth="34" prefWidth="34" maxWidth="34" minHeight="34" prefHeight="34" maxHeight="34" styleClass="request-icon"><SVGPath content="M 6 2 L 16 2 L 20 6 L 20 22 L 6 22 Z M 9 9 L 17 9 M 9 13 L 17 13 M 9 17 L 15 17" styleClass="icon"/></StackPane>
-       <VBox spacing="7"><Label text="Transport &amp; medical support" wrapText="true" styleClass="card-title"/><Label text="4 people · 1 pet" styleClass="muted"/><Label text="Finding a volunteer" styleClass="status-pill"/></VBox>
+       <VBox spacing="7" minWidth="0" HBox.hgrow="ALWAYS"><Label fx:id="requestTitle" text="" wrapText="false" maxWidth="Infinity" styleClass="card-title"/><Label fx:id="requestPeople" text="" styleClass="muted"/><Label fx:id="requestStatus" text="" styleClass="status-pill"/></VBox>
       </HBox></graphic>
      </Button>
     </VBox>
     <VBox spacing="10">
      <Label text="Find a shelter" styleClass="section-title"/>
-     <Button fx:id="shelterCard" maxWidth="Infinity" minHeight="98" prefHeight="98" maxHeight="98" VBox.vgrow="NEVER" styleClass="detail-card, shelter-card" onAction="#showShelters" accessibleText="Military Magnet Academy. Open, 25 spaces available. Pets welcome. Medical staff.">
-      <graphic><HBox prefWidth="${shelterCard.width - 30}" fillHeight="false" alignment="TOP_LEFT" spacing="14"><StackPane minWidth="24" prefWidth="24" maxWidth="24" minHeight="24" prefHeight="24" maxHeight="24" styleClass="shelter-icon"><SVGPath content="M 2 10 L 12 2 L 22 10 M 5 8 L 5 22 L 10 22 L 10 14 L 14 14 L 14 22 L 19 22 L 19 8" styleClass="icon"/></StackPane><VBox spacing="8"><Label text="Military Magnet Academy" wrapText="true" styleClass="card-title"/><Label text="Open · 25 spaces available" styleClass="shelter-availability"/><Label text="Pets welcome · Medical staff" styleClass="shelter-description"/></VBox></HBox></graphic>
+     <Label fx:id="emptyShelters" text="Add your location to see shelter options." wrapText="true" styleClass="muted"/>
+     <Button fx:id="shelterCard" visible="false" managed="false" maxWidth="Infinity" minHeight="98" prefHeight="98" maxHeight="98" VBox.vgrow="NEVER" styleClass="detail-card, shelter-card" onAction="#showShelters" accessibleText="Shelter in your area">
+      <graphic><HBox prefWidth="${shelterCard.width - 30}" fillHeight="false" alignment="TOP_LEFT" spacing="14"><StackPane minWidth="24" prefWidth="24" maxWidth="24" minHeight="24" prefHeight="24" maxHeight="24" styleClass="shelter-icon"><SVGPath content="M 2 10 L 12 2 L 22 10 M 5 8 L 5 22 L 10 22 L 10 14 L 14 14 L 14 22 L 19 22 L 19 8" styleClass="icon"/></StackPane><VBox spacing="8" minWidth="0" HBox.hgrow="ALWAYS"><Label fx:id="shelterName" text="" wrapText="false" maxWidth="Infinity" styleClass="card-title"/><Label fx:id="shelterAvailability" text="" styleClass="shelter-availability"/><Label fx:id="shelterFeatures" text="" styleClass="shelter-description"/></VBox></HBox></graphic>
      </Button>
     </VBox>
    </VBox></content>

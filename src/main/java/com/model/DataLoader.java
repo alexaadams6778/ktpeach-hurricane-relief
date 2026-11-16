@@ -2,6 +2,8 @@ package com.model;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
@@ -26,11 +28,23 @@ public class DataLoader extends DataConstants{
      */
 
     public static ArrayList<User> loadUsers() {
+        try {
+            return loadUsersChecked();
+        } catch (IOException e) {
+            System.err.println("Unable to load user data: " + e.getMessage());
+            return new ArrayList<>();
+        }
+    }
+
+    /** Authentication must fail rather than save over unreadable/partial data. */
+    public static ArrayList<User> loadUsersChecked() throws IOException {
         ArrayList<User> ret = new ArrayList<>();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
-        try {
-            BufferedReader reader = getReaderFromFile(USER_FILE_NAME, USER_FILE_NAME_JSON);
+        try (BufferedReader reader = getReaderFromFile(USER_FILE_NAME, USER_FILE_NAME_JSON)) {
+            if (reader == null) {
+                throw new IOException("Cannot read users.json. Run from the project root.");
+            }
             JSONParser parser = new JSONParser();
             JSONArray usersJSON = (JSONArray) parser.parse(reader);
 
@@ -48,9 +62,11 @@ public class DataLoader extends DataConstants{
 
                 
                 String dobString = (String) userJSON.get(USER_DOB);
-                Date dob = dateFormat.parse(dobString);
+                Date dob = (dobString == null || dobString.trim().isEmpty())
+                        ? null : dateFormat.parse(dobString);
 
                 JSONObject locJSON = (JSONObject) userJSON.get(USER_LOCATION);
+                if (locJSON == null) locJSON = new JSONObject();
                 String address = (String) locJSON.get(LOCATION_ADDRESS);
                 String city = (String) locJSON.get(LOCATION_CITY);
                 String state = (String) locJSON.get(LOCATION_STATE);
@@ -131,13 +147,14 @@ public class DataLoader extends DataConstants{
                     }
                     user = new ShelterManager(userID, type, firstName, lastName, username, password, email, phoneNumber, dob, location, emergencyContacts, medicalInfo, assignedShelter);
                 }
-                if (user != null) {
-                    ret.add(user);
+                if (user == null || firstName == null || lastName == null
+                        || username == null || email == null || password == null) {
+                    throw new IOException("A user record has an unsupported type or missing account fields.");
                 }
+                ret.add(user);
             }
         } catch (Exception e) {
-            System.out.println("Error loading users: " + e.getMessage());
-            e.printStackTrace();
+            throw new IOException("Could not load the complete users.json file.", e);
         }
 
         return ret;
@@ -339,10 +356,10 @@ public class DataLoader extends DataConstants{
 		try {
 			if(isJUnitTest()){
 				InputStream inputStream = DataLoader.class.getResourceAsStream(jsonFileName);
-				InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+				InputStreamReader inputStreamReader = new InputStreamReader(inputStream, StandardCharsets.UTF_8);
 				return new BufferedReader(inputStreamReader);
 			} else {
-				FileReader reader = new FileReader(fileName);
+				FileReader reader = new FileReader(fileName, StandardCharsets.UTF_8);
 				return new BufferedReader(reader);
 			}
 		} catch(Exception e){

@@ -35,23 +35,43 @@
                             <children>
                                 <VBox spacing="7" GridPane.columnIndex="0" minWidth="0">
                                     <Label text="First name" labelFor="$txt_firstName" styleClass="auth-field-label"/>
-                                    <TextField fx:id="txt_firstName" promptText="First name" minWidth="0" maxWidth="Infinity" styleClass="auth-field"/>
+                                    <TextField fx:id="txt_firstName" onAction="#signup" promptText="First name" minWidth="0" maxWidth="Infinity" styleClass="auth-field"/>
                                 </VBox>
                                 <VBox spacing="7" GridPane.columnIndex="1" minWidth="0">
                                     <Label text="Last name" labelFor="$txt_lastName" styleClass="auth-field-label"/>
-                                    <TextField fx:id="txt_lastName" promptText="Last name" minWidth="0" maxWidth="Infinity" styleClass="auth-field"/>
+                                    <TextField fx:id="txt_lastName" onAction="#signup" promptText="Last name" minWidth="0" maxWidth="Infinity" styleClass="auth-field"/>
                                 </VBox>
                             </children>
                         </GridPane>
                     </VBox>
                     <VBox spacing="7">
-                        <Label text="Email address" labelFor="$emailField" styleClass="auth-field-label"/>
-                        <TextField fx:id="emailField" promptText="you@example.com" styleClass="auth-field"/>
+                        <Label text="Email address" labelFor="$txt_email" styleClass="auth-field-label"/>
+                        <TextField fx:id="txt_email" onAction="#signup" promptText="you@example.com" styleClass="auth-field"/>
                     </VBox>
                     <VBox spacing="7">
-                        <Label text="Password" labelFor="$passwordField" styleClass="auth-field-label"/>
-                        <PasswordField fx:id="passwordField" promptText="Create a password" styleClass="auth-field"/>
-                        <Label fx:id="passwordHint" text="Use at least 8 characters." styleClass="auth-hint"/>
+                        <Label text="Password"
+                            labelFor="$txt_password"
+                            styleClass="auth-field-label"/>
+
+                        <StackPane>
+                            <PasswordField fx:id="txt_password"
+                                        promptText="Create a password"
+                                        styleClass="auth-field"
+                                        onAction="#signup"/>
+
+                            <TextField fx:id="txt_visiblePassword"
+                                    promptText="Create a password"
+                                    styleClass="auth-field"
+                                    onAction="#signup"
+                                    visible="false"
+                                    managed="false"/>
+                        </StackPane>
+
+                        <CheckBox fx:id="showPasswordCheckBox"
+                                text="Show password"/>
+
+                        <Label text="Use at least 8 characters."
+                            styleClass="auth-hint"/>
                     </VBox>
                     <VBox fx:id="termsGroup" spacing="3" styleClass="auth-terms">
                         <Label text="By creating an account, you agree to our" wrapText="true" styleClass="auth-hint"/>

@@ -182,6 +182,21 @@ public class HurricaneReliefSystem {
         return user;
     }
 
+    /** Logs in using the email field shown on the JavaFX screen. */
+    public User loginByEmail(String email, String password) throws IOException {
+        currentUser = null;
+        currentUser = userList.loginByEmail(email, password);
+        return currentUser;
+    }
+
+    /** Creates a resident account, persists it, and starts its session. */
+    public User signup(String firstName, String lastName, String email,
+                       String password) throws IOException {
+        User user = userList.signup(firstName, lastName, email, password);
+        currentUser = user;
+        return user;
+    }
+
     /**
      * Creates a new user account.
      * @param type the account role

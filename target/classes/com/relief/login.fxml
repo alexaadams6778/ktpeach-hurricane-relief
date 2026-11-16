@@ -29,16 +29,31 @@
                 <VBox spacing="20" fillWidth="true" styleClass="login-content">
                     <VBox spacing="7">
                         <Label text="Email address" labelFor="$txt_email" styleClass="login-field-label"/>
-                        <TextField fx:id="txt_email" promptText="you@example.com" styleClass="login-field"/>
+                        <TextField fx:id="txt_email" onAction="#login" promptText="you@example.com" styleClass="login-field"/>
                     </VBox>
                     <VBox spacing="7">
-                        <Label text="Password" labelFor="$txt_password" styleClass="login-field-label"/>
-                        <PasswordField fx:id="txt_password" promptText="Enter your password" styleClass="login-field"/>
-                        <HBox alignment="CENTER_RIGHT">
-                            <Hyperlink text="Forgot password?" styleClass="login-link, login-forgot"/>
-                        </HBox>
+                        <Label text="Password"
+                            labelFor="$txt_password"
+                            styleClass="login-field-label"/>
+
+                        <StackPane>
+                            <PasswordField fx:id="txt_password"
+                                        promptText="Create a password"
+                                        styleClass="login-field"
+                                        onAction="#login"/>
+
+                            <TextField fx:id="txt_visiblePassword"
+                                    promptText="Create a password"
+                                    styleClass="login-field"
+                                    onAction="#login"
+                                    visible="false"
+                                    managed="false"/>
+                        </StackPane>
                     </VBox>
-                    <Button fx:id="loginButton" maxWidth="Infinity" minHeight="46" prefHeight="46" maxHeight="46" styleClass="create-button" accessibleText="Log in">
+                        <CheckBox fx:id="showPasswordCheckBox"
+                                text="Show password"/>
+                    <Label fx:id="feedback" wrapText="true" visible="false" managed="false" styleClass="auth-feedback"/>
+                    <Button fx:id="loginButton" onAction="#login" maxWidth="Infinity" minHeight="46" prefHeight="46" maxHeight="46" styleClass="create-button" accessibleText="Log in">
                         <graphic>
                             <HBox prefWidth="${loginButton.width - 30}" alignment="CENTER_LEFT" fillHeight="false" spacing="10">
                                 <Label text="Log in" styleClass="create-label"/>

@@ -1,6 +1,8 @@
 package com.model;
 
 import java.util.ArrayList;
+import java.io.IOException;
+import java.util.Locale;
 import java.util.Date;
 import java.util.UUID;
 
@@ -165,6 +167,52 @@ public class UserList {
         }
 
         return null;
+    }
+
+    /** Email comparison ignores case; passwords are compared exactly as entered. */
+    public synchronized User loginByEmail(String email, String password) throws IOException {
+        users = DataLoader.loadUsersChecked();
+        if (email == null || password == null || password.isEmpty()) return null;
+        String enteredEmail = email.trim();
+        for (User user : users) {
+            if (user.getEmail().trim().equalsIgnoreCase(enteredEmail)
+                    && user.getPassword().equals(password)) {
+                return user;
+            }
+        }
+        return null;
+    }
+
+    /** Minimal resident signup; remaining profile details can be completed later. */
+    public synchronized User signup(String firstName, String lastName, String email,
+                                    String password) throws IOException {
+        firstName = firstName == null ? "" : firstName.trim();
+        lastName = lastName == null ? "" : lastName.trim();
+        email = email == null ? "" : email.trim().toLowerCase(Locale.ROOT);
+        if (firstName.isEmpty() || lastName.isEmpty()) {
+            throw new IllegalArgumentException("Please enter your first and last name.");
+        }
+        if (!email.matches("[^\\s@]+@[^\\s@]+\\.[^\\s@]+")) {
+            throw new IllegalArgumentException("Please enter a valid email address.");
+        }
+        if (password == null || password.length() < 8 || password.trim().isEmpty()) {
+            throw new IllegalArgumentException("Use at least 8 characters for your password.");
+        }
+
+        ArrayList<User> savedUsers = DataLoader.loadUsersChecked();
+        for (User user : savedUsers) {
+            if (user.getEmail().trim().equalsIgnoreCase(email)
+                    || user.getUsername().equalsIgnoreCase(email)) {
+                throw new IllegalArgumentException("An account already uses this email. Please log in.");
+            }
+        }
+        User user = new Victim(UUID.randomUUID(), "Victim", firstName, lastName,
+                email, password, email, "", null, new Location("", "", "", ""),
+                new ArrayList<EmergencyContact>(), new ArrayList<String>());
+        savedUsers.add(user);
+        DataWriter.saveUsersChecked(savedUsers);
+        users = savedUsers;
+        return user;
     }
 
     /**
