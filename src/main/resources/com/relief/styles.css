@@ -166,4 +166,62 @@
 }
 .auth-root .auth-guest-title { -fx-font-size: 13px; -fx-font-weight: bold; }
 .auth-root .auth-hint { -fx-font-size: 11px; -fx-text-fill: #687f78; -fx-font-weight: normal; }
+/* Login page — append this section to the bottom of your existing styles.css. */
+.login-root { -fx-background-color: #f7f9f5; }
+.login-root .login-header {
+    -fx-background-color: #fbe9de;
+    -fx-padding: 20 22 28 22;
+    -fx-border-color: transparent transparent #adc4ba transparent;
+    -fx-border-width: 0 0 1 0;
+}
+.login-root .brand-name { -fx-font-size: 15px; }
+.login-root .brand-subtitle { -fx-font-size: 6px; }
+.login-root .brand-icon { -fx-background-radius: 9; -fx-padding: 5; }
+.login-root .login-title { -fx-font-size: 26px; -fx-font-weight: bold; }
+.login-root .login-content { -fx-padding: 28 22 24 22; }
+.login-root .login-field-label { -fx-font-size: 12px; -fx-font-weight: bold; }
+.login-root .login-field {
+    -fx-background-color: white;
+    -fx-background-insets: 0;
+    -fx-background-radius: 10;
+    -fx-border-color: #d7e1da;
+    -fx-border-width: 1;
+    -fx-border-radius: 10;
+    -fx-padding: 12;
+    -fx-min-height: 44;
+    -fx-pref-height: 44;
+    -fx-max-height: 44;
+    -fx-text-fill: #173f39;
+    -fx-prompt-text-fill: #687f78;
+    -fx-highlight-fill: #c5dfd4;
+    -fx-highlight-text-fill: #173f39;
+}
+.login-root .login-field:focused { -fx-border-color: #17574d; -fx-border-width: 2; -fx-padding: 11; }
+.login-root .login-link {
+    -fx-text-fill: #17574d;
+    -fx-padding: 2 0;
+    -fx-border-color: transparent;
+    -fx-border-width: 1;
+    -fx-cursor: hand;
+    -fx-font-size: 12px;
+}
+.login-root .login-link:hover { -fx-underline: true; }
+.login-root .login-link:focused { -fx-border-color: #17574d; -fx-border-style: dotted; }
+.login-root .login-forgot { -fx-font-weight: bold; }
+.login-root .login-protection { -fx-background-color: #17574d; -fx-background-radius: 14; -fx-padding: 12 14; }
+.login-root .login-shield { -fx-stroke: #f8c7ab; }
+.login-root .login-protection-title { -fx-text-fill: white; -fx-font-size: 12px; -fx-font-weight: bold; }
+.login-root .login-protection-note { -fx-text-fill: #d6e4de; -fx-font-size: 10px; }
+.login-root .login-guest {
+    -fx-background-color: #e8efe5;
+    -fx-background-radius: 14;
+    -fx-border-radius: 14;
+    -fx-padding: 12 14;
+    -fx-alignment: center-left;
+    -fx-content-display: graphic-only;
+}
+.login-root .login-guest:hover { -fx-background-color: #dce8d8; }
+.login-root .login-guest-title { -fx-font-size: 13px; -fx-font-weight: bold; }
+.login-root .login-note { -fx-text-fill: #687f78; -fx-font-size: 10px; -fx-font-weight: normal; }
+.login-root .login-small-arrow { -fx-scale-x: 0.6; -fx-scale-y: 0.6; }
 
