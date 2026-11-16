@@ -12,7 +12,7 @@
     <StackPane minWidth="36" prefWidth="36" maxWidth="36" minHeight="36" prefHeight="36" maxHeight="36" styleClass="brand-icon"><SVGPath content="M 2 10 L 12 2 L 22 10 M 5 8 L 5 22 L 10 22 L 10 14 L 14 14 L 14 22 L 19 22 L 19 8" styleClass="icon"/></StackPane>
     <VBox spacing="1"><Label text="KTPeach" styleClass="brand-name"/><Label text="HURRICANE RELIEF" styleClass="brand-subtitle"/></VBox>
     <Region HBox.hgrow="ALWAYS"/>
-    <Button text="FC" styleClass="avatar" onAction="#showProfile" accessibleText="Open Frank Carter's profile"/>
+    <Button fx:id="profileButton" text="FC" styleClass="avatar" onAction="#showProfile" accessibleText="Open your profile"/>
    </HBox>
    <VBox spacing="5"><Label fx:id="greetingLabel" text="Hi, " styleClass="greeting"/><Label text="Let’s find the support you need." styleClass="muted"/></VBox>
   </VBox>

@@ -63,13 +63,11 @@ public class LoginController {
     void back(ActionEvent event) throws IOException {
         App.setRoot("home");
     }
-
     @FXML
-        void login(ActionEvent event) throws IOException {
-            String firstName = txt_firstName.getText().trim();
-            String lastName = txt_lastName.getText().trim();
-            String fullName = (txt_firstName + " " + txt_lastName).trim();
-            App.setRoot("home");
+    void login(ActionEvent event) throws IOException {
+        String firstName = txt_firstName.getText().trim();
+        String lastName = txt_lastName.getText().trim();
+        App.fullName = (firstName + " " + lastName).trim();
+        App.setRoot("home");
     }
-
 }

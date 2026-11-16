@@ -21,9 +21,22 @@ public class HomeController {
     private Button shelterCard;
 
     @FXML
+    private Button profileButton;
+
+    @FXML
     private void initialize() {
-        String name = App.fullName;
+        String name = App.fullName.trim();
         greetingLabel.setText(name.isEmpty() ? "Hi!" : "Hi, " + name + ".");
+        String initials = "";
+        if (!name.isEmpty()) {
+            String[] parts = name.split("\\s+");
+            initials = parts[0].substring(0, 1);
+            if (parts.length > 1) {
+                initials += parts[parts.length - 1].substring(0, 1);
+            }
+            initials = initials.toUpperCase();
+        }
+        profileButton.setText(initials);
     }
     
     @FXML
