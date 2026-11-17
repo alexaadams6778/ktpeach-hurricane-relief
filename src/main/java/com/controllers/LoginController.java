@@ -3,6 +3,7 @@ package com.controllers;
 import java.io.IOException;
 import com.model.HurricaneReliefSystem;
 import com.model.User;
+import com.model.Volunteer;
 import com.relief.App;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -39,7 +40,7 @@ public class LoginController {
         }
         txt_password.clear();
         try {
-            App.setRoot("home");
+            App.setRoot(user instanceof Volunteer ? "volunteer-home" : "home");
         } catch (IOException e) {
             showFeedback("You are logged in, but the home screen could not open.");
         }
