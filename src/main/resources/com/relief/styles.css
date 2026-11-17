@@ -275,3 +275,16 @@
 .login-root .summary-card { -fx-background-color: #e8efe5; -fx-background-radius: 14; -fx-padding: 14; }
 .login-root .danger-text { -fx-text-fill: #87500d; -fx-font-size: 12px; -fx-font-weight: bold; }
 .login-root .request-footer { -fx-padding: 12 22 20 22; -fx-border-color: #d7e1da transparent transparent transparent; -fx-border-width: 1 0 0 0; }
+
+/* Volunteer home: the remaining layout uses the existing shared home styles. */
+.volunteer-specialty {
+    -fx-background-color: #17574d;
+    -fx-background-radius: 14;
+    -fx-padding: 14;
+}
+.volunteer-specialty-caption { -fx-text-fill: #f8c7ab; -fx-font-size: 8px; -fx-font-weight: bold; }
+.volunteer-specialty-title { -fx-text-fill: white; -fx-font-size: 15px; -fx-font-weight: bold; }
+.volunteer-request-count { -fx-font-size: 10px; }
+
+/* Admin home uses the existing shared header, cards and navigation styles. */
+.admin-shelter-title { -fx-text-fill: white; -fx-font-size: 15px; -fx-font-weight: bold; }

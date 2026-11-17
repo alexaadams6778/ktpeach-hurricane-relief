@@ -39,7 +39,13 @@ public class LoginController {
         }
         txt_password.clear();
         try {
-            App.setRoot("home");
+            if (user.getType().equalsIgnoreCase("Volunteer")) {
+                App.setRoot("volunteer-home");
+            } else if (user.getType().equalsIgnoreCase("ShelterManager")) {
+                App.setRoot("admin-home");
+            } else {
+                App.setRoot("home");
+            }
         } catch (IOException e) {
             showFeedback("You are logged in, but the home screen could not open.");
         }
