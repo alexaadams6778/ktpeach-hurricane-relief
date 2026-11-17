@@ -221,6 +221,60 @@
 .login-root .login-note { -fx-text-fill: #687f78; -fx-font-size: 10px; -fx-font-weight: normal; }
 .login-root .login-small-arrow { -fx-scale-x: 0.6; -fx-scale-y: 0.6; }
 
+/* Create request screen. */
+.login-root .request-header {
+    -fx-background-color: #fbe9de;
+    -fx-padding: 20 22 24 22;
+    -fx-border-color: transparent transparent #adc4ba transparent;
+    -fx-border-width: 0 0 1 0;
+}
+.login-root .back-button { -fx-background-color: transparent; -fx-padding: 4; -fx-border-color: transparent; }
+.login-root .back-button:hover { -fx-background-color: #f3dccd; }
+.login-root .step-bar { -fx-min-height: 4; -fx-pref-height: 4; -fx-max-height: 4; -fx-background-color: #d7e1da; -fx-background-radius: 2; }
+.login-root .step-bar-active { -fx-background-color: #17574d; }
+.login-root .step-label { -fx-text-fill: #687f78; -fx-font-size: 10px; }
+.login-root .step-label-active { -fx-text-fill: #17574d; -fx-font-weight: bold; }
+.login-root .pill {
+    -fx-background-color: white;
+    -fx-background-radius: 20;
+    -fx-background-insets: 0;
+    -fx-border-color: #d7e1da;
+    -fx-border-radius: 20;
+    -fx-padding: 10 16;
+    -fx-text-fill: #173f39;
+    -fx-font-size: 12px;
+    -fx-cursor: hand;
+}
+.login-root .pill:hover { -fx-background-color: #f0f5ef; }
+.login-root .pill:selected { -fx-background-color: #17574d; -fx-border-color: #17574d; -fx-text-fill: white; -fx-font-weight: bold; }
+.login-root .request-textarea { -fx-min-height: 90; -fx-pref-height: 90; -fx-max-height: 90; -fx-padding: 4; }
+.login-root .request-textarea .content { -fx-background-color: white; -fx-background-radius: 10; }
+.login-root .request-textarea:focused { -fx-padding: 3; }
+.login-root .request-card {
+    -fx-background-color: white;
+    -fx-background-radius: 14;
+    -fx-background-insets: 0;
+    -fx-border-color: #d7e1da;
+    -fx-border-radius: 14;
+    -fx-padding: 14;
+}
+.login-root .photo-button { -fx-alignment: center-left; -fx-content-display: graphic-only; }
+.login-root .photo-button:hover { -fx-background-color: #f0f5ef; }
+.login-root .stepper-button {
+    -fx-background-color: #e8efe5;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-min-width: 36;
+    -fx-min-height: 36;
+    -fx-padding: 0;
+    -fx-font-size: 16px;
+    -fx-text-fill: #17574d;
+}
+.login-root .stepper-button:hover { -fx-background-color: #dce8d8; }
+.login-root .stepper-count { -fx-font-size: 18px; -fx-font-weight: bold; -fx-min-width: 24; -fx-alignment: center; }
+.login-root .summary-card { -fx-background-color: #e8efe5; -fx-background-radius: 14; -fx-padding: 14; }
+.login-root .danger-text { -fx-text-fill: #87500d; -fx-font-size: 12px; -fx-font-weight: bold; }
+.login-root .request-footer { -fx-padding: 12 22 20 22; -fx-border-color: #d7e1da transparent transparent transparent; -fx-border-width: 1 0 0 0; }
 
 /* Volunteer home: the remaining layout uses the existing shared home styles. */
 .volunteer-specialty {
