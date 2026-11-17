@@ -221,3 +221,16 @@
 .login-root .login-note { -fx-text-fill: #687f78; -fx-font-size: 10px; -fx-font-weight: normal; }
 .login-root .login-small-arrow { -fx-scale-x: 0.6; -fx-scale-y: 0.6; }
 
+
+/* Volunteer home: the remaining layout uses the existing shared home styles. */
+.volunteer-specialty {
+    -fx-background-color: #17574d;
+    -fx-background-radius: 14;
+    -fx-padding: 14;
+}
+.volunteer-specialty-caption { -fx-text-fill: #f8c7ab; -fx-font-size: 8px; -fx-font-weight: bold; }
+.volunteer-specialty-title { -fx-text-fill: white; -fx-font-size: 15px; -fx-font-weight: bold; }
+.volunteer-request-count { -fx-font-size: 10px; }
+
+/* Admin home uses the existing shared header, cards and navigation styles. */
+.admin-shelter-title { -fx-text-fill: white; -fx-font-size: 15px; -fx-font-weight: bold; }
