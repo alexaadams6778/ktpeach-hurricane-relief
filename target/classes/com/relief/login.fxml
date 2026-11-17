@@ -3,9 +3,10 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.SVGPath?>
-<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.controllers.LoginController" styleClass="login-root">
-    <stylesheets><URL value="@styles.css"/></stylesheets>
+<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controllers.LoginController" styleClass="login-root">
+    <stylesheets>
+        <URL value="@styles.css"/>
+    </stylesheets>
     <top>
         <VBox spacing="20" styleClass="login-header">
             <HBox alignment="CENTER_LEFT" spacing="10">
@@ -32,26 +33,13 @@
                         <TextField fx:id="txt_email" onAction="#login" promptText="you@example.com" styleClass="login-field"/>
                     </VBox>
                     <VBox spacing="7">
-                        <Label text="Password"
-                            labelFor="$txt_password"
-                            styleClass="login-field-label"/>
-
+                        <Label text="Password" labelFor="$txt_password" styleClass="login-field-label"/>
                         <StackPane>
-                            <PasswordField fx:id="txt_password"
-                                        promptText="Create a password"
-                                        styleClass="login-field"
-                                        onAction="#login"/>
-
-                            <TextField fx:id="txt_visiblePassword"
-                                    promptText="Create a password"
-                                    styleClass="login-field"
-                                    onAction="#login"
-                                    visible="false"
-                                    managed="false"/>
+                            <PasswordField fx:id="txt_password" promptText="Enter your password" styleClass="login-field" onAction="#login"/>
+                            <TextField fx:id="txt_visiblePassword" promptText="Enter your password" styleClass="login-field" onAction="#login" visible="false" managed="false"/>
                         </StackPane>
                     </VBox>
-                        <CheckBox fx:id="showPasswordCheckBox"
-                                text="Show password"/>
+                    <CheckBox fx:id="showPasswordCheckBox" text="Show password"/>
                     <Label fx:id="feedback" wrapText="true" visible="false" managed="false" styleClass="auth-feedback"/>
                     <Button fx:id="loginButton" onAction="#login" maxWidth="Infinity" minHeight="46" prefHeight="46" maxHeight="46" styleClass="create-button" accessibleText="Log in">
                         <graphic>

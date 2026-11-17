@@ -49,13 +49,9 @@
 .create-button { -fx-padding: 12 14; -fx-graphic-text-gap: 0; -fx-content-display: graphic-only; }
 .create-label { -fx-font-size: 14px; -fx-font-weight: bold; }
 .section-title { -fx-font-size: 16px; -fx-font-weight: bold; }
-.text-button { -fx-background-color: transparent; -fx-padding: 5 10; -fx-font-size: 10px; -fx-text-fill: #17574d; }
-.text-button:hover { -fx-background-color: #e8efe5; }
 .detail-card { -fx-background-color: white; -fx-background-radius: 15; -fx-border-color: #d7e1da; -fx-border-radius: 15; -fx-padding: 15 14 12 14; -fx-alignment: center-left; -fx-content-display: graphic-only; }
 .detail-card:hover { -fx-background-color: #f0f5ef; }
 .card-title { -fx-font-size: 13px; -fx-font-weight: bold; }
-.request-icon { -fx-background-color: #e8efe5; -fx-background-radius: 100; -fx-padding: 6; }
-.status-pill { -fx-background-color: white; -fx-border-color: #d7e1da; -fx-border-radius: 30; -fx-background-radius: 30; -fx-padding: 8 12; -fx-font-size: 11px; -fx-font-weight: normal; -fx-min-width: 150; }
 .shelter-card { -fx-padding: 16 14; }
 .shelter-icon { -fx-padding: 2; }
 .shelter-availability { -fx-text-fill: #17574d; -fx-font-size: 12px; -fx-font-weight: normal; }
@@ -129,7 +125,7 @@
 .auth-guest-title { -fx-font-size: 13px; -fx-font-weight: bold; }
 .auth-small-arrow { -fx-scale-x: 0.6; -fx-scale-y: 0.6; }
 
-/* Load after styles.css. Every selector is scoped to the account screen. */
+/* Account screen refinements. */
 .auth-root .auth-header { -fx-padding: 18 22 28 22; }
 .auth-root .brand-name { -fx-font-size: 14px; }
 .auth-root .brand-subtitle { -fx-font-size: 6px; }
@@ -166,7 +162,7 @@
 }
 .auth-root .auth-guest-title { -fx-font-size: 13px; -fx-font-weight: bold; }
 .auth-root .auth-hint { -fx-font-size: 11px; -fx-text-fill: #687f78; -fx-font-weight: normal; }
-/* Login page — append this section to the bottom of your existing styles.css. */
+/* Login screen. */
 .login-root { -fx-background-color: #f7f9f5; }
 .login-root .login-header {
     -fx-background-color: #fbe9de;

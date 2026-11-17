@@ -37,7 +37,6 @@ public class LoginController {
             txt_password.clear();
             return;
         }
-        App.fullName = (user.getFirstName() + " " + user.getLastName()).trim();
         txt_password.clear();
         try {
             App.setRoot("home");
@@ -48,18 +47,11 @@ public class LoginController {
 
     @FXML
     private void initialize() {
-        txt_visiblePassword.textProperty()
-                .bindBidirectional(txt_password.textProperty());
-
-        txt_visiblePassword.visibleProperty()
-                .bind(showPasswordCheckBox.selectedProperty());
-        txt_visiblePassword.managedProperty()
-                .bind(showPasswordCheckBox.selectedProperty());
-
-        txt_password.visibleProperty()
-                .bind(showPasswordCheckBox.selectedProperty().not());
-        txt_password.managedProperty()
-                .bind(showPasswordCheckBox.selectedProperty().not());
+        txt_visiblePassword.textProperty().bindBidirectional(txt_password.textProperty());
+        txt_visiblePassword.visibleProperty().bind(showPasswordCheckBox.selectedProperty());
+        txt_visiblePassword.managedProperty().bind(txt_visiblePassword.visibleProperty());
+        txt_password.visibleProperty().bind(showPasswordCheckBox.selectedProperty().not());
+        txt_password.managedProperty().bind(txt_password.visibleProperty());
     }
 
     @FXML

@@ -2,7 +2,6 @@ package com.controllers;
 
 import java.io.IOException;
 import com.model.HurricaneReliefSystem;
-import com.model.User;
 import com.relief.App;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -21,26 +20,18 @@ public class SignupController {
 
     @FXML
     private void initialize() {
-        txt_visiblePassword.textProperty()
-                .bindBidirectional(txt_password.textProperty());
-
-        txt_visiblePassword.visibleProperty()
-                .bind(showPasswordCheckBox.selectedProperty());
-        txt_visiblePassword.managedProperty()
-                .bind(showPasswordCheckBox.selectedProperty());
-
-        txt_password.visibleProperty()
-                .bind(showPasswordCheckBox.selectedProperty().not());
-        txt_password.managedProperty()
-                .bind(showPasswordCheckBox.selectedProperty().not());
+        txt_visiblePassword.textProperty().bindBidirectional(txt_password.textProperty());
+        txt_visiblePassword.visibleProperty().bind(showPasswordCheckBox.selectedProperty());
+        txt_visiblePassword.managedProperty().bind(txt_visiblePassword.visibleProperty());
+        txt_password.visibleProperty().bind(showPasswordCheckBox.selectedProperty().not());
+        txt_password.managedProperty().bind(txt_password.visibleProperty());
     }
 
     @FXML
     private void signup() {
         showFeedback("");
-        User user;
         try {
-            user = HurricaneReliefSystem.getInstance().signup(
+            HurricaneReliefSystem.getInstance().signup(
                     txt_firstName.getText(), txt_lastName.getText(),
                     txt_email.getText(), txt_password.getText());
         } catch (IllegalArgumentException e) {
@@ -50,7 +41,6 @@ public class SignupController {
             showFeedback("Your account could not be saved. Check users.json and folder permissions, then try again.");
             return;
         }
-        App.fullName = (user.getFirstName() + " " + user.getLastName()).trim();
         txt_password.clear();
         try {
             App.setRoot("home");
