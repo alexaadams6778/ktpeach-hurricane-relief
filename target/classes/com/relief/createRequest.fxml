@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import java.net.URL?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.SVGPath?>
+<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.controllers.CreateRequestController" styleClass="login-root">
+    <stylesheets>
+        <URL value="@styles.css"/>
+    </stylesheets>
+    <fx:define>
+        <ToggleGroup fx:id="topicGroup"/>
+        <ToggleGroup fx:id="urgencyGroup"/>
+    </fx:define>
+    <top>
+        <VBox spacing="16" styleClass="request-header">
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <Button onAction="#back" styleClass="back-button" accessibleText="Go back">
+                    <graphic>
+                        <SVGPath content="M 21 12 L 3 12 M 10 5 L 3 12 L 10 19" styleClass="icon"/>
+                    </graphic>
+                </Button>
+                <StackPane minWidth="30" prefWidth="30" maxWidth="30" minHeight="30" prefHeight="30" maxHeight="30" styleClass="brand-icon">
+                    <SVGPath content="M 2 10 L 12 2 L 22 10 M 5 8 L 5 22 L 10 22 L 10 14 L 14 14 L 14 22 L 19 22 L 19 8" styleClass="icon"/>
+                </StackPane>
+                <VBox spacing="1">
+                    <Label text="KTPeach" styleClass="brand-name"/>
+                    <Label text="HURRICANE RELIEF" styleClass="brand-subtitle"/>
+                </VBox>
+            </HBox>
+            <VBox spacing="6">
+                <Label fx:id="titleLabel" text="Create request" wrapText="true" styleClass="login-title"/>
+                <Label fx:id="subtitleLabel" text="Step 1 of 3 · What do you need?" wrapText="true" styleClass="muted"/>
+            </VBox>
+        </VBox>
+    </top>
+    <center>
+        <ScrollPane fitToWidth="true" hbarPolicy="NEVER" styleClass="home-scroll">
+            <content>
+                <VBox spacing="20" fillWidth="true" styleClass="login-content">
+                    <HBox spacing="8">
+                        <VBox spacing="6" HBox.hgrow="ALWAYS">
+                            <Region fx:id="stepBar1" maxWidth="Infinity" styleClass="step-bar"/>
+                            <Label fx:id="stepLabel1" text="Needs" styleClass="step-label"/>
+                        </VBox>
+                        <VBox spacing="6" HBox.hgrow="ALWAYS">
+                            <Region fx:id="stepBar2" maxWidth="Infinity" styleClass="step-bar"/>
+                            <Label fx:id="stepLabel2" text="People" styleClass="step-label"/>
+                        </VBox>
+                        <VBox spacing="6" HBox.hgrow="ALWAYS">
+                            <Region fx:id="stepBar3" maxWidth="Infinity" styleClass="step-bar"/>
+                            <Label fx:id="stepLabel3" text="Location &amp; photos" styleClass="step-label"/>
+                        </VBox>
+                    </HBox>
+
+                    <VBox fx:id="stepOne" spacing="18">
+                        <VBox spacing="10">
+                            <Label text="Choose a topic" styleClass="section-title"/>
+                            <GridPane hgap="10" vgap="10">
+                                <columnConstraints>
+                                    <ColumnConstraints percentWidth="50"/>
+                                    <ColumnConstraints percentWidth="50"/>
+                                </columnConstraints>
+                                <ToggleButton text="Transportation" toggleGroup="$topicGroup" maxWidth="Infinity" styleClass="pill" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                                <ToggleButton text="Medical" toggleGroup="$topicGroup" maxWidth="Infinity" styleClass="pill" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                                <ToggleButton text="Supplies" toggleGroup="$topicGroup" maxWidth="Infinity" styleClass="pill" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                                <ToggleButton text="Shelter" toggleGroup="$topicGroup" maxWidth="Infinity" styleClass="pill" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                            </GridPane>
+                        </VBox>
+                        <VBox spacing="10">
+                            <Label text="What support do you need?" styleClass="section-title"/>
+                            <FlowPane hgap="10" vgap="10">
+                                <ToggleButton text="Ride to a shelter" styleClass="pill"/>
+                                <ToggleButton text="Medical staff" styleClass="pill"/>
+                                <ToggleButton text="Supplies delivery" styleClass="pill"/>
+                            </FlowPane>
+                        </VBox>
+                        <VBox spacing="7">
+                            <Label text="Tell us a little more" styleClass="login-field-label"/>
+                            <TextArea fx:id="descriptionArea" wrapText="true" prefRowCount="3" promptText="Describe what you and your family need." styleClass="login-field, request-textarea"/>
+                        </VBox>
+                        <VBox spacing="10">
+                            <Label text="How urgent is your request?" styleClass="section-title"/>
+                            <HBox spacing="8">
+                                <ToggleButton text="Critical" toggleGroup="$urgencyGroup" maxWidth="Infinity" HBox.hgrow="ALWAYS" styleClass="pill"/>
+                                <ToggleButton text="High" toggleGroup="$urgencyGroup" selected="true" maxWidth="Infinity" HBox.hgrow="ALWAYS" styleClass="pill"/>
+                                <ToggleButton text="Medium" toggleGroup="$urgencyGroup" maxWidth="Infinity" HBox.hgrow="ALWAYS" styleClass="pill"/>
+                                <ToggleButton text="Low" toggleGroup="$urgencyGroup" maxWidth="Infinity" HBox.hgrow="ALWAYS" styleClass="pill"/>
+                            </HBox>
+                        </VBox>
+                        <Label text="Immediate danger? Call 911." styleClass="danger-text"/>
+                    </VBox>
+
+                    <VBox fx:id="stepTwo" spacing="18" visible="false" managed="false">
+                        <VBox spacing="4">
+                            <Label text="People in your group" styleClass="section-title"/>
+                            <Label text="Include yourself in the total." styleClass="muted"/>
+                        </VBox>
+                        <HBox alignment="CENTER_LEFT" spacing="12" styleClass="request-card">
+                            <Label text="Number of people" styleClass="login-guest-title"/>
+                            <Region HBox.hgrow="ALWAYS"/>
+                            <Button text="−" onAction="#removePerson" styleClass="stepper-button" accessibleText="Remove a person"/>
+                            <Label fx:id="peopleCount" text="1" styleClass="stepper-count"/>
+                            <Button text="+" onAction="#addPerson" styleClass="stepper-button" accessibleText="Add a person"/>
+                        </HBox>
+                        <VBox spacing="7">
+                            <Label text="People &amp; accessibility needs (optional)" styleClass="login-field-label"/>
+                            <TextArea wrapText="true" prefRowCount="3" promptText="e.g. 1 adult uses a walker. 2 children." styleClass="login-field, request-textarea"/>
+                        </VBox>
+                        <VBox spacing="12" styleClass="request-card">
+                            <Label text="Pets coming with you" styleClass="login-guest-title"/>
+                            <HBox alignment="CENTER_LEFT" spacing="12">
+                                <Label text="Number of pets" styleClass="muted"/>
+                                <Region HBox.hgrow="ALWAYS"/>
+                                <Button text="−" onAction="#removePet" styleClass="stepper-button" accessibleText="Remove a pet"/>
+                                <Label fx:id="petCount" text="0" styleClass="stepper-count"/>
+                                <Button text="+" onAction="#addPet" styleClass="stepper-button" accessibleText="Add a pet"/>
+                            </HBox>
+                            <TextField fx:id="petInfoField" promptText="e.g. Small dog · needs pet-friendly shelter" styleClass="login-field" visible="false" managed="false"/>
+                        </VBox>
+                    </VBox>
+
+                    <VBox fx:id="stepThree" spacing="18" visible="false" managed="false">
+                        <VBox spacing="7">
+                            <Label text="Street address" styleClass="login-field-label"/>
+                            <TextField promptText="123 Maple St" styleClass="login-field"/>
+                        </VBox>
+                        <VBox spacing="7">
+                            <Label text="City" styleClass="login-field-label"/>
+                            <TextField promptText="Charleston" styleClass="login-field"/>
+                        </VBox>
+                        <HBox spacing="12">
+                            <VBox spacing="7" prefWidth="100">
+                                <Label text="State" styleClass="login-field-label"/>
+                                <TextField promptText="SC" styleClass="login-field"/>
+                            </VBox>
+                            <VBox spacing="7" HBox.hgrow="ALWAYS">
+                                <Label text="ZIP code" styleClass="login-field-label"/>
+                                <TextField promptText="29403" styleClass="login-field"/>
+                            </VBox>
+                        </HBox>
+                        <VBox spacing="10">
+                            <Label text="Photos (optional)" styleClass="section-title"/>
+                            <Button fx:id="photosButton" onAction="#addPhotos" maxWidth="Infinity" styleClass="request-card, photo-button" accessibleText="Add photos">
+                                <graphic>
+                                    <HBox alignment="CENTER_LEFT" spacing="14">
+                                        <SVGPath content="M 3 4 L 21 4 L 21 20 L 3 20 Z M 3 16 L 9 10 L 14 15 L 17 12 L 21 16" styleClass="icon"/>
+                                        <VBox spacing="4">
+                                            <Label text="Add photos" styleClass="login-guest-title"/>
+                                            <Label text="Show damage, access or supplies needed." wrapText="true" styleClass="muted"/>
+                                        </VBox>
+                                    </HBox>
+                                </graphic>
+                            </Button>
+                        </VBox>
+                        <VBox spacing="6" styleClass="summary-card">
+                            <Label text="Ready to submit" styleClass="login-guest-title"/>
+                            <Label fx:id="summaryLabel" wrapText="true" styleClass="muted"/>
+                        </VBox>
+                    </VBox>
+                </VBox>
+            </content>
+        </ScrollPane>
+    </center>
+    <bottom>
+        <VBox styleClass="request-footer">
+            <Button fx:id="continueButton" onAction="#next" maxWidth="Infinity" minHeight="46" prefHeight="46" maxHeight="46" styleClass="create-button" accessibleText="Continue">
+                <graphic>
+                    <HBox prefWidth="${continueButton.width - 30}" alignment="CENTER_LEFT" fillHeight="false" spacing="10">
+                        <Label fx:id="continueLabel" text="Continue" styleClass="create-label"/>
+                        <Region HBox.hgrow="ALWAYS"/>
+                        <SVGPath content="M 3 12 L 21 12 M 14 5 L 21 12 L 14 19" styleClass="icon"/>
+                    </HBox>
+                </graphic>
+            </Button>
+        </VBox>
+    </bottom>
+</BorderPane>

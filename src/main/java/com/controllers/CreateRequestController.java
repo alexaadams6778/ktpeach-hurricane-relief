@@ -1,5 +1,7 @@
 package com.controllers;
 
+import java.io.IOException;
+
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
@@ -10,6 +12,7 @@ import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import com.relief.App;
 
 /** Create request screen preview. Saving requests is not wired yet. */
 public class CreateRequestController {
@@ -141,5 +144,10 @@ public class CreateRequestController {
         alert.setContentText(message);
         alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
         alert.showAndWait();
+    }
+
+    @FXML
+    private void showCreateRequest() throws IOException {
+        App.setRoot("createRequest");
     }
 }

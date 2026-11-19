@@ -41,7 +41,7 @@
                         </HBox>
                         <Label text="What do you need today?" wrapText="true" styleClass="support-title"/>
                         <Label text="Tell us what you and your family need." wrapText="true" styleClass="support-description"/>
-                        <Button fx:id="createRequestButton" maxWidth="Infinity" styleClass="create-button" accessibleText="Create request">
+                        <Button fx:id="createRequestButton" onAction="#showCreateRequest" maxWidth="Infinity" styleClass="create-button" accessibleText="Create request">
                             <graphic>
                                 <HBox prefWidth="${createRequestButton.width - 30}" alignment="CENTER_LEFT" spacing="10">
                                     <Label text="Create request" styleClass="create-label"/>
